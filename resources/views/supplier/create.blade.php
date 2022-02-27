@@ -37,8 +37,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Company Name')}} *</label>
-                                        <input type="text" name="company_name" required class="form-control">
+                                        <label>{{trans('file.Company Name')}}</label>
+                                        <input type="text" name="company_name" class="form-control">
                                         @if($errors->has('company_name'))
                                             <span>
                                        <strong>{{ $errors->first('company_name') }}</strong>
@@ -54,8 +54,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Email')}} *</label>
-                                        <input type="email" name="email" placeholder="example@example.com" required
+                                        <label>{{trans('file.Email')}}</label>
+                                        <input type="email" name="email" placeholder="example@example.com"
                                                class="form-control">
                                         @if($errors->has('email'))
                                             <span>
@@ -66,20 +66,20 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Phone Number')}} *</label>
-                                        <input type="text" name="phone_number" required class="form-control">
+                                        <label>{{trans('file.Phone Number')}}</label>
+                                        <input type="text" name="phone_number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Address')}} *</label>
-                                        <input type="text" name="address" required class="form-control">
+                                        <label>{{trans('file.Address')}}</label>
+                                        <input type="text" name="address" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.City')}} *</label>
-                                        <input type="text" name="city" required class="form-control">
+                                        <label>{{trans('file.City')}}</label>
+                                        <input type="text" name="city" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -118,8 +118,8 @@
 
 @push('scripts')
     <script type="text/javascript">
-        $("ul#people").siblings('a').attr('aria-expanded', 'true');
-        $("ul#people").addClass("show");
-        $("ul#people #supplier-create-menu").addClass("active");
+        $("ul#supplier").siblings('a').attr('aria-expanded', 'true');
+        $("ul#supplier").addClass("show");
+        $("ul#supplier #supplier-create-menu").addClass("active");
     </script>
 @endpush

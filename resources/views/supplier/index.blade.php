@@ -34,14 +34,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($lims_supplier_all as $key=>$supplier)
+                @foreach($lims_supplier_all as $key => $supplier)
                     <tr data-id="{{$supplier->id}}">
                         <td>{{$key}}</td>
                         @if($supplier->image)
-                            <td><img src="{{url('public/images/supplier',$supplier->image)}}" height="80" width="80">
+                            <td>
+                                <img src="{{url('public/images/supplier',$supplier->image)}}" height="80" width="80">
                             </td>
                         @else
-                            <td>No Image</td>
+                            <td>
+                                <img src="{{asset('images/user-placeholder.png')}}" height="80" width="80">
+                            </td>
                         @endif
                         <td>{{ $supplier->name }}</td>
                         <td>{{ $supplier->company_name}}</td>
@@ -54,32 +57,17 @@
                             @if($supplier->postal_code){{ ', '.$supplier->postal_code}}@endif
                             @if($supplier->country){{ ', '.$supplier->country}}@endif</td>
                         <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">{{trans('file.action')}}
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu edit-options dropdown-menu-right dropdown-default" user="menu">
-                                    @if(in_array("suppliers-edit", $all_permission))
-                                        <li>
-                                            <a href="{{ route('supplier.edit', $supplier->id) }}"
-                                               class="btn btn-link"><i
-                                                    class="dripicons-document-edit"></i> {{trans('file.edit')}}</a>
-                                        </li>
-                                    @endif
-                                    <li class="divider"></li>
-                                    @if(in_array("suppliers-delete", $all_permission))
-                                        {{ Form::open(['route' => ['supplier.destroy', $supplier->id], 'method' => 'DELETE'] ) }}
-                                        <li>
-                                            <button type="submit" class="btn btn-link" onclick="return confirmDelete()">
-                                                <i class="dripicons-trash"></i> {{trans('file.delete')}}</button>
-                                        </li>
-                                        {{ Form::close() }}
-                                    @endif
-                                </ul>
-                            </div>
+                            <?php
+                            $actions_data = [
+                                'edit_route' => route('supplier.edit', $supplier->id),
+                                'delete_route' => [
+                                    'supplier.destroy', $supplier->id
+                                ]
+                            ];
+
+                            ?>
+                            @include('layout.actions', $actions_data)
+
                         </td>
                     </tr>
                 @endforeach
@@ -134,9 +122,9 @@
 @push('scripts')
     <script type="text/javascript">
 
-        $("ul#people").siblings('a').attr('aria-expanded', 'true');
-        $("ul#people").addClass("show");
-        $("ul#people #supplier-list-menu").addClass("active");
+        $("ul#supplier").siblings('a').attr('aria-expanded', 'true');
+        $("ul#supplier").addClass("show");
+        $("ul#supplier #supplier-list-menu").addClass("active");
 
         var all_permission = <?php echo json_encode($all_permission) ?>;
         var supplier_id = [];

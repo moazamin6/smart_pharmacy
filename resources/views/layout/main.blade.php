@@ -120,8 +120,13 @@
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li><a href="{{url('/')}}"> <i class="dripicons-meter"></i><span>{{ __('file.dashboard') }}</span></a>
+                <li>
+                    <a href="{{url('/')}}">
+                        <i class="dripicons-meter"></i>
+                        <span>{{ __('file.dashboard') }}</span>
+                    </a>
                 </li>
+
                 <?php
                 $role = DB::table('roles')->find(Auth::user()->role_id);
                 $category_permission_active = DB::table('permissions')
@@ -152,7 +157,53 @@
                     ['permission_id', $adjustment->id],
                     ['role_id', $role->id]
                 ])->first();
+
+                $supplier_index_permission = DB::table('permissions')->where('name', 'suppliers-index')->first();
+                $supplier_index_permission_active = DB::table('role_has_permissions')->where([
+                    ['permission_id', $supplier_index_permission->id],
+                    ['role_id', $role->id]
+                ])->first();
+
+                $brand_permission = DB::table('permissions')->where('name', 'brand')->first();
+                $brand_permission_active = DB::table('role_has_permissions')->where([
+                    ['permission_id', $brand_permission->id],
+                    ['role_id', $role->id]
+                ])->first();
                 ?>
+
+                @if($brand_permission_active)
+                    <li id="brand-menu">
+                        <a href="{{route('brand.index')}}">
+                            <i class="dripicons-bold"></i>{{'Company'}}
+                        </a>
+                    </li>
+                @endif
+
+                @if($supplier_index_permission_active)
+                    <li>
+                        <a href="#supplier" aria-expanded="false" data-toggle="collapse"> <i
+                                class="dripicons-user"></i><span>{{trans('file.Supplier')}}</span></a>
+                        <ul id="supplier" class="collapse list-unstyled ">
+
+
+                            @if($supplier_index_permission_active)
+                                <li id="supplier-list-menu"><a
+                                        href="{{route('supplier.index')}}">{{trans('file.Supplier List')}}</a></li>
+                                <?php
+                                $supplier_add_permission = DB::table('permissions')->where('name', 'suppliers-add')->first();
+                                $supplier_add_permission_active = DB::table('role_has_permissions')->where([
+                                    ['permission_id', $supplier_add_permission->id],
+                                    ['role_id', $role->id]
+                                ])->first();
+                                ?>
+                                @if($supplier_add_permission_active)
+                                    <li id="supplier-create-menu"><a
+                                            href="{{route('supplier.create')}}">{{trans('file.Add Supplier')}}</a></li>
+                                @endif
+                            @endif
+                        </ul>
+                    </li>
+                @endif
                 @if($category_permission_active || $index_permission_active || $print_barcode_active || $stock_count_active || $adjustment_active)
                     <li><a href="#product" aria-expanded="false" data-toggle="collapse"> <i
                                 class="dripicons-list"></i><span>{{__('file.product')}}</span><span></a>
@@ -534,7 +585,8 @@
                 ])->first();
                 ?>
                 @if($user_index_permission_active || $customer_index_permission_active || $biller_index_permission_active || $supplier_index_permission_active)
-                    <li><a href="#people" aria-expanded="false" data-toggle="collapse"> <i
+                    <li>
+                        <a href="#people" aria-expanded="false" data-toggle="collapse"> <i
                                 class="dripicons-user"></i><span>{{trans('file.People')}}</span></a>
                         <ul id="people" class="collapse list-unstyled ">
 

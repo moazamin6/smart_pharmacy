@@ -38,9 +38,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Company Name')}} *</label>
+                                        <label>{{trans('file.Company Name')}}</label>
                                         <input type="text" name="company_name"
-                                               value="{{$lims_supplier_data->company_name}}" required
+                                               value="{{$lims_supplier_data->company_name}}"
                                                class="form-control">
                                         @if($errors->has('company_name'))
                                             <span>
@@ -58,8 +58,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Email')}} *</label>
-                                        <input type="email" name="email" value="{{$lims_supplier_data->email}}" required
+                                        <label>{{trans('file.Email')}}</label>
+                                        <input type="email" name="email" value="{{$lims_supplier_data->email}}"
                                                class="form-control">
                                         @if($errors->has('email'))
                                             <span>
@@ -70,23 +70,23 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Phone Number')}} *</label>
+                                        <label>{{trans('file.Phone Number')}}</label>
                                         <input type="text" name="phone_number"
-                                               value="{{$lims_supplier_data->phone_number}}" required
+                                               value="{{$lims_supplier_data->phone_number}}"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.Address')}} *</label>
+                                        <label>{{trans('file.Address')}}</label>
                                         <input type="text" name="address" value="{{$lims_supplier_data->address}}"
-                                               required class="form-control">
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>{{trans('file.City')}} *</label>
-                                        <input type="text" name="city" value="{{$lims_supplier_data->city}}" required
+                                        <label>{{trans('file.City')}}</label>
+                                        <input type="text" name="city" value="{{$lims_supplier_data->city}}"
                                                class="form-control">
                                     </div>
                                 </div>

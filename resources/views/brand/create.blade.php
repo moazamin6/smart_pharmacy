@@ -23,9 +23,9 @@
     <section>
         <div class="container-fluid">
             <button class="btn btn-info" data-toggle="modal" data-target="#createModal"><i
-                    class="dripicons-plus"></i> {{trans('file.Add Brand')}} </button>&nbsp;
+                    class="dripicons-plus"></i> {{'Add Company'}} </button>&nbsp;
             <button class="btn btn-primary" data-toggle="modal" data-target="#importBrand"><i
-                    class="dripicons-copy"></i> {{trans('file.Import Brand')}}</button>
+                    class="dripicons-copy"></i> {{'Import Company'}}</button>
         </div>
         <div class="table-responsive">
             <table id="biller-table" class="table">
@@ -42,10 +42,12 @@
                     <tr data-id="{{$brand->id}}">
                         <td>{{$key}}</td>
                         @if($brand->image)
-                            <td><img src="{{url('public/images/brand',$brand->image)}}" height="80" width="80">
+                            <td><img src="{{url('public/images/brand',$brand->image)}}" height="80" width="80" alt="">
                             </td>
                         @else
-                            <td>No Image</td>
+                            <td>
+                                <img src="{{asset('images/company-placeholder.png')}}" height="80" width="80" alt="">
+                            </td>
                         @endif
                         <td>{{ $brand->title }}</td>
                         <td>
@@ -87,7 +89,7 @@
             <div class="modal-content">
                 {!! Form::open(['route' => 'brand.store', 'method' => 'post', 'files' => true]) !!}
                 <div class="modal-header">
-                    <h5 id="exampleModalLabel" class="modal-title">{{trans('file.Add Brand')}}</h5>
+                    <h5 id="exampleModalLabel" class="modal-title">{{'Add Company'}}</h5>
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
                             aria-hidden="true"><i class="dripicons-cross"></i></span></button>
                 </div>
@@ -117,7 +119,7 @@
             <div class="modal-content">
                 {!! Form::open(['route' => 'brand.import', 'method' => 'post', 'files' => true]) !!}
                 <div class="modal-header">
-                    <h5 id="exampleModalLabel" class="modal-title">{{trans('file.Import Brand')}}</h5>
+                    <h5 id="exampleModalLabel" class="modal-title">{{'Import Company'}}</h5>
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
                             aria-hidden="true"><i class="dripicons-cross"></i></span></button>
                 </div>
