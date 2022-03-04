@@ -36,19 +36,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>{{trans('file.Company Name')}}</label>
-                                        <input type="text" name="company_name"
-                                               value="{{$lims_supplier_data->company_name}}"
-                                               class="form-control">
-                                        @if($errors->has('company_name'))
-                                            <span>
-                                       <strong>{{ $errors->first('company_name') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{trans('file.VAT Number')}}</label>
@@ -109,6 +97,28 @@
                                         <label>{{trans('file.Country')}}</label>
                                         <input type="text" name="country" value="{{$lims_supplier_data->country}}"
                                                class="form-control">
+                                    </div>
+                                </div>
+                                <?php
+                                $selected_companies = $lims_supplier_data->companies;
+                                if (!empty($selected_companies)) {
+                                    $selected_companies = explode(',', $selected_companies);
+                                } else {
+                                    $selected_companies = [];
+                                }
+                                ?>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>{{ 'Companies' }}</label>
+                                        <input type="hidden" name="companies_hidden" value="">
+                                        <select name="companies[]" multiple class="selectpicker form-control"
+                                                data-live-search="true" title="Select Companies...">
+                                            @foreach($companies as $company)
+                                                <option
+                                                    <?= in_array($company['id'], $selected_companies) ? 'selected' : '' ?>
+                                                    value="{{$company['id']}}">{{$company['title']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

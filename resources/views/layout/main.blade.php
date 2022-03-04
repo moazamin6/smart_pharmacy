@@ -172,7 +172,7 @@
                 ?>
 
                 @if($brand_permission_active)
-                    <li id="brand-menu">
+                    <li id="company-menu">
                         <a href="{{route('brand.index')}}">
                             <i class="dripicons-bold"></i>{{'Company'}}
                         </a>

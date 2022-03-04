@@ -127,8 +127,10 @@ class BrandController extends Controller
     {
         $lims_brand_data = Brand::findOrFail($id);
         $lims_brand_data->is_active = false;
-        unlink('public/images/brand/' . $lims_brand_data->image);
-        $lims_brand_data->save();
+        if ( $lims_brand_data->image != NULL){
+            unlink('public/images/brand/' . $lims_brand_data->image);
+        }
+        Brand::destroy($id);
         return redirect('brand')->with('not_permitted', 'Brand deleted successfully!');
     }
 

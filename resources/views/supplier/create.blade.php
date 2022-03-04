@@ -35,17 +35,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>{{trans('file.Company Name')}}</label>
-                                        <input type="text" name="company_name" class="form-control">
-                                        @if($errors->has('company_name'))
-                                            <span>
-                                       <strong>{{ $errors->first('company_name') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{trans('file.VAT Number')}}</label>
@@ -98,6 +88,19 @@
                                     <div class="form-group">
                                         <label>{{trans('file.Country')}}</label>
                                         <input type="text" name="country" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>{{ 'Companies' }}</label>
+                                        <input type="hidden" name="companies_hidden" value="">
+                                        <select name="companies[]" multiple class="selectpicker form-control"
+                                                data-live-search="true" title="Select Companies...">
+                                            @foreach($companies as $company)
+                                                <option
+                                                    value="{{$company['id']}}">{{$company['title']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

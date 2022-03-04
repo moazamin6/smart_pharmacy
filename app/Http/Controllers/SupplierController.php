@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use Illuminate\Http\Request;
 use App\Supplier;
 use Illuminate\Validation\Rule;
@@ -32,31 +33,23 @@ class SupplierController extends Controller
     {
         $role = Role::find(Auth::user()->role_id);
         if ($role->hasPermissionTo('suppliers-add')) {
-            return view('supplier.create');
+            $companies = Brand::all();
+            return view('supplier.create')
+                ->with('companies', $companies);
         } else
             return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'company_name' => [
-                'max:255',
-                Rule::unique('suppliers')->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-            'email' => [
-                'max:255',
-                Rule::unique('suppliers')->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-            'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
-        ]);
-
         $lims_supplier_data = $request->except('image');
         $lims_supplier_data['is_active'] = true;
+
+        if (!empty($request['companies'])) {
+            $companies = implode(',', $request['companies']);
+            $lims_supplier_data['companies'] = $companies;
+        }
+
         $image = $request->image;
         if ($image) {
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
@@ -82,30 +75,14 @@ class SupplierController extends Controller
         $role = Role::find(Auth::user()->role_id);
         if ($role->hasPermissionTo('suppliers-edit')) {
             $lims_supplier_data = Supplier::where('id', $id)->first();
-            return view('supplier.edit', compact('lims_supplier_data'));
+            $companies = Brand::all();
+            return view('supplier.edit', compact('lims_supplier_data', 'companies'));
         } else
             return redirect()->back()->with('not_permitted', 'Sorry! You are not allowed to access this module');
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'company_name' => [
-                'max:255',
-                Rule::unique('suppliers')->ignore($id)->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-
-            'email' => [
-                'max:255',
-                Rule::unique('suppliers')->ignore($id)->where(function ($query) {
-                    return $query->where('is_active', 1);
-                }),
-            ],
-            'image' => 'image|mimes:jpg,jpeg,png,gif|max:100000',
-        ]);
-
         $input = $request->except('image');
         $image = $request->image;
         if ($image) {
@@ -114,6 +91,14 @@ class SupplierController extends Controller
             $imageName = $imageName . '.' . $ext;
             $image->move('public/images/supplier', $imageName);
             $input['image'] = $imageName;
+        }
+        if (!empty($request['companies'])) {
+
+            $companies = implode(',', $request['companies']);
+            $input['companies'] = $companies;
+        } else {
+
+            $input['companies'] = '';
         }
 
         $lims_supplier_data = Supplier::findOrFail($id);
@@ -124,19 +109,13 @@ class SupplierController extends Controller
     public function deleteBySelection(Request $request)
     {
         $supplier_id = $request['supplierIdArray'];
-        foreach ($supplier_id as $id) {
-            $lims_supplier_data = Supplier::findOrFail($id);
-            $lims_supplier_data->is_active = false;
-            $lims_supplier_data->save();
-        }
+        Supplier::destroy($supplier_id);
         return 'Supplier deleted successfully!';
     }
 
     public function destroy($id)
     {
-        $lims_supplier_data = Supplier::findOrFail($id);
-        $lims_supplier_data->is_active = false;
-        $lims_supplier_data->save();
+        Supplier::destroy($id);
         return redirect('supplier')->with('not_permitted', 'Data deleted successfully');
     }
 

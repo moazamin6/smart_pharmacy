@@ -51,6 +51,17 @@
                         @endif
                         <td>{{ $brand->title }}</td>
                         <td>
+
+                            <?php
+                            $actions_data = [
+                                'edit_route' => route('brand.edit', $brand->id),
+                                'delete_route' => [
+                                    'brand.destroy', $brand->id
+                                ]
+                            ];
+
+                            ?>
+                            @include('layout.actions', $actions_data)
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle"
                                         data-toggle="dropdown" aria-haspopup="true"
@@ -190,9 +201,8 @@
 @push('scripts')
     <script type="text/javascript">
 
-        $("ul#setting").siblings('a').attr('aria-expanded', 'true');
-        $("ul#setting").addClass("show");
-        $("ul#setting #brand-menu").addClass("active");
+        $("#company-menu").addClass("show");
+        $("#company-menu").addClass("active");
 
         var brand_id = [];
         var user_verified = <?php echo json_encode(env('USER_VERIFIED')) ?>;

@@ -10,7 +10,7 @@ class Supplier extends Model
 
         "name", "image", "company_name", "vat_number",
         "email", "phone_number", "address", "city",
-        "state", "postal_code", "country", "is_active"
+        "state", "postal_code", "country", "is_active", "companies"
 
     ];
 
@@ -18,5 +18,14 @@ class Supplier extends Model
     {
         return $this->hasMany('App/Product');
 
+    }
+
+    public function getCompany($ids)
+    {
+        $company_ids = explode(',', $ids);
+        $companies = Brand::select('title')
+            ->whereIn('id', $company_ids)
+            ->get();
+        return ($companies->pluck('title'));
     }
 }
