@@ -18,6 +18,7 @@ class PaymentsTest extends FeatureTestCase
             ->assertStatus(200)
             ->assertSeeText(trans_choice('general.payments', 2));
     }
+
     public function testItShouldSeePaymentShowPage()
     {
         $request = $this->getRequest();
@@ -51,17 +52,17 @@ class PaymentsTest extends FeatureTestCase
         $this->assertDatabaseHas('transactions', $request);
     }
 
-	public function testItShouldSeePaymentUpdatePage()
-	{
+    public function testItShouldSeePaymentUpdatePage()
+    {
         $request = $this->getRequest();
 
         $payment = $this->dispatch(new CreateTransaction($request));
 
-		$this->loginAs()
-			->get(route('payments.edit', $payment->id))
-			->assertStatus(200)
-			->assertSee($payment->amount);
-	}
+        $this->loginAs()
+            ->get(route('payments.edit', $payment->id))
+            ->assertStatus(200)
+            ->assertSee($payment->amount);
+    }
 
     public function testItShouldUpdatePayment()
     {
@@ -74,7 +75,7 @@ class PaymentsTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('payments.update', $payment->id), $request)
             ->assertStatus(200)
-			->assertSee($request['amount']);
+            ->assertSee($request['amount']);
 
         $this->assertFlashLevel('success');
 

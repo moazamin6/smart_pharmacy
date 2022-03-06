@@ -15,42 +15,42 @@
             'novalidate' => 'true'
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::dateGroup('paid_at', trans('general.date'), 'calendar', ['id' => 'paid_at', 'required' => 'required', 'show-date-format' => company_date_format(), 'date-format' => 'Y-m-d', 'autocomplete' => 'off'], request()->get('paid_at', Date::now()->toDateString())) }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::dateGroup('paid_at', trans('general.date'), 'calendar', ['id' => 'paid_at', 'required' => 'required', 'show-date-format' => company_date_format(), 'date-format' => 'Y-m-d', 'autocomplete' => 'off'], request()->get('paid_at', Date::now()->toDateString())) }}
 
-                {!! Form::hidden('currency_code', $account_currency_code, ['id' => 'currency_code', 'class' => 'form-control', 'required' => 'required']) !!}
-                {!! Form::hidden('currency_rate', '1', ['id' => 'currency_rate']) !!}
+                    {!! Form::hidden('currency_code', $account_currency_code, ['id' => 'currency_code', 'class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::hidden('currency_rate', '1', ['id' => 'currency_rate']) !!}
 
-                {{ Form::moneyGroup('amount', trans('general.amount'), 'money-bill-alt', ['required' => 'required', 'autofocus' => 'autofocus', 'currency' => $currency, 'dynamic-currency' => 'currency'], 0) }}
+                    {{ Form::moneyGroup('amount', trans('general.amount'), 'money-bill-alt', ['required' => 'required', 'autofocus' => 'autofocus', 'currency' => $currency, 'dynamic-currency' => 'currency'], 0) }}
 
-                {{ Form::selectAddNewGroup('account_id', trans_choice('general.accounts', 1), 'university', $accounts, setting('default.account'), ['required' => 'required', 'path' => route('modals.accounts.create'), 'change' => 'onChangeAccount']) }}
+                    {{ Form::selectAddNewGroup('account_id', trans_choice('general.accounts', 1), 'university', $accounts, setting('default.account'), ['required' => 'required', 'path' => route('modals.accounts.create'), 'change' => 'onChangeAccount']) }}
 
-                {{ Form::selectRemoteAddNewGroup('contact_id', trans_choice('general.customers', 1), 'user', $customers, old('contact.id', old('contact_id', null)), ['path' => route('modals.customers.create'), 'remote_action' => route('customers.index')]) }}
+                    {{ Form::selectRemoteAddNewGroup('contact_id', trans_choice('general.customers', 1), 'user', $customers, old('contact.id', old('contact_id', null)), ['path' => route('modals.customers.create'), 'remote_action' => route('customers.index')]) }}
 
-                {{ Form::textareaGroup('description', trans('general.description')) }}
+                    {{ Form::textareaGroup('description', trans('general.description')) }}
 
-                {{ Form::selectRemoteAddNewGroup('category_id', trans_choice('general.categories', 1), 'folder', $categories, setting('default.income_category'), ['required' => 'required', 'path' => route('modals.categories.create') . '?type=income', 'remote_action' => route('categories.index'). '?search=type:income enabled:1']) }}
+                    {{ Form::selectRemoteAddNewGroup('category_id', trans_choice('general.categories', 1), 'folder', $categories, setting('default.income_category'), ['required' => 'required', 'path' => route('modals.categories.create') . '?type=income', 'remote_action' => route('categories.index'). '?search=type:income enabled:1']) }}
 
-                {{ Form::recurring('create') }}
+                    {{ Form::recurring('create') }}
 
-                {{ Form::selectGroup('payment_method', trans_choice('general.payment_methods', 1), 'credit-card', $payment_methods, setting('default.payment_method')) }}
+                    {{ Form::selectGroup('payment_method', trans_choice('general.payment_methods', 1), 'credit-card', $payment_methods, setting('default.payment_method')) }}
 
-                {{ Form::textGroup('reference', trans('general.reference'), 'file', []) }}
+                    {{ Form::textGroup('reference', trans('general.reference'), 'file', []) }}
 
-                {{ Form::selectGroup('document_id', trans_choice('general.invoices', 1), 'file-invoice', [], null, ['disabled' => 'true']) }}
+                    {{ Form::selectGroup('document_id', trans_choice('general.invoices', 1), 'file-invoice', [], null, ['disabled' => 'true']) }}
 
-                {{ Form::fileGroup('attachment', trans('general.attachment'), '', ['dropzone-class' => 'w-100', 'multiple' => 'multiple', 'options' => ['acceptedFiles' => $file_types]], null, 'col-md-12') }}
+                    {{ Form::fileGroup('attachment', trans('general.attachment'), '', ['dropzone-class' => 'w-100', 'multiple' => 'multiple', 'options' => ['acceptedFiles' => $file_types]], null, 'col-md-12') }}
+                </div>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <div class="row save-buttons">
-                {{ Form::saveButtons('revenues.index') }}
+            <div class="card-footer">
+                <div class="row save-buttons">
+                    {{ Form::saveButtons('revenues.index') }}
+                </div>
             </div>
-        </div>
 
-        {{ Form::hidden('type', 'income') }}
+            {{ Form::hidden('type', 'income') }}
         {!! Form::close() !!}
     </div>
 @endsection

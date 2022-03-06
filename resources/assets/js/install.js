@@ -25,48 +25,48 @@ const router = new VueRouter({
     base: base_path,
     routes: [
         {
-            path: '/',
+            path:  '/',
             name: 'home',
             component: Requirements
         },
         {
-            path: '/install/requirements',
+            path:  '/install/requirements',
             name: 'requirements',
             component: Requirements
         },
         {
-            path: '/install/language',
+            path:  '/install/language',
             name: 'language',
             component: Language
         },
         {
-            path: '/install/database',
+            path:  '/install/database',
             name: 'database',
             component: Database
         },
         {
-            path: '/install/settings',
+            path:  '/install/settings',
             name: 'settings',
             component: Settings
         }
     ],
     linkActiveClass: 'active',
-    scrollBehavior: (to, from, savedPosition) => {
+    scrollBehavior: (to, from ,savedPosition) => {
         if (savedPosition) {
             return savedPosition;
         }
 
         if (to.hash) {
-            return {selector: to.hash};
+            return { selector: to.hash };
         }
 
-        return {x: 0, y: 0};
+        return { x: 0, y: 0 };
     }
 });
 
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
+    el    : '#app',
     render: h => h(Install),
     router
 });

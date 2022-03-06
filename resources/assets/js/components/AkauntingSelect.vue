@@ -1,23 +1,22 @@
 <template>
     <base-input :label="title" :name="name"
-                :readonly="readonly"
-                :disabled="disabled"
-                :class="[
+        :readonly="readonly"
+        :disabled="disabled"
+        :class="[
             {'readonly': readonly},
             {'disabled': disabled},
             formClasses
         ]"
-                :error="formError">
+        :error="formError">
 
         <el-select v-model="selected" :placeholder="placeholder" filterable
-                   @change="change" @visible-change="visibleChange" @remove-tag="removeTag" @clear="clear" @blur="blur"
-                   @focus="focus"
-                   :clearable="clearable"
-                   :disabled="disabled"
-                   :multiple="multiple"
-                   :readonly="readonly"
-                   :collapse-tags="collapse"
-                   :loading="loading"
+            @change="change" @visible-change="visibleChange" @remove-tag="removeTag" @clear="clear" @blur="blur" @focus="focus"
+            :clearable="clearable"
+            :disabled="disabled"
+            :multiple="multiple"
+            :readonly="readonly"
+            :collapse-tags="collapse"
+            :loading="loading"
         >
             <div v-if="loading" class="el-select-dropdown__wrap" slot="empty">
                 <p class="el-select-dropdown__empty loading">
@@ -25,8 +24,7 @@
                 </p>
             </div>
 
-            <div v-if="addNew.status && options.length != 0 && sortedOptions.length == 0"
-                 class="el-select-dropdown__wrap" slot="empty">
+            <div v-if="addNew.status && options.length != 0 && sortedOptions.length == 0" class="el-select-dropdown__wrap" slot="empty">
                 <p class="el-select-dropdown__empty">
                     {{ noMatchingDataText }}
                 </p>
@@ -66,13 +64,12 @@
             </template>
 
             <el-option v-if="!group" v-for="(option, index) in sortedOptions"
-                       :key="index"
-                       :disabled="disabledOptions.includes(option.key)"
-                       :label="option.value"
-                       :value="option.key">
+                :key="index"
+                :disabled="disabledOptions.includes(option.key)"
+                :label="option.value"
+                :value="option.key">
                 <span class="float-left">{{ option.value }}</span>
-                <span class="badge badge-pill badge-success float-right mt-2"
-                      v-if="new_options[option.key]">{{ addNew.new_text }}</span>
+                <span class="badge badge-pill badge-success float-right mt-2" v-if="new_options[option.key]">{{ addNew.new_text }}</span>
             </el-option>
 
             <el-option-group
@@ -87,13 +84,11 @@
                     :label="option.value"
                     :value="option.key">
                     <span class="float-left">{{ option.value }}</span>
-                    <span class="badge badge-pill badge-success float-right mt-2"
-                          v-if="new_options[option.key]">{{ addNew.new_text }}</span>
+                    <span class="badge badge-pill badge-success float-right mt-2" v-if="new_options[option.key]">{{ addNew.new_text }}</span>
                 </el-option>
             </el-option-group>
 
-            <el-option v-if="!loading && addNew.status && options.length != 0 && sortedOptions.length > 0"
-                       class="el-select__footer select-add-new" disabled value="">
+            <el-option v-if="!loading && addNew.status && options.length != 0 && sortedOptions.length > 0" class="el-select__footer select-add-new" disabled value="">
                 <div @click="onAddItem">
                     <i class="fas fa-plus"></i>
                     <span>
@@ -106,10 +101,9 @@
 
         <component v-bind:is="add_new_html" @submit="onSubmit" @cancel="onCancel"></component>
 
-        <span slot="infoBlock" class="badge badge-success badge-resize float-right"
-              v-if="new_options[selected]">{{ addNew.new_text }}</span>
+        <span slot="infoBlock" class="badge badge-success badge-resize float-right" v-if="new_options[selected]">{{ addNew.new_text }}</span>
 
-        <select :name="name" :id="name" v-model="selected" class="d-none">
+        <select :name="name"  :id="name" v-model="selected" class="d-none">
             <option v-for="option in sortedOptions" :key="option.key" :value="option.key">{{ option.value }}</option>
         </select>
 
@@ -119,7 +113,7 @@
 <script>
 import Vue from 'vue';
 
-import {Select, Option, OptionGroup, ColorPicker} from 'element-ui';
+import { Select, Option, OptionGroup, ColorPicker } from 'element-ui';
 
 import AkauntingModalAddNew from './AkauntingModalAddNew';
 import AkauntingModal from './AkauntingModal';
@@ -266,7 +260,7 @@ export default {
             description: "Selectbox disabled status"
         },
 
-        collapse: {
+        collapse:  {
             type: Boolean,
             default: false,
             description: "Selectbox collapse status"
@@ -359,7 +353,7 @@ export default {
 
         this.$emit('interface', this.selected);
 
-        setTimeout(function () {
+        setTimeout(function() {
             this.change();
         }.bind(this), 800);
     },
@@ -409,7 +403,7 @@ export default {
                     }
                 } else {
                     created_options.forEach(function (option, index) {
-                        if (typeof (option) == 'string') {
+                        if (typeof(option) == 'string') {
                             this.sorted_options.push({
                                 index: index,
                                 key: index.toString(),
@@ -435,7 +429,7 @@ export default {
                     }
                 } else {
                     created_options.forEach(function (option, index) {
-                        if (typeof (option) == 'string') {
+                        if (typeof(option) == 'string') {
                             this.sorted_options.push({
                                 index: index,
                                 key: index.toString(),
@@ -455,7 +449,7 @@ export default {
 
         change() {
             // This controll added add new changed..
-            if (typeof (this.selected) === 'object' && typeof (this.selected.type) !== 'undefined') {
+            if (typeof(this.selected) === 'object' && typeof(this.selected.type) !== 'undefined') {
                 return false;
             }
 
@@ -552,7 +546,7 @@ export default {
         async onAddItem() {
             // Get Select Input value
             if (this.multiple) {
-                var value = this.$children[0].$children[0].$refs.input.value;
+                var value = this.$children[0].$children[0]. $refs.input.value;
             } else {
                 if (this.title) {
                     var value = this.$children[0].$children[0].$children[0].$refs.input.value;
@@ -581,51 +575,51 @@ export default {
             let add_new = this.add_new;
 
             window.axios.get(this.add_new.path)
-                .then(response => {
-                    add_new.show = true;
-                    add_new.html = response.data.html;
+            .then(response => {
+                add_new.show = true;
+                add_new.html = response.data.html;
 
-                    this.$children[0].$children[0].visible = false;
+                this.$children[0].$children[0].visible = false;
 
-                    this.add_new_html = Vue.component('add-new-component', function (resolve, reject) {
-                        resolve({
-                            template: '<div><akaunting-modal-add-new :show="add_new.show" @submit="onSubmit" @cancel="onCancel" :buttons="add_new.buttons" :title="add_new.text" :is_component=true :message="add_new.html"></akaunting-modal-add-new></div>',
+                this.add_new_html = Vue.component('add-new-component', function (resolve, reject) {
+                    resolve({
+                        template: '<div><akaunting-modal-add-new :show="add_new.show" @submit="onSubmit" @cancel="onCancel" :buttons="add_new.buttons" :title="add_new.text" :is_component=true :message="add_new.html"></akaunting-modal-add-new></div>',
 
-                            components: {
-                                AkauntingModalAddNew,
-                                AkauntingRadioGroup,
-                                AkauntingSelect,
-                                AkauntingModal,
-                                AkauntingMoney,
-                                AkauntingDate,
-                                AkauntingRecurring,
-                                [ColorPicker.name]: ColorPicker,
-                            },
+                        components: {
+                            AkauntingModalAddNew,
+                            AkauntingRadioGroup,
+                            AkauntingSelect,
+                            AkauntingModal,
+                            AkauntingMoney,
+                            AkauntingDate,
+                            AkauntingRecurring,
+                            [ColorPicker.name]: ColorPicker,
+                        },
 
-                            data: function () {
-                                return {
-                                    add_new: add_new,
-                                }
-                            },
-
-                            methods: {
-                                onSubmit(event) {
-                                    this.$emit('submit', event);
-                                },
-
-                                onCancel(event) {
-                                    this.$emit('cancel', event);
-                                }
+                        data: function () {
+                            return {
+                                add_new: add_new,
                             }
-                        })
-                    });
-                })
-                .catch(e => {
-                    this.errors.push(e);
-                })
-                .finally(function () {
-                    // always executed
+                        },
+
+                        methods: {
+                            onSubmit(event) {
+                                this.$emit('submit', event);
+                            },
+
+                            onCancel(event) {
+                                this.$emit('cancel', event);
+                            }
+                        }
+                    })
                 });
+            })
+            .catch(e => {
+                this.errors.push(e);
+            })
+            .finally(function () {
+                // always executed
+            });
         },
 
         onSubmit(event) {
@@ -635,16 +629,16 @@ export default {
 
             let data = this.form.data();
 
-            FormData.prototype.appendRecursive = function (data, wrapper = null) {
-                for (var name in data) {
+            FormData.prototype.appendRecursive = function(data, wrapper = null) {
+                for(var name in data) {
                     if (wrapper) {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], wrapper + '[' + name + ']');
                         } else {
                             this.append(wrapper + '[' + name + ']', data[name]);
                         }
                     } else {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], name);
                         } else {
                             this.append(name, data[name]);
@@ -666,49 +660,49 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(response => {
-                    this.loading = false;
-                    this.form.loading = false;
+            .then(response => {
+                this.loading = false;
+                this.form.loading = false;
 
-                    if (response.data.success) {
-                        this.sorted_options.push({
-                            key: response.data.data[this.add_new.field.key].toString(),
-                            value: response.data.data[this.add_new.field.value],
-                        });
+                if (response.data.success) {
+                    this.sorted_options.push({
+                        key: response.data.data[this.add_new.field.key].toString(),
+                        value: response.data.data[this.add_new.field.value],
+                    });
 
-                        this.new_options[response.data.data[this.add_new.field.key]] = response.data.data[this.add_new.field.value];
+                    this.new_options[response.data.data[this.add_new.field.key]] = response.data.data[this.add_new.field.value];
 
-                        if (this.multiple) {
-                            this.selected.push(response.data.data[this.add_new.field.key].toString());
-                        } else {
-                            this.selected = response.data.data[this.add_new.field.key].toString();
-                        }
-
-                        this.add_new.show = false;
-
-                        this.add_new.html = '';
-                        this.add_new_html = null;
-
-                        response.data.data.mark_new = true;
-
-                        this.$emit('new', response.data.data);
-
-                        this.change();
-
-                        this.$emit('visible-change', event);
-
-                        let documentClasses = document.body.classList;
-
-                        documentClasses.remove("modal-open");
+                    if (this.multiple) {
+                        this.selected.push(response.data.data[this.add_new.field.key].toString());
+                    } else {
+                        this.selected = response.data.data[this.add_new.field.key].toString();
                     }
-                })
-                .catch(error => {
-                    this.form.loading = false;
 
-                    this.form.onFail(error);
+                    this.add_new.show = false;
 
-                    this.method_show_html = error.message;
-                });
+                    this.add_new.html = '';
+                    this.add_new_html = null;
+
+                    response.data.data.mark_new = true;
+
+                    this.$emit('new', response.data.data);
+
+                    this.change();
+
+                    this.$emit('visible-change', event);
+
+                    let documentClasses = document.body.classList;
+
+                    documentClasses.remove("modal-open");
+                }
+            })
+            .catch(error => {
+                this.form.loading = false;
+
+                this.form.onFail(error);
+
+                this.method_show_html = error.message;
+            });
         },
 
         onCancel() {
@@ -806,7 +800,7 @@ export default {
             this.change();
         },
 
-        dynamicOptions: function (options) {
+        dynamicOptions: function(options) {
             this.sorted_options = [];
             this.selected = '';
 
@@ -830,7 +824,7 @@ export default {
                     }
                 } else {
                     options.forEach(function (option, index) {
-                        if (typeof (option) == 'string') {
+                        if (typeof(option) == 'string') {
                             this.sorted_options.push({
                                 index: index,
                                 key: index.toString(),
@@ -856,7 +850,7 @@ export default {
                     }
                 } else {
                     options.forEach(function (option, index) {
-                        if (typeof (option) == 'string') {
+                        if (typeof(option) == 'string') {
                             this.sorted_options.push({
                                 index: index,
                                 key: index.toString(),
@@ -878,55 +872,55 @@ export default {
 </script>
 
 <style scoped>
-.form-group .modal {
-    z-index: 3050;
-}
+    .form-group .modal {
+        z-index: 3050;
+    }
 
-.el-select-dropdown__empty {
-    padding: 10px 0 0 !important;
-}
+    .el-select-dropdown__empty {
+        padding: 10px 0 0 !important;
+    }
 
-.el-select-dropdown__empty.loading {
-    padding: 10px 0 !important;
-}
+    .el-select-dropdown__empty.loading {
+        padding: 10px 0 !important;
+    }
 
-.el-select__footer {
-    text-align: center !important;
-    border-top: 1px solid #dee2e6 !important;
-    padding: 0px !important;
-    cursor: pointer !important;
-    color: #3c3f72 !important;
-    font-weight: bold !important;
-    height: 38px !important;
-    line-height: 38px !important;
-    margin-top: 5px !important;
-    margin-bottom: -6px !important;
-    border-bottom-left-radius: 4px !important;
-    border-bottom-right-radius: 4px !important;
-}
+    .el-select__footer {
+        text-align: center !important;
+        border-top: 1px solid #dee2e6 !important;
+        padding: 0px !important;
+        cursor: pointer !important;
+        color: #3c3f72 !important;
+        font-weight: bold !important;
+        height: 38px !important;
+        line-height: 38px !important;
+        margin-top: 5px !important;
+        margin-bottom: -6px !important;
+        border-bottom-left-radius: 4px !important;
+        border-bottom-right-radius: 4px !important;
+    }
 
-.el-select__footer.el-select-dropdown__item.hover {
-    background-color: inherit !important;
-}
+    .el-select__footer.el-select-dropdown__item.hover {
+        background-color: inherit !important;
+    }
 
-.el-select__footer.el-select-dropdown__item:hover, .el-select__footer.el-select-dropdown__item:focus {
-    background-color: #3c3f72 !important;
-    color: white !important;
-    border-top-color: #3c3f72;
-}
+    .el-select__footer.el-select-dropdown__item:hover, .el-select__footer.el-select-dropdown__item:focus {
+        background-color: #3c3f72 !important;
+        color: white !important;
+        border-top-color: #3c3f72;
+    }
 
-.el-select__footer div span {
-    margin-left: 5px;
-}
+    .el-select__footer div span {
+        margin-left: 5px;
+    }
 
-.badge-resize {
-    float: right;
-    margin-top: -32px;
-    margin-right: 35px;
-    position: relative;
-}
+    .badge-resize {
+        float: right;
+        margin-top: -32px;
+        margin-right: 35px;
+        position: relative;
+    }
 
-.badge.badge-pill.badge-success {
-    border-radius: 0.375rem;
-}
+    .badge.badge-pill.badge-success {
+        border-radius: 0.375rem;
+    }
 </style>

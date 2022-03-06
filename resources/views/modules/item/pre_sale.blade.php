@@ -27,17 +27,17 @@
                             {!! $module->description !!}
 
                             @if ($module->screenshots || $module->video)
-                                <akaunting-carousel :name="'{{ $module->name }}'" :height="'430px'" arrow="always"
-                                                    @if ($module->video)
-                                                    @php
-                                                        if (strpos($module->video->link, '=') !== false) {
-                                                            $code = explode('=', $module->video->link);
-                                                            $code[1]= str_replace('&list', '', $code[1]);
-                                                        }
-                                                    @endphp
-                                                    :video="'{{ $code[1] }}'"
-                                                    @endif
-                                                    :screenshots="{{ json_encode($module->screenshots) }}">
+                               <akaunting-carousel :name="'{{ $module->name }}'" :height="'430px'" arrow="always"
+                                    @if ($module->video)
+                                        @php
+                                            if (strpos($module->video->link, '=') !== false) {
+                                                $code = explode('=', $module->video->link);
+                                                $code[1]= str_replace('&list', '', $code[1]);
+                                            }
+                                        @endphp
+                                        :video="'{{ $code[1] }}'"
+                                    @endif
+                                    :screenshots="{{ json_encode($module->screenshots) }}">
                                 </akaunting-carousel>
                             @endif
                         </div>
@@ -52,9 +52,9 @@
             <div class="card">
                 <div class="card-body">
                     <akaunting-countdown id="countdown-pre-sale"
-                                         :year="{{ (int) $module->pre_sale_date->year }}"
-                                         :month="{{ (int) $module->pre_sale_date->month - 1 }}"
-                                         :date="{{ (int) $module->pre_sale_date->day }}"
+                        :year="{{ (int) $module->pre_sale_date->year }}"
+                        :month="{{ (int) $module->pre_sale_date->month - 1 }}"
+                        :date="{{ (int) $module->pre_sale_date->day }}"
                     ></akaunting-countdown>
                 </div>
             </div>
@@ -108,42 +108,40 @@
             <div class="card">
                 <table class="table">
                     <tbody>
-                    @if ($module->vendor_name)
-                        <tr class="row">
-                            <th class="col-5">{{ trans_choice('general.developers', 1) }}</th>
-                            <td class="col-7 text-right"><a
-                                    href="{{ route('apps.vendors.show', $module->vendor->slug) }}">{{ $module->vendor_name }}</a>
-                            </td>
-                        </tr>
-                    @endif
-                    @if ($module->version)
-                        <tr class="row">
-                            <th class="col-5">{{ trans('footer.version') }}</th>
-                            <td class="col-7 text-right">{{ $module->version }}</td>
-                        </tr>
-                    @endif
-                    @if ($module->created_at)
-                        <tr class="row">
-                            <th class="col-5">{{ trans('modules.added') }}</th>
-                            <td class="col-7 text-right long-texts">@date($module->created_at)</td>
-                        </tr>
-                    @endif
-                    @if ($module->updated_at)
-                        <tr class="row">
-                            <th class="col-5">{{ trans('modules.updated') }}</th>
-                            <td class="col-7 text-right">{{ Date::parse($module->updated_at)->diffForHumans() }}</td>
-                        </tr>
-                    @endif
-                    @if ($module->categories)
-                        <tr class="row">
-                            <th class="col-5">{{ trans_choice('general.categories', (count($module->categories) > 1) ? 2 : 1) }}</th>
-                            <td class="col-7 text-right">
-                                @foreach ($module->categories as $module_category)
-                                    <a href="{{ route('apps.categories.show', $module_category->slug) }}">{{ $module_category->name }}</a> </br>
-                                @endforeach
-                            </td>
-                        </tr>
-                    @endif
+                        @if ($module->vendor_name)
+                            <tr class="row">
+                                <th class="col-5">{{ trans_choice('general.developers', 1) }}</th>
+                                <td class="col-7 text-right"><a href="{{ route('apps.vendors.show', $module->vendor->slug) }}">{{ $module->vendor_name }}</a></td>
+                            </tr>
+                        @endif
+                        @if ($module->version)
+                            <tr class="row">
+                                <th class="col-5">{{ trans('footer.version') }}</th>
+                                <td class="col-7 text-right">{{ $module->version }}</td>
+                            </tr>
+                        @endif
+                        @if ($module->created_at)
+                            <tr class="row">
+                                <th class="col-5">{{ trans('modules.added') }}</th>
+                                <td class="col-7 text-right long-texts">@date($module->created_at)</td>
+                            </tr>
+                        @endif
+                        @if ($module->updated_at)
+                            <tr class="row">
+                                <th class="col-5">{{ trans('modules.updated') }}</th>
+                                <td class="col-7 text-right">{{ Date::parse($module->updated_at)->diffForHumans() }}</td>
+                            </tr>
+                        @endif
+                        @if ($module->categories)
+                            <tr class="row">
+                                <th class="col-5">{{ trans_choice('general.categories', (count($module->categories) > 1) ? 2 : 1) }}</th>
+                                <td class="col-7 text-right">
+                                    @foreach ($module->categories as $module_category)
+                                        <a href="{{ route('apps.categories.show', $module_category->slug) }}">{{ $module_category->name }}</a> </br>
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

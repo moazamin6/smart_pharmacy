@@ -2,9 +2,9 @@
 
 return [
 
-    'version'               => 'Versioni',
-    'powered'               => 'Mundësuar nga Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Program Kontabiliteti Falas',
+    'version' => 'Versioni',
+    'powered' => 'Mundësuar nga Akaunting',
+    'link' => 'https://akaunting.com',
+    'software' => 'Program Kontabiliteti Falas',
 
 ];

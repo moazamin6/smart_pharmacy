@@ -2,7 +2,7 @@
 
 return [
 
-    'sales_price'           => 'Pardavimo kaina',
-    'purchase_price'        => 'Pirkimo kaina',
+    'sales_price' => 'Pardavimo kaina',
+    'purchase_price' => 'Pirkimo kaina',
 
 ];

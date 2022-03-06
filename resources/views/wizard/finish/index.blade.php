@@ -3,5 +3,5 @@
 @section('title', trans('general.wizard'))
 
 @section('content')
-
+ 
 @endsection

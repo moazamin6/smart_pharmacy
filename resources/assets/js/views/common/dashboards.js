@@ -69,17 +69,17 @@ const dashboard = new Vue({
         this.getWidgets();
     },
 
-    methods: {
+    methods:{
         // Get All Widgets
         getWidgets() {
             var self = this;
 
             axios.get(url + '/common/widgets')
-                .then(function (response) {
-                    self.widgets = response.data;
-                })
-                .catch(function (error) {
-                });
+            .then(function (response) {
+                self.widgets = response.data;
+            })
+            .catch(function (error) {
+            });
         },
 
         // Add new widget on dashboard
@@ -92,19 +92,19 @@ const dashboard = new Vue({
             var self = this;
 
             axios.get(url + '/common/widgets/' + widget_id + '/edit')
-                .then(function (response) {
-                    self.widget.id = widget_id;
-                    self.widget.name = response.data.name;
-                    self.widget.class = response.data.class;
-                    self.widget.width = response.data.settings.width;
-                    self.widget.action = 'edit';
-                    self.widget.sort = response.data.sort;
+            .then(function (response) {
+                self.widget.id = widget_id;
+                self.widget.name = response.data.name;
+                self.widget.class = response.data.class;
+                self.widget.width = response.data.settings.width;
+                self.widget.action = 'edit';
+                self.widget.sort = response.data.sort;
 
-                    self.widget_modal = true;
-                })
-                .catch(function (error) {
-                    self.widget_modal = false;
-                });
+                self.widget_modal = true;
+            })
+            .catch(function (error) {
+                self.widget_modal = false;
+            });
         },
 
         onCancel() {

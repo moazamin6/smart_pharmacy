@@ -12,7 +12,7 @@
                            :value="real_value = 1"
                            v-on="listeners"
                            :id="name + '-1'"
-                    > {{ enable }}
+                           > {{ enable }}
                 </label>
                 <label class="btn btn-danger"
                        :class="[{'active': value === 0}]">
@@ -64,7 +64,7 @@ export default {
         },
         onChange(evt) {
             let val = evt.target.control.value;
-            this.value = val;
+            this.value= val;
 
             this.$emit("change", val);
         },

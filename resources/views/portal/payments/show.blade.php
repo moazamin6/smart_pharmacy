@@ -3,7 +3,7 @@
 @section('title', trans_choice('general.payments', 1) . ': ' . @date($payment->paid_at))
 
 @section('new_button')
-    @stack('button_print_start')
+@stack('button_print_start')
     <a href="{{ route('portal.payments.print', $payment->id) }}" target="_blank" class="btn btn-white btn-sm">
         {{ trans('general.print') }}
     </a>

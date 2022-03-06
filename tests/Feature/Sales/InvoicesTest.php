@@ -85,14 +85,14 @@ class InvoicesTest extends FeatureTestCase
         ]);
         $this->assertDatabaseHas('mediables', [
             'mediable_type' => Document::class,
-            'tag'           => 'attachment',
+            'tag' => 'attachment',
         ]);
         $this->assertDatabaseHas('media', [
-            'disk'           => 'uploads',
-            'directory'      => '2021/05/15/1/invoices',
-            'filename'       => 'invoices',
-            'extension'      => 'png',
-            'mime_type'      => 'image/png',
+            'disk' => 'uploads',
+            'directory' => '2021/05/15/1/invoices',
+            'filename' => 'invoices',
+            'extension' => 'png',
+            'mime_type' => 'image/png',
             'aggregate_type' => 'image',
         ]);
     }
@@ -102,8 +102,8 @@ class InvoicesTest extends FeatureTestCase
         $invoice = $this->dispatch(new CreateDocument($this->getRequest()));
 
         $this->loginAs()
-             ->get(route('invoices.duplicate', ['invoice' => $invoice->id]))
-             ->assertStatus(302);
+            ->get(route('invoices.duplicate', ['invoice' => $invoice->id]))
+            ->assertStatus(302);
 
         $this->assertFlashLevel('success');
     }
@@ -146,7 +146,7 @@ class InvoicesTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('invoices.update', $invoice->id), $request)
             ->assertStatus(200)
-			->assertSee($request['contact_email']);
+            ->assertSee($request['contact_email']);
 
         $this->assertFlashLevel('success');
 

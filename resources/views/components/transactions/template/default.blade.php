@@ -6,10 +6,9 @@
                 <td style="width:5%;" valign="top">
                     @stack('company_logo_start')
                     @if (!empty($transaction->contact->logo) && !empty($transaction->contact->logo->id))
-                        <img src="{{ Storage::url($transaction->contact->logo->id) }}" height="128" width="128"
-                             alt="{{ $transaction->contact_name }}"/>
+                        <img src="{{ Storage::url($transaction->contact->logo->id) }}" height="128" width="128" alt="{{ $transaction->contact_name }}" />
                     @else
-                        <img src="{{ $logo }}" alt="{{ setting('company.name') }}"/>
+                        <img src="{{ $logo }}" alt="{{ setting('company.name') }}" />
                     @endif
                     @stack('company_logo_end')
                 </td>
@@ -244,13 +243,11 @@
                 <table>
                     <tr>
                         <td style="background-color: #6da252; -webkit-print-color-adjust: exact; font-weight:bold !important; display:block;">
-                            <h5 class="text-muted mb-0 text-white"
-                                style="font-size: 20px; color:#ffffff; text-align:center; margin-top: 16px;">
+                            <h5 class="text-muted mb-0 text-white" style="font-size: 20px; color:#ffffff; text-align:center; margin-top: 16px;">
                                 {{ trans($textAmount) }}
                             </h5>
 
-                            <p class="font-weight-bold mb-0 text-white"
-                               style="font-size: 26px; color:#ffffff; text-align:center;">
+                            <p class="font-weight-bold mb-0 text-white" style="font-size: 26px; color:#ffffff; text-align:center;">
                                 @money($transaction->amount, $transaction->currency_code, true)
                             </p>
                         </td>
@@ -278,81 +275,74 @@
         </table>
 
         <table class="table table-flush table-hover" cellspacing="0" cellpadding="0" style="margin-bottom: 36px;">
-            <thead
-                style="background-color: #f6f9fc; -webkit-print-color-adjust: exact; font-family: Arial, sans-serif; color:#8898aa; font-size:11px;">
-            <tr class="border-bottom-1">
-                @if (!$hideRelatedDocumentNumber)
-                    <th class="item text-left"
-                        style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
-                        <span>{{ trans_choice($textRelatedDocumentNumber, 1) }}</span>
-                    </th>
-                @endif
+            <thead style="background-color: #f6f9fc; -webkit-print-color-adjust: exact; font-family: Arial, sans-serif; color:#8898aa; font-size:11px;">
+                <tr class="border-bottom-1">
+                    @if (!$hideRelatedDocumentNumber)
+                        <th class="item text-left" style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
+                            <span>{{ trans_choice($textRelatedDocumentNumber, 1) }}</span>
+                        </th>
+                    @endif
 
-                @if (!$hideRelatedContact)
-                    <th class="quantity"
-                        style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
-                        {{ trans_choice($textRelatedContact, 1) }}
-                    </th>
-                @endif
+                    @if (!$hideRelatedContact)
+                        <th class="quantity" style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
+                            {{ trans_choice($textRelatedContact, 1) }}
+                        </th>
+                    @endif
 
-                @if (!$hideRelatedDocumentDate)
-                    <th class="price"
-                        style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
-                        {{ trans($textRelatedDocumentDate) }}
-                    </th>
-                @endif
+                    @if (!$hideRelatedDocumentDate)
+                        <th class="price" style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
+                            {{ trans($textRelatedDocumentDate) }}
+                        </th>
+                    @endif
 
-                @if (!$hideRelatedDocumentAmount)
-                    <th class="price"
-                        style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
-                        {{ trans($textRelatedDocumentAmount) }}
-                    </th>
-                @endif
+                    @if (!$hideRelatedDocumentAmount)
+                        <th class="price" style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
+                            {{ trans($textRelatedDocumentAmount) }}
+                        </th>
+                    @endif
 
-                @if (!$hideRelatedAmount)
-                    <th class="total"
-                        style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
-                        {{ trans($textRelatedAmount) }}
-                    </th>
-                @endif
-            </tr>
+                    @if (!$hideRelatedAmount)
+                        <th class="total" style="text-align: left; text-transform: uppercase; font-family: Arial, sans-serif;">
+                            {{ trans($textRelatedAmount) }}
+                        </th>
+                    @endif
+                </tr>
             </thead>
 
             <tbody>
-            <tr>
-                @if (!$hideRelatedDocumentNumber)
-                    <td class="item" style="color:#525f7f; font-size:13px;">
-                        <a style="color:#6da252 !important;"
-                           href="{{ route($routeDocumentShow, $transaction->document->id) }}">
-                            {{ $transaction->document->document_number }}
-                        </a>
-                    </td>
-                @endif
+                <tr>
+                    @if (!$hideRelatedDocumentNumber)
+                        <td class="item" style="color:#525f7f; font-size:13px;">
+                            <a style="color:#6da252 !important;" href="{{ route($routeDocumentShow, $transaction->document->id) }}">
+                                {{ $transaction->document->document_number }}
+                            </a>
+                        </td>
+                    @endif
 
-                @if (!$hideRelatedContact)
-                    <td class="quantity" style="color:#525f7f; font-size:13px;">
-                        {{ $transaction->document->contact_name }}
-                    </td>
-                @endif
+                    @if (!$hideRelatedContact)
+                        <td class="quantity" style="color:#525f7f; font-size:13px;">
+                            {{ $transaction->document->contact_name }}
+                        </td>
+                    @endif
 
-                @if (!$hideRelatedDocumentDate)
-                    <td class="price" style="color:#525f7f; font-size:13px;">
-                        @date($transaction->document->due_at)
-                    </td>
-                @endif
+                    @if (!$hideRelatedDocumentDate)
+                        <td class="price" style="color:#525f7f; font-size:13px;">
+                            @date($transaction->document->due_at)
+                        </td>
+                    @endif
 
-                @if (!$hideRelatedDocumentAmount)
-                    <td class="price" style="color:#525f7f; font-size:13px;">
-                        @money($transaction->document->amount, $transaction->document->currency_code, true)
-                    </td>
-                @endif
+                    @if (!$hideRelatedDocumentAmount)
+                        <td class="price" style="color:#525f7f; font-size:13px;">
+                            @money($transaction->document->amount, $transaction->document->currency_code, true)
+                        </td>
+                    @endif
 
-                @if (!$hideRelatedAmount)
-                    <td class="total" style="color:#525f7f; font-size:13px;">
-                        @money($transaction->amount, $transaction->currency_code, true)
-                    </td>
-                @endif
-            </tr>
+                    @if (!$hideRelatedAmount)
+                        <td class="total" style="color:#525f7f; font-size:13px;">
+                            @money($transaction->amount, $transaction->currency_code, true)
+                        </td>
+                    @endif
+                </tr>
             </tbody>
         </table>
     @endif

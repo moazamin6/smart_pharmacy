@@ -15,23 +15,23 @@
             'novalidate' => true,
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                @can('read-auth-users')
-                    {{ Form::checkboxGroup('users', trans_choice('general.users', 2), $users, 'name') }}
-                @endcan
+                    @can('read-auth-users')
+                        {{ Form::checkboxGroup('users', trans_choice('general.users', 2), $users, 'name') }}
+                    @endcan
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                </div>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <div class="row save-buttons">
-                {{ Form::saveButtons('dashboards.index') }}
+            <div class="card-footer">
+                <div class="row save-buttons">
+                    {{ Form::saveButtons('dashboards.index') }}
+                </div>
             </div>
-        </div>
         {!! Form::close() !!}
     </div>
 @endsection

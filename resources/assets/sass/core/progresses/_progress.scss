@@ -58,7 +58,7 @@
     height: auto;
 }
 
-.progress-info {
+.progress-info{
     margin-bottom: .5rem;
     display: flex;
     align-items: center;
@@ -80,7 +80,6 @@
 
 .progress-percentage {
     text-align: right;
-
     span {
         display: inline-block;
         color: $gray-600;

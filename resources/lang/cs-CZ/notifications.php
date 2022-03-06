@@ -2,18 +2,18 @@
 
 return [
 
-    'whoops'              => 'Jejda!',
-    'hello'               => 'Ahoj!',
-    'salutation'          => 'S pozdravem,<br> :company_name',
-    'subcopy'             => 'Pokud vám nefunguje tlačítko ":text", zkopírujte a vložte adresu URL do prohlížeče: [:url](:url)',
-    'reads'               => 'Číst|Číst',
-    'read_all'            => 'Číst vše',
-    'mark_read'           => 'Označit přečtené',
-    'mark_read_all'       => 'Označit všechny přečtené',
-    'new_apps'            => 'Nová aplikace|Nové aplikace',
-    'upcoming_bills'      => 'Nadcházející účty',
-    'recurring_invoices'  => 'Opakující se faktury',
-    'recurring_bills'     => 'Opakující se účty',
+    'whoops' => 'Jejda!',
+    'hello' => 'Ahoj!',
+    'salutation' => 'S pozdravem,<br> :company_name',
+    'subcopy' => 'Pokud vám nefunguje tlačítko ":text", zkopírujte a vložte adresu URL do prohlížeče: [:url](:url)',
+    'reads' => 'Číst|Číst',
+    'read_all' => 'Číst vše',
+    'mark_read' => 'Označit přečtené',
+    'mark_read_all' => 'Označit všechny přečtené',
+    'new_apps' => 'Nová aplikace|Nové aplikace',
+    'upcoming_bills' => 'Nadcházející účty',
+    'recurring_invoices' => 'Opakující se faktury',
+    'recurring_bills' => 'Opakující se účty',
 
     'update' => [
 
@@ -36,15 +36,15 @@ return [
 
         'completed' => [
 
-            'subject'           => 'Import dokončen',
-            'description'       => 'Import byl dokončen a záznamy jsou k dispozici ve vašem panelu.',
+            'subject' => 'Import dokončen',
+            'description' => 'Import byl dokončen a záznamy jsou k dispozici ve vašem panelu.',
 
         ],
 
         'failed' => [
 
-            'subject'           => 'Import se nezdařil',
-            'description'       => 'Není možné importovat soubor z důvodu následujících důvodů:',
+            'subject' => 'Import se nezdařil',
+            'description' => 'Není možné importovat soubor z důvodu následujících důvodů:',
 
         ],
     ],
@@ -53,15 +53,15 @@ return [
 
         'completed' => [
 
-            'subject'           => 'Export je připraven',
-            'description'       => 'Exportovaný soubor je připraven ke stažení z následujícího odkazu:',
+            'subject' => 'Export je připraven',
+            'description' => 'Exportovaný soubor je připraven ke stažení z následujícího odkazu:',
 
         ],
 
         'failed' => [
 
-            'subject'           => 'Export se nezdařil',
-            'description'       => 'Není možné vytvořit exportovaný soubor z důvodu následujícího důvodu:',
+            'subject' => 'Export se nezdařil',
+            'description' => 'Není možné vytvořit exportovaný soubor z důvodu následujícího důvodu:',
 
         ],
 
@@ -69,11 +69,11 @@ return [
 
     'messages' => [
 
-        'mark_read'             => ':type přečte toto oznámení!',
-        'mark_read_all'         => ':type je načtení všech oznámení!',
-        'new_app'               => ':type aplikace byla zveřejněna.',
-        'export'                => 'Váš <b>:type</b> exportovaný soubor je připraven ke <a href=":url" target="_blank"><b>stáhnout</b></a>.',
-        'import'                => 'Vaše <b>:type</b> vložená data <b>:count</b> jsou úspěšně importována.',
+        'mark_read' => ':type přečte toto oznámení!',
+        'mark_read_all' => ':type je načtení všech oznámení!',
+        'new_app' => ':type aplikace byla zveřejněna.',
+        'export' => 'Váš <b>:type</b> exportovaný soubor je připraven ke <a href=":url" target="_blank"><b>stáhnout</b></a>.',
+        'import' => 'Vaše <b>:type</b> vložená data <b>:count</b> jsou úspěšně importována.',
 
     ],
 ];

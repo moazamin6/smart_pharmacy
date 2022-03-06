@@ -19,13 +19,10 @@
                                 <i class="fa fa-building"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="company_name"
-                               @keydown="form.errors.clear('company_name')" v-model="form.company_name"
-                               required="required" name="company_name" type="text" id="company_name">
+                        <input class="form-control" data-name="company_name" @keydown="form.errors.clear('company_name')" v-model="form.company_name" required="required" name="company_name" type="text" id="company_name">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('company_name')"
-                         v-html="form.errors.get('company_name')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('company_name')" v-html="form.errors.get('company_name')"></div>
                 </div>
 
                 <div class="col-md-12 form-group required" :class="[{'has-error': form.errors.get('company_email')}]">
@@ -37,13 +34,10 @@
                                 <i class="fa fa-envelope"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="company_email"
-                               @keydown="form.errors.clear('company_email')" v-model="form.company_email"
-                               required="required" name="company_email" type="text" id="company_email">
+                        <input class="form-control" data-name="company_email" @keydown="form.errors.clear('company_email')" v-model="form.company_email" required="required" name="company_email" type="text" id="company_email">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('company_email')"
-                         v-html="form.errors.get('company_email')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('company_email')" v-html="form.errors.get('company_email')"></div>
                 </div>
 
                 <div class=" col-md-12 form-group required" :class="[{'has-error': form.errors.get('user_email')}]">
@@ -55,17 +49,13 @@
                                 <i class="fa fa-envelope"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="user_email" @keydown="form.errors.clear('user_email')"
-                               v-model="form.user_email" required="required" name="user_email" type="text"
-                               id="user_email">
+                        <input class="form-control" data-name="user_email" @keydown="form.errors.clear('user_email')" v-model="form.user_email" required="required" name="user_email" type="text" id="user_email">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('user_email')"
-                         v-html="form.errors.get('user_email')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('user_email')" v-html="form.errors.get('user_email')"></div>
                 </div>
 
-                <div class="col-md-12 form-group mb--2 required"
-                     :class="[{'has-error': form.errors.get('user_password')}]">
+                <div class="col-md-12 form-group mb--2 required" :class="[{'has-error': form.errors.get('user_password')}]">
                     <label for="user_password" class="form-control-label">Admin Password</label>
 
                     <div class="input-group input-group-merge ">
@@ -74,13 +64,10 @@
                                 <i class="fa fa-key"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="user_password"
-                               @keydown="form.errors.clear('user_password')" v-model="form.user_password"
-                               required="required" name="user_password" type="password" value="" id="user_password">
+                        <input class="form-control" data-name="user_password" @keydown="form.errors.clear('user_password')" v-model="form.user_password" required="required" name="user_password" type="password" value="" id="user_password">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('user_password')"
-                         v-html="form.errors.get('user_password')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('user_password')" v-html="form.errors.get('user_password')"></div>
                 </div>
             </div>
         </div>
@@ -88,12 +75,11 @@
         <div class="card-footer">
             <div class="row save-buttons">
                 <div class="col-md-12">
-                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button"
-                            class="btn btn-icon btn-success button-submit header-button-top">
+                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button" class="btn btn-icon btn-success button-submit header-button-top">
                         <div v-if="form.loading" class="aka-loader-frame">
                             <div class="aka-loader"></div>
                         </div>
-                        <span v-if="!form.loading" class="btn-inner--text">
+                         <span v-if="!form.loading" class="btn-inner--text">
                             Next &nbsp;
                         </span>
                     </button>
@@ -104,34 +90,34 @@
 </template>
 
 <script>
-import axios from "axios";
-import Form from './../../plugins/form';
-import {Step, Steps} from 'element-ui';
+    import axios from "axios";
+    import Form from './../../plugins/form';
+    import {Step, Steps} from 'element-ui';
 
-export default {
-    name: 'settings',
+    export default {
+        name: 'settings',
 
-    components: {
-        [Step.name]: Step,
-        [Steps.name]: Steps
-    },
-
-    data() {
-        return {
-            form: new Form('form-install'),
-            languages: [],
-            active: 2
-        }
-    },
-    methods: {
-        // Form Submit
-        onSubmit() {
-            this.form.submit();
+        components: {
+            [Step.name]: Step,
+            [Steps.name]: Steps
         },
 
-        next() {
-            if (this.active++ > 2) ;
+        data() {
+            return {
+                form: new Form('form-install'),
+                languages: [],
+                active: 2
+            }
+        },
+        methods: {
+            // Form Submit
+            onSubmit() {
+                this.form.submit();
+            },
+
+            next() {
+                if (this.active++ > 2);
+            }
         }
     }
-}
 </script>

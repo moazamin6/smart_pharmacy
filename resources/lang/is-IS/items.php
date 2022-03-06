@@ -2,7 +2,7 @@
 
 return [
 
-    'sales_price'           => 'Verð',
-    'purchase_price'        => 'Innkaupsverð',
+    'sales_price' => 'Verð',
+    'purchase_price' => 'Innkaupsverð',
 
 ];

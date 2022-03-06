@@ -2,9 +2,9 @@
 
 return [
 
-    'version'               => 'Wersja',
-    'powered'               => 'Wspierane przez Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Darmowe oprogramowanie księgowe',
+    'version' => 'Wersja',
+    'powered' => 'Wspierane przez Akaunting',
+    'link' => 'https://akaunting.com',
+    'software' => 'Darmowe oprogramowanie księgowe',
 
 ];

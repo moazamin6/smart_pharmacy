@@ -12,8 +12,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group mb-0">
-                        <select v-model="form.lang" name="lang" id="lang" size="13"
-                                class="col-xl-12 form-control-label">
+                        <select v-model="form.lang" name="lang" id="lang" size="13" class="col-xl-12 form-control-label">
                             <option v-for="(name, code) in languages" :value="code">
                                 {{ name }}
                             </option>
@@ -26,12 +25,11 @@
         <div class="card-footer">
             <div class="row save-buttons">
                 <div class="col-md-12">
-                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button"
-                            class="btn btn-icon btn-success button-submit header-button-top">
+                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button" class="btn btn-icon btn-success button-submit header-button-top">
                         <div v-if="form.loading" class="aka-loader-frame">
                             <div class="aka-loader"></div>
                         </div>
-                        <span v-if="!form.loading" class="btn-inner--text">
+                         <span v-if="!form.loading" class="btn-inner--text">
                             Next &nbsp;
                         </span>
                     </button>
@@ -42,45 +40,45 @@
 </template>
 
 <script>
-import axios from "axios";
-import Form from './../../plugins/form';
-import {Step, Steps} from 'element-ui';
+    import axios from "axios";
+    import Form from './../../plugins/form';
+    import {Step, Steps} from 'element-ui';
 
-var base_path = url.replace(window.location.origin, '');
+    var base_path = url.replace(window.location.origin, '');
 
-export default {
-    name: 'language',
+    export default {
+        name: 'language',
 
-    components: {
-        [Step.name]: Step,
-        [Steps.name]: Steps
-    },
+        components: {
+            [Step.name]: Step,
+            [Steps.name]: Steps
+        },
 
-    mounted() {
-        axios.get(base_path + '/install/language/getLanguages')
+        mounted() {
+            axios.get(base_path + '/install/language/getLanguages')
             .then(response => {
                 this.languages = response.data.languages;
                 this.form.lang = 'en-GB';
             })
             .catch(error => {
             });
-    },
-    data() {
-        return {
-            form: new Form('form-install'),
-            languages: [],
-            active: 0
-        }
-    },
-    methods: {
-        // Form Submit
-        onSubmit() {
-            this.form.submit();
         },
+        data() {
+            return {
+                form: new Form('form-install'),
+                languages: [],
+                active: 0
+            }
+        },
+        methods: {
+            // Form Submit
+            onSubmit() {
+                this.form.submit();
+            },
 
-        next() {
-            if (this.active++ > 2) ;
+            next() {
+                if (this.active++ > 2);
+            }
         }
     }
-}
 </script>

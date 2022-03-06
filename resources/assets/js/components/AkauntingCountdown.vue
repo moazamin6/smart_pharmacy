@@ -2,29 +2,29 @@
     <div class="countdown">
         <section class="flex text-6xl justify-center content-center">
             <div class="days mr-2 relative">
-                {{ displayDays }}
-                <div class="label text-sm absolut bottom-0"> {{ textDays }}</div>
+                {{ displayDays}}
+                <div class="label text-sm absolut bottom-0"> {{ textDays }} </div>
             </div>
 
             <span class="leading-snug">:</span>
 
             <div class="hours mx-2 relative">
                 {{ displayHours }}
-                <div class="label text-sm absolut bottom-0">{{ textHours }}</div>
+                <div class="label text-sm absolut bottom-0">{{ textHours }} </div>
             </div>
 
             <span class="leading-snug">:</span>
 
             <div class="minutes mx-2 relative">
                 {{ displayMinutes }}
-                <div class="label text-sm absolut bottom-0"> {{ textMinutes }}</div>
+                <div class="label text-sm absolut bottom-0"> {{ textMinutes }} </div>
             </div>
 
             <span class="leading-snug">:</span>
 
             <div class="seconds ml-2 relative">
                 {{ displaySeconds }}
-                <div class="label text-sm absolut bottom-0"> {{ textSeconds }}</div>
+                <div class="label text-sm absolut bottom-0"> {{ textSeconds }} </div>
             </div>
         </section>
     </div>
@@ -97,7 +97,7 @@ export default {
         }
     },
 
-    data: () => ({
+    data:() => ({
         displayDays: 0,
         displayHours: 0,
         displayMinutes: 0,
@@ -139,7 +139,7 @@ export default {
     },
 
     methods: {
-        formatNum: num => (num < 10 ? '0' + num : num),
+        formatNum: num =>(num < 10 ? '0' + num : num),
 
         showRemainig() {
             const timer = setInterval(() => {
@@ -177,31 +177,24 @@ export default {
 .countdown {
     text-align: justify;
 }
-
 .relative {
     position: relative;
 }
-
 .flex {
     display: flex;
 }
-
 .justify-center {
     justify-content: center;
 }
-
 .content-center {
     align-content: center;
 }
-
 .seconds {
     max-width: 60px;
 }
-
 .leading-snug {
     line-height: 1.375;
 }
-
 .days, .hours, .minutes, .seconds {
     text-align: center;
 }

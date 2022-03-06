@@ -147,7 +147,7 @@
     // Timeline axis colors
 
     @each $color, $value in $theme-colors {
-        [data-timeline-axis-color="#{$color}"] {
+        [data-timeline-axis-color="#{$color}"]  {
             &:before {
                 border-color: $value;
             }

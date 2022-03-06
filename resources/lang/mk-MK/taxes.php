@@ -2,7 +2,7 @@
 
 return [
 
-    'rate'                  => 'Стапка',
-    'rate_percent'          => 'Стапка (%)',
+    'rate' => 'Стапка',
+    'rate_percent' => 'Стапка (%)',
 
 ];

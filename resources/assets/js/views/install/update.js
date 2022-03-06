@@ -33,7 +33,7 @@ const app = new Vue({
     data: function () {
         return {
             changelog: {
-                show: false,
+                show:false,
                 html: null
             },
             update: {
@@ -64,12 +64,12 @@ const app = new Vue({
                 this.changelog.show = true;
                 this.changelog.html = response.data;
             })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-                .finally(function () {
-                    // always executed
-                });
+            .catch(e => {
+                this.errors.push(e)
+            })
+            .finally(function () {
+                // always executed
+            });
         },
 
         async steps() {
@@ -95,8 +95,8 @@ const app = new Vue({
                     this.next();
                 }
             })
-                .catch(error => {
-                });
+            .catch(error => {
+            });
         },
 
         async next() {
@@ -135,7 +135,7 @@ const app = new Vue({
                     }
 
                     if (!response.data.error && !response.data.redirect) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             this.next();
                         }.bind(this), 800);
                     }
@@ -144,8 +144,8 @@ const app = new Vue({
                         window.location = response.data.redirect;
                     }
                 })
-                    .catch(error => {
-                    });
+                .catch(error => {
+                });
             }
         }
     }

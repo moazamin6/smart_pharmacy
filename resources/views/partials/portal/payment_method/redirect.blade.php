@@ -19,9 +19,9 @@
                 'autocomplete' => "off",
                 'novalidate' => 'true'
             ]) !!}
-            <button @click="onRedirectConfirm" type="button" id="button-confirm" class="btn btn-success">
-                {{ trans('general.confirm') }}
-            </button>
+                <button @click="onRedirectConfirm" type="button" id="button-confirm" class="btn btn-success">
+                    {{ trans('general.confirm') }}
+                </button>
             {!! Form::close() !!}
         </div>
     </div>

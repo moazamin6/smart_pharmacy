@@ -30,8 +30,8 @@ Vue.component('select2', {
     mounted: function () {
         var vm = this
         $(this.$el)
-            // init select2
-            .select2({data: this.options})
+        // init select2
+            .select2({ data: this.options })
             .val(this.value)
             .trigger('change')
             // emit event on change.
@@ -48,7 +48,7 @@ Vue.component('select2', {
         },
         options: function (options) {
             // update options
-            $(this.$el).empty().select2({data: options})
+            $(this.$el).empty().select2({ data: options })
         }
     },
     destroyed: function () {

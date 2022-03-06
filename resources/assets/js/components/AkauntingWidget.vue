@@ -38,10 +38,10 @@
                                 v-model="form.class" filterable
                                 :placeholder="placeholder.type">
                                 <el-option v-for="(name, value) in types"
-                                           class="select-primary"
-                                           :key="name"
-                                           :label="name"
-                                           :value="value">
+                                   class="select-primary"
+                                   :key="name"
+                                   :label="name"
+                                   :value="value">
                                 </el-option>
                             </el-select>
                         </base-input>
@@ -60,10 +60,10 @@
                                 v-model="form.width" filterable
                                 :placeholder="placeholder.width">
                                 <el-option v-for="option in widthOptions"
-                                           class="select-primary"
-                                           :key="option.label"
-                                           :label="option.label"
-                                           :value="option.value">
+                                   class="select-primary"
+                                   :key="option.label"
+                                   :label="option.label"
+                                   :value="option.value">
                                 </el-option>
                             </el-select>
                         </base-input>
@@ -91,8 +91,7 @@
                             {{ text.cancel }}
                         </button>
 
-                        <button :disabled="form.loading" type="button" class="btn btn-icon btn-success button-submit"
-                                @click="onSave">
+                        <button :disabled="form.loading" type="button" class="btn btn-icon btn-success button-submit" @click="onSave">
                             <span v-if="form.loading" class="btn-inner--icon"><i class="aka-loader"></i></span>
                             <span :class="[{'ml-0': form.loading}]" class="btn-inner--text">{{ text.save }}</span>
                         </button>
@@ -104,16 +103,17 @@
 </template>
 
 <style>
-.el-input__prefix {
-    left: 20px;
-    z-index: 999;
-    top: 2px;
-}
+    .el-input__prefix
+    {
+        left: 20px;
+        z-index: 999;
+        top: 2px;
+    }
 </style>
 
 <script>
 import axios from 'axios';
-import {Select, Option} from 'element-ui';
+import { Select, Option } from 'element-ui';
 import AkauntingModal from "./AkauntingModal";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -243,7 +243,7 @@ export default {
 
             var self = this;
 
-            var path = url + '/common/widgets';
+            var path =  url + '/common/widgets';
 
             if ((self.action != 'create')) {
                 path = url + '/common/widgets/' + self.widget_id;
@@ -280,7 +280,7 @@ export default {
         },
 
         onCancel() {
-            let documentClasses = document.body.classList;
+            let documentClasses = document.body.classList;	
 
             documentClasses.remove("modal-open");
 

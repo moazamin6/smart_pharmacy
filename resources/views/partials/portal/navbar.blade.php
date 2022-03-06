@@ -3,8 +3,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav align-items-center ml-md-auto">
                 <li class="nav-item d-xl-none">
-                    <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
-                         data-target="#sidenav-main">
+                    <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
                         <div class="sidenav-toggler-inner">
                             <i class="sidenav-toggler-line"></i>
                             <i class="sidenav-toggler-line"></i>
@@ -14,12 +13,10 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-bell"></i>
                         @if ($notifications)
-                            <span
-                                class="badge badge-md badge-circle badge-reminder badge-warning">{{ $notifications }}</span>
+                            <span class="badge badge-md badge-circle badge-reminder badge-warning">{{ $notifications }}</span>
                         @endif
                     </a>
 
@@ -34,8 +31,7 @@
                             @stack('notification_bills_start')
 
                             @if (count($bills))
-                                <a href="{{ route('users.read.bills', $user->id) }}"
-                                   class="list-group-item list-group-item-action">
+                                <a href="{{ route('users.read.bills', $user->id) }}" class="list-group-item list-group-item-action">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <i class="fa fa-shopping-cart"></i>
@@ -54,8 +50,7 @@
                             @stack('notification_invoices_start')
 
                             @if (count($invoices))
-                                <a href="{{ route('users.read.invoices', $user->id) }}"
-                                   class="list-group-item list-group-item-action">
+                                <a href="{{ route('users.read.invoices', $user->id) }}" class="list-group-item list-group-item-action">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <i class="fa fa-money-bill"></i>
@@ -73,8 +68,7 @@
                         </div>
 
                         @if ($notifications)
-                            <a href="#"
-                               class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans('header.notifications.view_all') }}</a>
+                            <a href="#" class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans('header.notifications.view_all') }}</a>
                         @else
                             <a class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans_choice('header.notifications.counter', $notifications, ['count' => $notifications]) }}</a>
                         @endif
@@ -83,22 +77,19 @@
 
                 @can('read-install-updates')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('updates.index') }}" title="{{ $updates }} Updates Available"
-                           role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="{{ route('updates.index') }}" title="{{ $updates }} Updates Available" role="button" aria-haspopup="true" aria-expanded="false">
                             <span>
                                 <i class="fa fa-sync-alt"></i>
                             </span>
                             @if ($updates)
-                                <span
-                                    class="badge badge-md badge-circle badge-update badge-warning">{{ $updates }}</span>
+                                <span class="badge badge-md badge-circle badge-update badge-warning">{{ $updates }}</span>
                             @endif
                         </a>
                     </li>
                 @endcan
 
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="{{ url(trans('header.support_link')) }}" target="_blank"
-                       title="{{ trans('general.help') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="{{ url(trans('header.support_link')) }}" target="_blank" title="{{ trans('general.help') }}" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-life-ring"></i>
                     </a>
                 </li>
@@ -106,16 +97,12 @@
 
             <ul class="navbar-nav align-items-center ml-auto ml-md-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
+                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
                             @if (setting('default.use_gravatar', '0') == '1')
-                                <img src="{{ $user->picture }}" alt="{{ $user->name }}"
-                                     class="rounded-circle image-style user-img" title="{{ $user->name }}">
+                                <img src="{{ $user->picture }}" alt="{{ $user->name }}" class="rounded-circle image-style user-img" title="{{ $user->name }}">
                             @elseif (is_object($user->picture))
-                                <img src="{{ Storage::url($user->picture->id) }}"
-                                     class="rounded-circle image-style user-img" alt="{{ $user->name }}"
-                                     title="{{ $user->name }}">
+                                <img src="{{ Storage::url($user->picture->id) }}" class="rounded-circle image-style user-img" alt="{{ $user->name }}" title="{{ $user->name }}">
                             @else
                                 <img src="{{ asset('public/img/user.svg') }}" class="user-img" alt="{{ $user->name }}"/>
                             @endif

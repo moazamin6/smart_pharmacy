@@ -1,18 +1,18 @@
 <html lang="{{ app()->getLocale() }}">
-@include('partials.signed.head')
+    @include('partials.signed.head')
 
-<body>
-@stack('body_start')
+    <body>
+        @stack('body_start')
 
-<div class="container-fluid content-layout mt-4">
+        <div class="container-fluid content-layout mt-4">
 
-    @include('partials.signed.content')
+            @include('partials.signed.content')
 
-    @include('partials.signed.footer')
+            @include('partials.signed.footer')
 
-</div>
+        </div>
 
-@stack('body_end')
-</body>
+        @stack('body_end')
+    </body>
 
 </html>

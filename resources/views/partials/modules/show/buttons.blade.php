@@ -28,10 +28,10 @@
                     </button>
                 </el-tooltip>
             @else
-                <button type="button"
-                        id="install-module"
-                        class="btn btn-success btn-block"
-                        @click="onInstall('{{ $module->action_url }}', '{{ $module->slug }}', '{{ $module->name }}', '{{ $module->version }}')"
+                <button type="button" 
+                    id="install-module"
+                    class="btn btn-success btn-block"
+                    @click="onInstall('{{ $module->action_url }}', '{{ $module->slug }}', '{{ $module->name }}', '{{ $module->version }}')"
                 >
                     {{ trans('modules.install') }}
                 </button>

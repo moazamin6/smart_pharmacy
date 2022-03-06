@@ -4,8 +4,7 @@
             <span v-if="filter.option" class="el-tag el-tag--primary el-tag--small el-tag--light el-tag-option">
                 {{ filter.option }}
 
-                <i v-if="!filter.operator && !filter.value" class="el-tag__close el-icon-close"
-                   @click="onFilterDelete(index)"></i>
+                <i v-if="!filter.operator && !filter.value" class="el-tag__close el-icon-close" @click="onFilterDelete(index)"></i>
             </span>
 
             <span v-if="filter.operator" class="el-tag el-tag--primary el-tag--small el-tag--light el-tag-operator">
@@ -56,10 +55,7 @@
 
             <div :id="'search-field-option-' + _uid" class="dropdown-menu" :class="[{'show': visible.options}]">
                 <li ref="" class="dropdown-item" v-for="option in filteredOptions" :data-value="option.key">
-                    <button type="button" class="btn btn-link" @click="onOptionSelected(option.key)">{{
-                            option.value
-                        }}
-                    </button>
+                    <button type="button" class="btn btn-link" @click="onOptionSelected(option.key)">{{ option.value }}</button>
                 </li>
 
                 <li ref="" v-if="search" class="dropdown-item">
@@ -67,32 +63,23 @@
                 </li>
             </div>
 
-            <div :id="'search-field-operator-' + _uid" class="dropdown-menu operator"
-                 :class="[{'show': visible.operator}]">
+            <div :id="'search-field-operator-' + _uid" class="dropdown-menu operator" :class="[{'show': visible.operator}]">
                 <li ref="" class="dropdown-item">
-                    <button type="button" class="btn btn-link" @click="onOperatorSelected('=')"><i
-                        class="fas fa-equals"></i><span class="btn-helptext d-none">{{ operatorIsText }}</span></button>
+                    <button type="button" class="btn btn-link" @click="onOperatorSelected('=')"><i class="fas fa-equals"></i><span class="btn-helptext d-none">{{ operatorIsText }}</span></button>
                 </li>
 
                 <li ref="" class="dropdown-item">
-                    <button type="button" class="btn btn-link" @click="onOperatorSelected('!=')"><i
-                        class="fas fa-not-equal"></i><span class="btn-helptext d-none">{{ operatorIsNotText }}</span>
-                    </button>
+                    <button type="button" class="btn btn-link" @click="onOperatorSelected('!=')"><i class="fas fa-not-equal"></i><span class="btn-helptext d-none">{{ operatorIsNotText }}</span></button>
                 </li>
 
                 <li v-if="range" ref="" class="dropdown-item">
-                    <button type="button" class="btn btn-link" @click="onOperatorSelected('><')"><i
-                        class="fas fa-arrows-alt-h"></i><span class="btn-helptext d-none">{{ operatorIsNotText }}</span>
-                    </button>
+                    <button type="button" class="btn btn-link" @click="onOperatorSelected('><')"><i class="fas fa-arrows-alt-h"></i><span class="btn-helptext d-none">{{ operatorIsNotText }}</span></button>
                 </li>
             </div>
 
             <div :id="'search-field-value-' + _uid" class="dropdown-menu" :class="[{'show': visible.values}]">
                 <li ref="" class="dropdown-item" v-for="(value) in filteredValues" :data-value="value.key">
-                    <button type="button" class="btn btn-link" @click="onValueSelected(value.key)">{{
-                            value.value
-                        }}
-                    </button>
+                    <button type="button" class="btn btn-link" @click="onValueSelected(value.key)">{{ value.value }}</button>
                 </li>
 
                 <li ref="" class="dropdown-item" v-if="!filteredValues.length">
@@ -162,7 +149,7 @@ export default {
         },
 
         dateConfig: null
-
+        
     },
 
     model: {
@@ -174,7 +161,7 @@ export default {
         return {
             filter_list: this.filters, // set filters prop assing it.
             search: '', // search cloumn model
-            filtered: [], // Show selected filters
+            filtered:[], // Show selected filters
             filter_index: 0, // added filter count
             filter_last_step: 'options', // last fitler step
             visible: { // Which visible dropdown
@@ -231,7 +218,7 @@ export default {
 
                 date = dates.join('-to-');
             }
-
+            
             this.selected_values.push({
                 key: date,
                 value: dateStr,
@@ -288,23 +275,23 @@ export default {
                 }
 
                 window.axios.get(option_url)
-                    .then(response => {
-                        this.values = [];
+                .then(response => {
+                    this.values = [];
 
-                        let data = response.data.data;
+                    let data = response.data.data;
 
-                        data.forEach(function (item) {
-                            this.values.push({
-                                key: item.id,
-                                value: item.name
-                            });
-                        }, this);
+                    data.forEach(function (item) {
+                        this.values.push({
+                            key: item.id,
+                            value: item.name
+                        });
+                    }, this);
 
-                        this.option_values[value] = this.values;
-                    })
-                    .catch(error => {
+                    this.option_values[value] = this.values;
+                })
+                .catch(error => {
 
-                    });
+                });
             }
 
             this.$emit('input', evt.target.value);
@@ -413,23 +400,23 @@ export default {
                 }
 
                 window.axios.get(option_url)
-                    .then(response => {
-                        let data = response.data.data;
+                .then(response => {
+                    let data = response.data.data;
 
-                        this.values = [];
+                    this.values = [];
 
-                        data.forEach(function (item) {
-                            this.values.push({
-                                key: (item.code) ? item.code : item.id,
-                                value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name
-                            });
-                        }, this);
+                    data.forEach(function (item) {
+                        this.values.push({
+                            key: (item.code) ? item.code : item.id,
+                            value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name
+                        });
+                    }, this);
 
-                        this.option_values[value] = this.values;
-                    })
-                    .catch(error => {
+                    this.option_values[value] = this.values;
+                })
+                .catch(error => {
 
-                    });
+                });
             } else {
                 this.values = (this.option_values[value]) ? this.option_values[value] : [];
             }
@@ -659,7 +646,7 @@ export default {
                                     value_assigned = true
                                 }
                             }, this);
-
+                            
                             if (!value_assigned && (cookie != undefined && cookie[_filter.key])) {
                                 this.selected_values.push(cookie[_filter.key]);
                             }
@@ -780,7 +767,7 @@ export default {
 
     watch: {
         visible: {
-            handler: function (newValue) {
+            handler: function(newValue) {
                 if (newValue) {
                     document.addEventListener('click', this.closeIfClickedOutside);
                 }
@@ -792,109 +779,109 @@ export default {
 </script>
 
 <style>
-.searh-field {
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-}
+    .searh-field {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+    }
 
-.searh-field .tags-group {
-    display: contents;
-}
+    .searh-field .tags-group {
+        display: contents;
+    }
 
-.searh-field .el-tag.el-tag--primary {
-    background: #f6f9fc;
-    background-color: #f6f9fc;
-    border-color: #f6f9fc;
-    color: #8898aa;
-    margin-top: 7px;
-}
+    .searh-field .el-tag.el-tag--primary {
+        background: #f6f9fc;
+        background-color: #f6f9fc;
+        border-color: #f6f9fc;
+        color: #8898aa;
+        margin-top: 7px;
+    }
 
-.searh-field .tags-group:hover > span {
-    background: #cbd4de;
-    background-color: #cbd4de;
-    border-color: #cbd4de;
-}
+    .searh-field .tags-group:hover > span {
+        background:#cbd4de;
+        background-color: #cbd4de;
+        border-color: #cbd4de;
+    }
 
-.searh-field .el-tag.el-tag--primary .el-tag__close.el-icon-close {
-    color: #8898aa;
-}
+    .searh-field .el-tag.el-tag--primary .el-tag__close.el-icon-close {
+        color: #8898aa;
+    }
 
-.searh-field .el-tag-option {
-    border-radius: 0.25rem 0 0 0.25rem;
-    margin-left: 10px;
-}
+    .searh-field .el-tag-option {
+        border-radius: 0.25rem 0 0 0.25rem;
+        margin-left: 10px;
+    }
 
-.searh-field .el-tag-operator {
-    border-radius: 0;
-    margin-left: -1px;
-    margin-right: -1px;
-}
+    .searh-field .el-tag-operator {
+        border-radius: 0;
+        margin-left: -1px;
+        margin-right: -1px;
+    }
 
-.searh-field .el-tag-value {
-    border-radius: 0 0.25rem 0.25rem 0;
-    margin-right: 10px;
-}
+    .searh-field .el-tag-value {
+        border-radius: 0 0.25rem 0.25rem 0;
+        margin-right: 10px;
+    }
 
-.searh-field .el-select.input-new-tag {
-    width: 100%;
-}
+    .searh-field .el-select.input-new-tag {
+        width: 100%;
+    }
 
-.searh-field .input-full {
-    width: 100%;
-}
+    .searh-field .input-full {
+        width: 100%;
+    }
 
-.searh-field .btn.btn-link {
-    width: inherit;
-    text-align: left;
-    display: flex;
-    margin: 0;
-    text-overflow: inherit;
-    text-align: left;
-    text-overflow: ellipsis;
-    padding: unset;
-    color: #212529;
-}
+    .searh-field .btn.btn-link {
+        width: inherit;
+        text-align: left;
+        display: flex;
+        margin: 0;
+        text-overflow: inherit;
+        text-align: left;
+        text-overflow: ellipsis;
+        padding: unset;
+        color: #212529;
+    }
 
-.searh-field .btn.btn-link.clear {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    color: #adb5bd;
-    opacity: 1;
-}
+    .searh-field .btn.btn-link.clear {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45px;
+        height: 45px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        color: #adb5bd;
+        opacity: 1;
+    }
 
-.searh-field .btn.btn-link.clear:hover {
-    color: #8898aa;
-}
+    .searh-field .btn.btn-link.clear:hover {
+        color: #8898aa;
+    }
 
-.searh-field .btn-helptext {
-    margin-left: auto;
-    color: var(--gray);
-}
+    .searh-field .btn-helptext {
+        margin-left: auto;
+        color: var(--gray);
+    }
 
-.searh-field .btn:not(:disabled):not(.disabled):active:focus,
-.searh-field .btn:not(:disabled):not(.disabled).active:focus {
+    .searh-field .btn:not(:disabled):not(.disabled):active:focus,
+    .searh-field .btn:not(:disabled):not(.disabled).active:focus {
     -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
+        box-shadow: none !important;
+    }
 
-.searh-field .form-control.datepicker.flatpickr-input {
-    padding: inherit !important;
-}
+    .searh-field .form-control.datepicker.flatpickr-input {
+        padding: inherit !important;
+    }
 
-.searh-field .dropdown-menu.operator {
-    min-width: 50px !important;
-}
+    .searh-field .dropdown-menu.operator {
+        min-width: 50px !important;
+    }
 
-.searh-field .dropdown-menu.operator .btn i:not(:last-child), .btn svg:not(:last-child) {
-    margin-right: inherit !important;
-}
+    .searh-field .dropdown-menu.operator .btn i:not(:last-child), .btn svg:not(:last-child) {
+        margin-right: inherit !important;
+    }
 </style>

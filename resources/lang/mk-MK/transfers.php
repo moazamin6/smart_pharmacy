@@ -2,11 +2,11 @@
 
 return [
 
-    'from_account'          => 'Од Сметка',
-    'to_account'            => 'На сметка',
+    'from_account' => 'Од Сметка',
+    'to_account' => 'На сметка',
 
     'messages' => [
-        'delete'            => ':од на :на (:износ)',
+        'delete' => ':од на :на (:износ)',
     ],
 
 ];

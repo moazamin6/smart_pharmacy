@@ -8,29 +8,29 @@
         <div class="dropdown-menu" role="menu">
             @stack('button_dropdown_start')
             @stack('edit_button_start')
-            @if (!$hideButtonEdit)
-                @can($permissionUpdate)
-                    <a class="dropdown-item" href="{{ route($routeButtonEdit, $transfer->id) }}">
-                        {{ trans('general.edit') }}
-                    </a>
-                @endcan
-            @endif
+                @if (!$hideButtonEdit)
+                    @can($permissionUpdate)
+                        <a class="dropdown-item" href="{{ route($routeButtonEdit, $transfer->id) }}">
+                            {{ trans('general.edit') }}
+                        </a>
+                    @endcan
+                @endif
             @stack('edit_button_end')
 
             @stack('duplicate_button_start')
-            @if (!$hideButtonDuplicate)
-                @can($permissionCreate)
-                    <a class="dropdown-item" href="{{ route($routeButtonDuplicate, $transfer->id) }}">
-                        {{ trans('general.duplicate') }}
-                    </a>
-                @endcan
-            @endif
+                @if (!$hideButtonDuplicate)
+                    @can($permissionCreate)
+                        <a class="dropdown-item" href="{{ route($routeButtonDuplicate, $transfer->id) }}">
+                            {{ trans('general.duplicate') }}
+                        </a>
+                    @endcan
+                @endif
             @stack('duplicate_button_end')
 
             @stack('button_dropdown_divider_1_start')
-            @if (!$hideButtonGroupDivider1)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider1)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_1_end')
 
             @if (!$hideButtonPrint)
@@ -42,17 +42,17 @@
             @endif
 
             @stack('button_pdf_start')
-            @if (!$hideButtonPdf)
-                <a class="dropdown-item" href="{{ route($routeButtonPdf, $transfer->id) }}">
-                    {{ trans('general.download_pdf') }}
-                </a>
-            @endif
+                @if (!$hideButtonPdf)
+                    <a class="dropdown-item" href="{{ route($routeButtonPdf, $transfer->id) }}">
+                        {{ trans('general.download_pdf') }}
+                    </a>
+                @endif
             @stack('button_pdf_end')
 
             @stack('button_dropdown_divider_2_start')
-            @if (!$hideButtonGroupDivider2)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider2)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_2_end')
 
             @if (!$hideButtonTemplate)
@@ -64,17 +64,17 @@
             @endif
 
             @stack('button_dropdown_divider_3_start')
-            @if (!$hideButtonGroupDivider3)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider3)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_3_end')
 
             @stack('delete_button_start')
-            @if (!$hideButtonDelete)
-                @can($permissionDelete)
-                    {!! Form::deleteLink($transfer, $routeButtonDelete, $textDeleteModal, 'transfer_number') !!}
-                @endcan
-            @endif
+                @if (!$hideButtonDelete)
+                    @can($permissionDelete)
+                        {!! Form::deleteLink($transfer, $routeButtonDelete, $textDeleteModal, 'transfer_number') !!}
+                    @endcan
+                @endif
             @stack('delete_button_end')
             @stack('button_dropdown_end')
         </div>

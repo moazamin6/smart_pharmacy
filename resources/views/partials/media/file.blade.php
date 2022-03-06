@@ -26,24 +26,18 @@
 
             <div class="col-auto">
                 @can('delete-common-uploads')
-                    <a href="javascript:void();" id="remove-{{ $column_name }}"
-                       @click="onDeleteFile('{{ $file->id }}', '{{ route('uploads.destroy', $file->id) }}', '{{ trans('general.title.delete', ['type' => $column_name]) }}', '{{ trans('general.delete_confirm', ['name' => $file->basename, 'type' => $column_name]) }} ', '{{ trans('general.cancel') }}', '{{ trans('general.delete') }}')"
-                       type="button" class="btn btn-sm btn-danger text-white">
+                    <a href="javascript:void();" id="remove-{{ $column_name }}" @click="onDeleteFile('{{ $file->id }}', '{{ route('uploads.destroy', $file->id) }}', '{{ trans('general.title.delete', ['type' => $column_name]) }}', '{{ trans('general.delete_confirm', ['name' => $file->basename, 'type' => $column_name]) }} ', '{{ trans('general.cancel') }}', '{{ trans('general.delete') }}')" type="button" class="btn btn-sm btn-danger text-white">
                         <i class="fas fa-times"></i>
                     </a>
 
                     @if ($options)
-                        <input type="hidden" name="page_{{ $file->id}}" id="file-page-{{ $file->id}}"
-                               value="{{ $options['page'] }}"/>
-                        <input type="hidden" name="key_{{ $file->id}}" id="file-key-{{ $file->id}}"
-                               value="{{ $options['key'] }}"/>
-                        <input type="hidden" name="value_{{ $file->id}}" id="file-value-{{ $file->id}}"
-                               value="{{ $file->id }}"/>
+                        <input type="hidden" name="page_{{ $file->id}}" id="file-page-{{ $file->id}}" value="{{ $options['page'] }}" />
+                        <input type="hidden" name="key_{{ $file->id}}" id="file-key-{{ $file->id}}" value="{{ $options['key'] }}" />
+                        <input type="hidden" name="value_{{ $file->id}}" id="file-value-{{ $file->id}}" value="{{ $file->id }}" />
                     @endif
                 @endcan
 
-                <a href="{{ route('uploads.download', $file->id) }}" type="button"
-                   class="btn btn-sm btn-info text-white">
+                <a href="{{ route('uploads.download', $file->id) }}" type="button" class="btn btn-sm btn-info text-white">
                     <i class="fas fa-file-download"></i>
                 </a>
             </div>

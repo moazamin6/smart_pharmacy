@@ -138,9 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'invalid_currency'      => 'El camp :attribute és invàlid.',
-        'invalid_amount'        => 'La quantitat :attribute no és vàlida.',
-        'invalid_extension'     => 'L\'extensió del fitxer no és vàlida.',
+        'invalid_currency' => 'El camp :attribute és invàlid.',
+        'invalid_amount' => 'La quantitat :attribute no és vàlida.',
+        'invalid_extension' => 'L\'extensió del fitxer no és vàlida.',
     ],
 
     /*

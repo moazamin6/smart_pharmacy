@@ -16,25 +16,25 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                {{ Form::textGroup('rate', trans('taxes.rate'), 'percent', ['@input' => 'onChangeTaxRate']) }}
+                    {{ Form::textGroup('rate', trans('taxes.rate'), 'percent', ['@input' => 'onChangeTaxRate']) }}
 
-                {{ Form::selectGroup('type', trans_choice('general.types', 1), 'bars', $types, $tax->type, ['disabledOptions' => $disable_options]) }}
+                    {{ Form::selectGroup('type', trans_choice('general.types', 1), 'bars', $types, $tax->type, ['disabledOptions' => $disable_options]) }}
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), $tax->enabled) }}
-            </div>
-        </div>
-
-        @can('update-settings-taxes')
-            <div class="card-footer">
-                <div class="row save-buttons">
-                    {{ Form::saveButtons('taxes.index') }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), $tax->enabled) }}
                 </div>
             </div>
-        @endcan
+
+            @can('update-settings-taxes')
+                <div class="card-footer">
+                    <div class="row save-buttons">
+                        {{ Form::saveButtons('taxes.index') }}
+                    </div>
+                </div>
+            @endcan
         {!! Form::close() !!}
     </div>
 @endsection

@@ -1,26 +1,24 @@
 <template>
     <div v-if="video || screenshots">
         <el-carousel :height="height"
-                     :initial-index="initial_index"
-                     :trigger="trigger" :autoplay="autoplay"
-                     :indicator-position="indicator_position"
-                     :type="type" :loop="loop" :direction="direction"
-                     :interval="interval" :arrow="arrow">
+            :initial-index="initial_index"
+            :trigger="trigger" :autoplay="autoplay"
+            :indicator-position="indicator_position"
+            :type="type" :loop="loop" :direction="direction"
+            :interval="interval" :arrow="arrow">
 
             <el-carousel-item v-if="video">
                 <iframe class="carousel-frame w-100" height="365px"
-                        :src="'https://www.youtube-nocookie.com/embed/' + video"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                :src="'https://www.youtube-nocookie.com/embed/' + video"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div class="carousel-description py-2">
                     {{ name }}
                 </div>
             </el-carousel-item>
 
             <el-carousel-item v-for="(screenshot, index) in screenshots" :key="index">
-                <img @click="openGallery(index)" class="d-block w-100 carousel-frame" height="365px"
-                     :src="screenshot.path_string" :alt="screenshot.alt_attribute">
+                <img @click="openGallery(index)" class="d-block w-100 carousel-frame" height="365px" :src="screenshot.path_string" :alt="screenshot.alt_attribute">
                 <div class="carousel-description py-2" v-if="screenshot.description">
                     {{ screenshot.description }}
                 </div>
@@ -30,13 +28,13 @@
             </el-carousel-item>
         </el-carousel>
 
-        <LightBox
-            v-if="media.length"
-            ref="lightbox"
-            :media="media"
-            :show-caption="true"
-            :show-light-box="false"
-        />
+      <LightBox
+        v-if="media.length"
+        ref="lightbox"
+        :media="media"
+        :show-caption="true"
+        :show-light-box="false"
+      />
     </div>
 </template>
 
@@ -134,7 +132,7 @@ export default {
         if (this.screenshots.length) {
             let name = this.name;
 
-            this.screenshots.forEach(function (screenshot) {
+            this.screenshots.forEach(function(screenshot) {
                 media.push({ // For image
                     thumb: screenshot.path_string,
                     src: screenshot.path_string,

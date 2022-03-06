@@ -14,7 +14,7 @@
         display: none;
 
         &:checked {
-            + .custom-toggle-slider {
+             + .custom-toggle-slider {
                 border: $custom-control-indicator-border-width solid $custom-control-indicator-checked-border-color;
 
                 &:before {
@@ -79,7 +79,7 @@
 .custom-toggle {
     input {
         &:checked {
-            + .custom-toggle-slider {
+             + .custom-toggle-slider {
 
                 &:after {
                     content: attr(data-label-on);

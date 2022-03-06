@@ -1,6 +1,6 @@
 <template>
     <div v-if="!rowInput" class="form-group"
-         :class="[{'has-error': error}, {'required': required}, {'readonly': readonly}, {'disabled': disabled}, col]">
+        :class="[{'has-error': error}, {'required': required}, {'readonly': readonly}, {'disabled': disabled}, col]">
         <label v-if="title" :for="name" class="form-control-label">{{ title }}</label>
 
         <div class="input-group input-group-merge" :class="group_class">
@@ -10,15 +10,14 @@
                 </span>
             </div>
 
-            <money :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model"
-                   :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
+            <money :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model" :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
         </div>
 
         <div class="invalid-feedback d-block" v-if="error" v-html="error"></div>
     </div>
 
     <div v-else
-         :class="[{'has-error': error}, {'required': required}, {'readonly': readonly}, {'disabled': disabled}, col]">
+        :class="[{'has-error': error}, {'required': required}, {'readonly': readonly}, {'disabled': disabled}, col]">
         <label v-if="title" :for="name" class="form-control-label">{{ title }}</label>
 
         <div v-if="icon" class="input-group input-group-merge" :class="group_class">
@@ -28,12 +27,10 @@
                 </span>
             </div>
 
-            <money :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model"
-                   :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
+            <money :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model" :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
         </div>
 
-        <money v-else :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model"
-               :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
+        <money v-else :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="model" :disabled="disabled" :masked="masked" class="form-control" :class="moneyClass"></money>
 
         <div class="invalid-feedback d-block" v-if="error" v-html="error"></div>
     </div>
@@ -225,7 +222,7 @@ export default {
 </script>
 
 <style scoped>
-.text-right.input-price .v-money {
-    text-align: right;
-}
+    .text-right.input-price .v-money {
+        text-align: right;
+    }
 </style>

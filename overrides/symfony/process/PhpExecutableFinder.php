@@ -90,7 +90,7 @@ class PhpExecutableFinder
         if ($php = getenv('PHP_BINARY')) {
             if (!is_executable($php)) {
                 $command = '\\' === \DIRECTORY_SEPARATOR ? 'where' : 'command -v';
-                if ($php = strtok(exec($command.' '.escapeshellarg($php)), PHP_EOL)) {
+                if ($php = strtok(exec($command . ' ' . escapeshellarg($php)), PHP_EOL)) {
                     if (!is_executable($php)) {
                         return false;
                     }
@@ -103,11 +103,11 @@ class PhpExecutableFinder
         }
 
         $args = $this->findArguments();
-        $args = $includeArgs && $args ? ' '.implode(' ', $args) : '';
+        $args = $includeArgs && $args ? ' ' . implode(' ', $args) : '';
 
         // PHP_BINARY return the current sapi executable
         if (PHP_BINARY && \in_array(\PHP_SAPI, ['cgi-fcgi', 'cli', 'cli-server', 'phpdbg'], true)) {
-            return PHP_BINARY.$args;
+            return PHP_BINARY . $args;
         }
 
         if ($php = getenv('PHP_PATH')) {
@@ -124,7 +124,7 @@ class PhpExecutableFinder
             }
         }
 
-        if (@is_executable($php = PHP_BINDIR.('\\' === \DIRECTORY_SEPARATOR ? '\\php.exe' : '/php'))) {
+        if (@is_executable($php = PHP_BINDIR . ('\\' === \DIRECTORY_SEPARATOR ? '\\php.exe' : '/php'))) {
             return $php;
         }
 

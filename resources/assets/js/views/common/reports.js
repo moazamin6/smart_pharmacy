@@ -46,39 +46,39 @@ const app = new Vue({
                 params: {
                     class: class_name
                 }
-            })
-                .then(response => {
-                    let form = this.form;
-                    let html = response.data.html;
+              })
+            .then(response => {
+                let form = this.form;
+                let html = response.data.html;
 
-                    this.report_fields = Vue.component('add-new-component', (resolve, reject) => {
-                        resolve({
-                            template: '<div id="report-fields" class="row col-md-12">' + html + '</div>',
+                this.report_fields = Vue.component('add-new-component', (resolve, reject) => {
+                    resolve({
+                        template : '<div id="report-fields" class="row col-md-12">' + html + '</div>',
 
-                            mixins: [
-                                Global
-                            ],
+                        mixins: [
+                            Global
+                        ],
 
-                            created: function () {
-                                this.form = form;
-                            },
+                        created: function() {
+                            this.form = form;
+                        },
 
-                            data: function () {
-                                return {
-                                    form: {},
-                                }
-                            },
+                        data: function () {
+                            return {
+                                form: {},
+                            }
+                        },
 
-                            watch: {
-                                form: function (form) {
-                                    this.$emit("change", form);
-                                }
-                            },
-                        })
-                    });
-                })
-                .catch(error => {
+                        watch: {
+                            form: function (form) {
+                                this.$emit("change", form);
+                            }
+                        },
+                    })
                 });
+            })
+            .catch(error => {
+            });
         },
 
         onChangeReportFields(event) {
@@ -87,11 +87,11 @@ const app = new Vue({
 
         onRefreshTotal(report_id) {
             axios.get(url + '/common/reports/' + report_id + '/clear')
-                .then(response => {
-                    this.reports_total[report_id] = response.data.data;
-                })
-                .catch(error => {
-                });
+            .then(response => {
+                this.reports_total[report_id] = response.data.data;
+            })
+            .catch(error => {
+            });
         },
     }
 });

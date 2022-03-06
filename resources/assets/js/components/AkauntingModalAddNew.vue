@@ -1,20 +1,19 @@
 <template>
     <SlideYUpTransition :duration="animationDuration">
         <div class="modal modal-add-new fade"
-             @click.self="closeModal"
-             :class="[{'show d-block': show}, {'d-none': !show}]"
-             v-show="show"
-             tabindex="-1"
-             role="dialog"
-             :aria-hidden="!show">
+            @click.self="closeModal"
+            :class="[{'show d-block': show}, {'d-none': !show}]"
+            v-show="show"
+            tabindex="-1"
+            role="dialog"
+            :aria-hidden="!show">
             <div class="modal-dialog" :class="modalDialogClass">
                 <slot name="modal-content">
                     <div class="modal-content">
                         <div class="card-header pb-2">
                             <slot name="card-header">
                                 <h4 class="float-left"> {{ title }} </h4>
-                                <button type="button" class="close" @click="onCancel" aria-hidden="true">&times;
-                                </button>
+                                <button type="button" class="close" @click="onCancel" aria-hidden="true">&times;</button>
                             </slot>
                         </div>
 
@@ -31,20 +30,16 @@
                         <div class="card-footer border-top-0 pt-0">
                             <slot name="card-footer">
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-outline-secondary"
-                                            :class="buttons.cancel.class" @click="onCancel">
+                                    <button type="button" class="btn btn-outline-secondary" :class="buttons.cancel.class" @click="onCancel">
                                         {{ buttons.cancel.text }}
                                     </button>
 
-                                    <a v-if="buttons.payment" :href="buttons.payment.url" class="btn btn-white"
-                                       :class="buttons.payment.class">
+                                    <a v-if="buttons.payment" :href="buttons.payment.url" class="btn btn-white" :class="buttons.payment.class">
                                         {{ buttons.payment.text }}
                                     </a>
 
-                                    <button :disabled="form.loading" type="button" class="btn button-submit"
-                                            :class="buttons.confirm.class" @click="onSubmit">
-                                        <div class="aka-loader"></div>
-                                        <span>{{ buttons.confirm.text }}</span>
+                                    <button  :disabled="form.loading" type="button" class="btn button-submit" :class="buttons.confirm.class" @click="onSubmit">
+                                        <div class="aka-loader"></div><span>{{ buttons.confirm.text }}</span>
                                     </button>
                                 </div>
                             </slot>
@@ -59,7 +54,7 @@
 <script>
 import Vue from 'vue';
 
-import {SlideYUpTransition} from "vue2-transitions";
+import { SlideYUpTransition } from "vue2-transitions";
 import AkauntingModal from './AkauntingModal';
 import AkauntingMoney from './AkauntingMoney';
 import AkauntingRadioGroup from './forms/AkauntingRadioGroup';
@@ -69,7 +64,7 @@ import AkauntingDate from './AkauntingDate';
 import AkauntingRecurring from './AkauntingRecurring';
 
 import Form from './../plugins/form';
-import {Alert, ColorPicker} from 'element-ui';
+import { Alert, ColorPicker } from 'element-ui';
 import Global from './../mixins/global';
 
 export default {
@@ -132,7 +127,7 @@ export default {
             form: new Form('form-create'),
 
             display: this.show,
-            component: '',
+            component:'',
             money: {
                 decimal: '.',
                 thousands: ',',
@@ -156,7 +151,7 @@ export default {
         if (this.is_component) {
             this.component = Vue.component('add-new-component', (resolve, reject) => {
                 resolve({
-                    template: '<div id="modal-add-new-form-' + form_prefix + '">' + this.message + '</div>',
+                    template : '<div id="modal-add-new-form-' + form_prefix + '">' + this.message + '</div>',
                     mixins: [Global],
                     components: {
                         AkauntingRadioGroup,
@@ -169,7 +164,7 @@ export default {
                         [ColorPicker.name]: ColorPicker,
                     },
 
-                    created: function () {
+                    created: function() {
                         this.form = new Form('form-create');
                     },
 
@@ -222,16 +217,16 @@ export default {
                                     code: code
                                 }
                             })
-                                .then(response => {
-                                    this.form.rate = response.data.rate;
-                                    this.form.precision = response.data.precision;
-                                    this.form.symbol = response.data.symbol;
-                                    this.form.symbol_first = response.data.symbol_first;
-                                    this.form.decimal_mark = response.data.decimal_mark;
-                                    this.form.thousands_separator = response.data.thousands_separator;
-                                })
-                                .catch(error => {
-                                });
+                            .then(response => {
+                                this.form.rate = response.data.rate;
+                                this.form.precision = response.data.precision;
+                                this.form.symbol = response.data.symbol;
+                                this.form.symbol_first = response.data.symbol_first;
+                                this.form.decimal_mark = response.data.decimal_mark;
+                                this.form.thousands_separator = response.data.thousands_separator;
+                            })
+                            .catch(error => {
+                            });
                         },
 
                         // Change bank account get money and currency rate
@@ -253,8 +248,8 @@ export default {
                                 this.currency.suffix = (!response.data.symbol_first) ? response.data.symbol : '';
                                 this.currency.precision = parseInt(response.data.precision);
                             })
-                                .catch(error => {
-                                });
+                            .catch(error => {
+                            });
                         },
                     }
                 })
@@ -299,11 +294,11 @@ export default {
 </script>
 
 <style>
-.modal.show {
-    background-color: rgba(0, 0, 0, 0.3);
-}
+    .modal.show {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
 
-.modal-md {
-    max-width: 650px;
-}
+    .modal-md {
+        max-width: 650px;
+    }
 </style>

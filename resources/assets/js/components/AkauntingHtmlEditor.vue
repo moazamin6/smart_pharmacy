@@ -43,7 +43,7 @@ export default {
         },
     },
 
-    data() {
+    data () {
         return {
             editor: null,
             editorValue: this.value,
@@ -55,7 +55,7 @@ export default {
     },
 
     methods: {
-        initialize(Quill) {
+        initialize (Quill) {
             let theme = this.theme;
 
             this.editor = new Quill(`#${this.editorId}`, {
@@ -90,7 +90,7 @@ export default {
             });
         },
 
-        pasteHTML() {
+        pasteHTML () {
             if (!this.editor) {
                 return;
             }
@@ -112,7 +112,7 @@ export default {
         },
     },
 
-    async mounted() {
+    async mounted () {
         this.content = this.editorValue;
 
         this.editorId = this.randomString();
@@ -124,21 +124,21 @@ export default {
     },
 
     watch: {
-        value(newVal) {
+        value (newVal) {
             if (newVal !== this.content) {
                 this.pasteHTML(newVal);
             }
         },
 
-        editorValue(newVal) {
+        editorValue (newVal) {
             if (newVal !== this.content) {
                 this.pasteHTML(newVal);
             }
         },
 
-        content(newVal) {
+        content (newVal) {
             this.$emit('input', newVal);
         },
     },
-}
+ }
 </script>

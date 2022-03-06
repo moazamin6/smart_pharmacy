@@ -28,10 +28,10 @@
     min-width: 0;
 
     > p {
-        color: $gray-500;
-        line-height: 1.5;
-        margin: .2rem 0 0;
-    }
+       color: $gray-500;
+       line-height: 1.5;
+       margin: .2rem 0 0;
+   }
 }
 
 .list-group-heading {
@@ -39,8 +39,8 @@
     color: $gray-800;
 
     > small {
-        float: right;
-        color: $gray-500;
-        font-weight: 500;
-    }
+       float: right;
+       color: $gray-500;
+       font-weight: 500;
+   }
 }

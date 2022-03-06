@@ -1,23 +1,23 @@
 <html lang="{{ app()->getLocale() }}">
-@include('partials.wizard.head')
+    @include('partials.wizard.head')
 
-<body class="wizard-page">
+    <body class="wizard-page">
 
-<div class="container mt--5">
-    @stack('body_start')
+        <div class="container mt--5">
+            @stack('body_start')
 
-    <div id="app">
-        <div class="card-body">
+            <div id="app">
+                <div class="card-body">
 
-            @include('flash::message')
+                    @include('flash::message')
 
-            @yield('content')
+                    @yield('content')
+                </div>
+            </div>
+
         </div>
-    </div>
 
-</div>
+        @include('partials.wizard.scripts')
 
-@include('partials.wizard.scripts')
-
-</body>
+    </body>
 </html>

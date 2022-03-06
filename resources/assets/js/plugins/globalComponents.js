@@ -14,8 +14,7 @@ import BasePagination from "./../components/BasePagination";
 import BaseAlert from "./../components/BaseAlert";
 import BaseNav from "./../components/Navbar/BaseNav";
 import BaseHeader from './../components/BaseHeader';
-import {Input, Tooltip, Popover} from 'element-ui';
-
+import { Input, Tooltip, Popover } from 'element-ui';
 /**
  * You can register global components here and use them as a plugin in your main Vue instance
  */

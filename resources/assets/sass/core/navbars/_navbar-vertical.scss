@@ -179,7 +179,7 @@
                     }
 
                     // Container
-                    > [class*="container"] {
+                    >[class*="container"] {
                         flex-direction: column;
                         align-items: stretch;
                         min-height: 100%;
@@ -302,7 +302,6 @@
         margin-left: $navbar-vertical-width;
         @include transition($transition-base);
     }
-
     &.fixed-right + .main-content {
         margin-right: $navbar-vertical-width;
         @include transition($transition-base);
@@ -411,7 +410,7 @@
                 }
             }
         }
-
+        
         .nav-item .collapse {
             display: none !important;
         }

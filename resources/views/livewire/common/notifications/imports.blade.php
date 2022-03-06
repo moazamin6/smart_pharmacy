@@ -1,19 +1,18 @@
 <div class="accordion" id="notification-imports">
     <div class="card">
         <div class="card-header" id="heading-imports" data-toggle="collapse" data-target="#collapse-imports"
-             aria-expanded="false" aria-controls="collapse-imports">
+                aria-expanded="false" aria-controls="collapse-imports">
             <div class="row align-items-center">
                 <div class="col-12">
                     <h3 class="mb-0">
                         {{ trans('import.import') }}
 
                         @if ($notifications->total())
-                            <button type="button"
-                                    class="btn btn-outline-success rounded-circle btn-icon-only btn-sm mr-2 d-none"
-                                    data-toggle="tooltip"
-                                    data-placement="right"
-                                    title="{{ trans('notifications.mark_read_all') }}"
-                                    wire:click="markReadAll()"
+                        <button type="button" class="btn btn-outline-success rounded-circle btn-icon-only btn-sm mr-2 d-none"
+                                data-toggle="tooltip"
+                                data-placement="right"
+                                title="{{ trans('notifications.mark_read_all') }}"
+                                wire:click="markReadAll()"
                             >
                                 <span class="btn-inner--icon"><i class="fas fa-check-double"></i></span>
                             </button>
@@ -23,40 +22,38 @@
             </div>
         </div>
 
-        <div id="collapse-imports" class="collapse" aria-labelledby="heading-imports"
-             data-parent="#notification-imports">
+        <div id="collapse-imports" class="collapse" aria-labelledby="heading-imports" data-parent="#notification-imports">
             @if ($notifications->total())
                 <div class="table-responsive">
                     <table class="table table-flush table-hover" id="tbl-import">
                         <tbody>
-                        @foreach ($notifications as $notification)
-                            <tr class="row align-items-center border-top-1">
-                                <td class="col-xs-8 col-sm-10 col-md-10 col-lg-11 col-xl-11 text-left text-wrap">
-                                    @if (empty($notification->errors))
-                                        {!! trans('notifications.messages.import', [
-                                            'type' => $notification->translation,
-                                            'count' => $notification->total_rows
-                                        ]) !!}
-                                    @else
-                                        @foreach ($notification->errors as $error)
-                                            {!! $error !!}
-                                        @endforeach
-                                    @endif
-                                </td>
+                            @foreach ($notifications as $notification)
+                                <tr class="row align-items-center border-top-1">
+                                    <td class="col-xs-8 col-sm-10 col-md-10 col-lg-11 col-xl-11 text-left text-wrap">
+                                        @if (empty($notification->errors))
+                                            {!! trans('notifications.messages.import', [
+                                                'type' => $notification->translation,
+                                                'count' => $notification->total_rows
+                                            ]) !!}
+                                        @else
+                                            @foreach ($notification->errors as $error)
+                                                {!! $error !!}
+                                            @endforeach
+                                        @endif
+                                    </td>
 
-                                <td class="col-xs-4 col-sm-2 col-md-2 col-lg-1 col-xl-1 text-center">
-                                    <button type="button"
-                                            class="btn btn-outline-success rounded-circle btn-icon-only btn-sm"
+                                    <td class="col-xs-4 col-sm-2 col-md-2 col-lg-1 col-xl-1 text-center">
+                                        <button type="button" class="btn btn-outline-success rounded-circle btn-icon-only btn-sm"
                                             data-toggle="tooltip"
                                             data-placement="right"
                                             title="{{ trans('notifications.mark_read') }}"
                                             wire:click="markRead('{{ $notification->notification_id }}')"
-                                    >
-                                        <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        >
+                                            <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -79,8 +76,7 @@
                                     </nav>
                                 </div>
                             @else
-                                <div class="col-xs-12 col-sm-12" id="datatable-basic_info" role="status"
-                                     aria-live="polite">
+                                <div class="col-xs-12 col-sm-12" id="datatable-basic_info" role="status" aria-live="polite">
                                     <small>{{ trans('general.no_records') }}</small>
                                 </div>
                             @endif

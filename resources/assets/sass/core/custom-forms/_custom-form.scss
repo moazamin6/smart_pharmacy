@@ -3,18 +3,17 @@
 //
 
 .custom-control {
-    padding-left: 1.75rem;
+  padding-left: 1.75rem;
 }
-
 .custom-checkbox {
     .custom-control-input ~ .custom-control-label {
         cursor: pointer;
         font-size: $font-size-sm;
 
-        &:after,
-        &:before {
-            left: -1.75rem
-        }
+      &:after,
+      &:before {
+        left: -1.75rem
+      }
     }
 
     .custom-control-input {
@@ -23,7 +22,6 @@
                 &::before {
                     border-color: $custom-control-indicator-checked-border-color;
                 }
-
                 &::after {
                     background-image: $custom-checkbox-indicator-icon-checked;
                 }

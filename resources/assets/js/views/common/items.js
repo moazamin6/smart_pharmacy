@@ -44,10 +44,10 @@ const app = new Vue({
                 this.form.sale_price = oldVal;
                 return;
             }
-
+ 
             for (let item of this.regex_condition) {
                 if (this.form.sale_price.includes(item)) {
-                    const removeLastChar = newVal.length - 1
+                    const removeLastChar  = newVal.length - 1 
                     const inputShown = newVal.slice(0, removeLastChar)
                     this.form.sale_price = inputShown;
                 }
@@ -62,11 +62,11 @@ const app = new Vue({
 
             for (let item of this.regex_condition) {
                 if (this.form.purchase_price.includes(item)) {
-                    const removeLastChar = newVal.length - 1
+                    const removeLastChar  = newVal.length - 1 
                     const inputShown = newVal.slice(0, removeLastChar)
                     this.form.purchase_price = inputShown;
                 }
             }
         },
-    },
+     },
 });

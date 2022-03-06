@@ -15,11 +15,11 @@
         // Avoid using mixin so we can pass custom focus shadow properly
         @if $enable-shadows {
             box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba($border, .5);
-        } @else {
+        }
+        @else {
             box-shadow: 0 0 0 $btn-focus-width rgba($border, .5);
         }
-    }
-    // Disabled comes first so active can properly restyle
+    } // Disabled comes first so active can properly restyle
     &.disabled,
     &:disabled {
         color: color-yiq($background);
@@ -29,7 +29,7 @@
 
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
-    .show > &.dropdown-toggle {
+    .show>&.dropdown-toggle {
         color: color-yiq($active-background);
         background-color: $active-background;
         @if $enable-gradients {
@@ -41,7 +41,8 @@
             // Avoid using mixin so we can pass custom focus shadow properly
             @if $enable-shadows {
                 box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($border, .5);
-            } @else {
+            }
+            @else {
                 box-shadow: 0 0 0 $btn-focus-width rgba($border, .5);
             }
         }
@@ -73,7 +74,7 @@
 
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
-    .show > &.dropdown-toggle {
+    .show>&.dropdown-toggle {
         color: color-yiq($active-background);
         background-color: $active-background;
         border-color: $active-border;
@@ -82,7 +83,8 @@
             // Avoid using mixin so we can pass custom focus shadow properly
             @if $enable-shadows and $btn-active-box-shadow !=none {
                 box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5);
-            } @else {
+            }
+            @else {
                 box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
             }
         }
@@ -96,7 +98,8 @@
     line-height: $line-height; // Manually declare to provide an override to the browser default
     @if $enable-rounded {
         border-radius: $border-radius;
-    } @else {
+    }
+    @else {
         border-radius: 0;
     }
 }

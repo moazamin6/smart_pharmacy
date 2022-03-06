@@ -154,7 +154,7 @@ class TransfersTest extends FeatureTestCase
             'to_account_id' => $to_account->id,
             'amount' => $this->faker->randomFloat(2, 1, 1000),
             'transferred_at' => $this->faker->date(),
-            'description'=> $this->faker->text(20),
+            'description' => $this->faker->text(20),
             'payment_method' => setting('default.payment_method'),
             'reference' => $this->faker->text(20),
         ];

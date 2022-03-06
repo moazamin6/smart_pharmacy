@@ -85,14 +85,14 @@ class BillsTest extends FeatureTestCase
         ]);
         $this->assertDatabaseHas('mediables', [
             'mediable_type' => Document::class,
-            'tag'           => 'attachment',
+            'tag' => 'attachment',
         ]);
         $this->assertDatabaseHas('media', [
-            'disk'           => 'uploads',
-            'directory'      => '2021/05/15/1/bills',
-            'filename'       => 'bills',
-            'extension'      => 'png',
-            'mime_type'      => 'image/png',
+            'disk' => 'uploads',
+            'directory' => '2021/05/15/1/bills',
+            'filename' => 'bills',
+            'extension' => 'png',
+            'mime_type' => 'image/png',
             'aggregate_type' => 'image',
         ]);
     }
@@ -135,7 +135,7 @@ class BillsTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('bills.update', $bill->id), $request)
             ->assertStatus(200)
-			->assertSee($request['contact_email']);
+            ->assertSee($request['contact_email']);
 
         $this->assertFlashLevel('success');
 

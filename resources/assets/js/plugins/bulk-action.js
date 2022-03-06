@@ -63,7 +63,7 @@ export default class BulkAction {
     change(event) {
         this.message = event.target.options[event.target.options.selectedIndex].dataset.message;
 
-        if (typeof (this.message) == "undefined") {
+        if (typeof(this.message) == "undefined") {
             this.message = '';
         }
 
@@ -100,7 +100,7 @@ export default class BulkAction {
                 let download_promise = Promise.resolve(window.axios({
                     url: this.path,
                     method: 'POST',
-                    data: {
+                    data:{
                         'handle': this.value,
                         'selected': this.selected
                     },
@@ -146,7 +146,7 @@ export default class BulkAction {
 
                     window.location.reload(false);
                 });
-                break;
+              break;
             default:
                 let type_promise = Promise.resolve(window.axios.post(this.path, {
                     'handle': this.value,
@@ -160,15 +160,15 @@ export default class BulkAction {
                         window.location.href = response.data.redirect;
                     }
                 })
-                    .catch(error => {
-                        //this.loading = false;
-                        //this.modal = false;
+                .catch(error => {
+                    //this.loading = false;
+                    //this.modal = false;
 
-                        //window.location.reload(false);
-                    })
-                    .finally(function () {
-                        //window.location.reload(false);
-                    });
+                    //window.location.reload(false);
+                })
+                .finally(function () {
+                    //window.location.reload(false);
+                });
         }
     }
 
@@ -195,25 +195,25 @@ export default class BulkAction {
         var status = (event.target.checked) ? 'enable' : 'disable';
 
         window.axios.get(this.path + '/' + item_id + '/' + status)
-            .then(response => {
-                var type = (response.data.success) ? 'success' : 'warning';
+        .then(response => {
+            var type = (response.data.success) ? 'success' : 'warning';
 
-                if (!response.data.success) {
-                    if (item.checked) {
-                        item.checked = false;
-                    } else {
-                        item.checked = true;
-                    }
+            if (!response.data.success) {
+                if (item.checked) {
+                    item.checked = false;
+                } else {
+                    item.checked = true;
                 }
+            }
 
-                notify({
-                    message: response.data.message,
-                    timeout: 5000,
-                    icon: 'fas fa-bell',
-                    type
-                });
-            })
-            .catch(error => {
+            notify({
+                message: response.data.message,
+                timeout: 5000,
+                icon: 'fas fa-bell',
+                type
             });
+        })
+        .catch(error => {
+        });
     }
 }

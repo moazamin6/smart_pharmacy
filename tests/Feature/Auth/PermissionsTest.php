@@ -60,7 +60,7 @@ class PermissionsTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('permissions.update', $permission->id), $request)
             ->assertStatus(200)
-			->assertSee($request['display_name']);
+            ->assertSee($request['display_name']);
 
         $this->assertFlashLevel('success');
 

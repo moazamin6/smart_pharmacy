@@ -1,6 +1,6 @@
 <div class="row" style="font-size: inherit !important">
     @stack('header_status_start')
-    @if (!$hideHeaderStatus)
+        @if (!$hideHeaderStatus)
         <div class="{{ $classHeaderStatus }}">
             {{ trans_choice('general.statuses', 1) }}
             <br>
@@ -14,11 +14,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_status_end')
 
     @stack('header_contact_start')
-    @if (!$hideHeaderContact)
+        @if (!$hideHeaderContact)
         <div class="{{ $classHeaderContact }}">
             {{ trans_choice($textHeaderContact, 1) }}
             <br>
@@ -32,11 +32,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_contact_end')
 
     @stack('header_amount_start')
-    @if (!$hideHeaderAmount)
+        @if (!$hideHeaderAmount)
         <div class="{{ $classHeaderAmount }}">
             {{ trans($textHeaderAmount) }}
             <br>
@@ -48,11 +48,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_amount_end')
 
     @stack('header_due_at_start')
-    @if (!$hideHeaderDueAt)
+        @if (!$hideHeaderDueAt)
         <div class="{{ $classHeaderDueAt }}">
             {{ trans($textHeaderDueAt) }}
             <br>
@@ -64,6 +64,6 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_due_at_end')
 </div>

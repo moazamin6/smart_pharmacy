@@ -35,11 +35,11 @@
 
                             <p class="mb-0 mt--3">
                                 <small>
-                            <div>
-                                <a href="https://akaunting.com/dashboard" target="_blank">Click here</a>
-                                to get your API key.
-                            </div>
-                            </small>
+                                    <div>
+                                        <a href="https://akaunting.com/dashboard" target="_blank">Click here</a>
+                                        to get your API key.
+                                    </div>
+                                </small>
                             </p>
                         </div>
 
@@ -57,7 +57,7 @@
 
                         <div class="col-6">
                             <akaunting-date
-                                :title="translations.company.financial_start"
+                            :title="translations.company.financial_start"
                                 data-name="financial_start"
                                 :placeholder="translations.company.financial_start"
                                 icon="fas fa-calendar"
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="col-6 mb-0">
-                            <label class="form-control-label">{{ translations.company.logo }}</label>
+                            <label class="form-control-label">{{  translations.company.logo }}</label>
                             <akaunting-dropzone-file-upload
                                 ref="dropzoneWizard"
                                 class="form-file"
@@ -127,23 +127,19 @@
                                 type="success"
                                 native-type="button"
                                 @click="onEditSave()"
-                            >{{ translations.company.save }}
-                            </base-button>
+                                >{{ translations.company.save }}</base-button>
 
-                            <base-button type="white" native-type="submit" @click="next()">{{
-                                    translations.company.skip
-                                }}
-                            </base-button>
+                            <base-button type="white" native-type="submit" @click="next()">{{ translations.company.skip }}</base-button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+  </div>
 </template>
 
 <script>
-import {Step, Steps, Select, Option} from "element-ui";
+import { Step, Steps, Select, Option } from "element-ui";
 import AkauntingDropzoneFileUpload from "./../../components/AkauntingDropzoneFileUpload";
 import AkauntingDate from "./../../components/AkauntingDate";
 import WizardAction from "./../../mixins/wizardAction";
@@ -181,7 +177,7 @@ export default {
         },
 
         pageLoad: {
-            type: [Boolean, String]
+          type: [Boolean, String]
         },
 
         locale: {
@@ -191,7 +187,9 @@ export default {
         dateConfig: {
             type: Object,
             default: function () {
-                return {};
+                return {
+
+                };
             },
             description: "FlatPckr date configuration"
         },
@@ -270,7 +268,7 @@ export default {
                 }
             } else {
                 created_options.forEach(function (option, index) {
-                    if (typeof (option) == 'string') {
+                    if (typeof(option) == 'string') {
                         this.sorted_countries.push({
                             index: index,
                             key: index.toString(),
@@ -315,9 +313,9 @@ export default {
 
                     if (wrapper) {
                         if (
-                            (typeof data[name] == "object" || Array.isArray(data[name])) &&
-                            data[name] instanceof File != true &&
-                            data[name] instanceof Blob != true
+                        (typeof data[name] == "object" || Array.isArray(data[name])) &&
+                        data[name] instanceof File != true &&
+                        data[name] instanceof Blob != true
                         ) {
                             this.appendRecursive(data[name], wrapper + "[" + name + "]");
                         } else {
@@ -325,9 +323,9 @@ export default {
                         }
                     } else {
                         if (
-                            (typeof data[name] == "object" || Array.isArray(data[name])) &&
-                            data[name] instanceof File != true &&
-                            data[name] instanceof Blob != true
+                        (typeof data[name] == "object" || Array.isArray(data[name])) &&
+                        data[name] instanceof File != true &&
+                        data[name] instanceof Blob != true
                         ) {
                             this.appendRecursive(data[name], name);
                         } else {
@@ -374,17 +372,17 @@ export default {
                     "Content-Type": "multipart/form-data",
                 },
             })
-                .then((response) => {
-                    this.onSuccessMessage(response);
+            .then((response) => {
+                this.onSuccessMessage(response);
 
-                    this.$router.push("/wizard/currencies");
-                }, this)
-                .catch((error) => {
-                }, this);
+                this.$router.push("/wizard/currencies");
+            }, this)
+            .catch((error) => {
+            }, this);
         },
 
         next() {
-            if (this.active++ > 2) ;
+            if (this.active++ > 2);
 
             this.$router.push("/wizard/currencies");
         },

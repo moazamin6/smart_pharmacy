@@ -9,30 +9,30 @@
             @stack('button_dropdown_start')
             @if (in_array($document->status, $hideTimelineStatuses))
                 @stack('edit_button_start')
-                @if (!$hideButtonEdit)
-                    @can($permissionUpdate)
-                        <a class="dropdown-item" href="{{ route($routeButtonEdit, $document->id) }}">
-                            {{ trans('general.edit') }}
-                        </a>
-                    @endcan
-                @endif
+                    @if (!$hideButtonEdit)
+                        @can($permissionUpdate)
+                            <a class="dropdown-item" href="{{ route($routeButtonEdit, $document->id) }}">
+                                {{ trans('general.edit') }}
+                            </a>
+                        @endcan
+                    @endif
                 @stack('edit_button_end')
             @endif
 
             @stack('duplicate_button_start')
-            @if (!$hideButtonDuplicate)
-                @can($permissionCreate)
-                    <a class="dropdown-item" href="{{ route($routeButtonDuplicate, $document->id) }}">
-                        {{ trans('general.duplicate') }}
-                    </a>
-                @endcan
-            @endif
+                @if (!$hideButtonDuplicate)
+                    @can($permissionCreate)
+                        <a class="dropdown-item" href="{{ route($routeButtonDuplicate, $document->id) }}">
+                            {{ trans('general.duplicate') }}
+                        </a>
+                    @endcan
+                @endif
             @stack('duplicate_button_end')
 
             @stack('button_dropdown_divider_1_start')
-            @if (!$hideButtonGroupDivider1)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider1)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_1_end')
 
             @if (!$hideButtonPrint)
@@ -55,38 +55,38 @@
 
             @if (in_array($document->status, $hideTimelineStatuses))
                 @stack('share_button_start')
-                @if (!$hideButtonShare)
-                    @if ($document->status != 'cancelled')
-                        <a class="dropdown-item" href="{{ $signedUrl }}" target="_blank">
-                            {{ trans('general.share') }}
-                        </a>
+                    @if (!$hideButtonShare)
+                        @if ($document->status != 'cancelled')
+                            <a class="dropdown-item" href="{{ $signedUrl }}" target="_blank">
+                                {{ trans('general.share') }}
+                            </a>
+                        @endif
                     @endif
-                @endif
                 @stack('share_button_end')
 
                 @stack('edit_button_start')
-                @if (!$hideButtonEmail)
-                    @if($document->contact_email)
-                        <a class="dropdown-item" href="{{ route($routeButtonEmail, $document->id) }}">
-                            {{ trans($textTimelineSendStatusMail) }}
-                        </a>
-                    @else
-                        <el-tooltip content="{{ trans('invoices.messages.email_required') }}" placement="right">
-                            <button type="button" class="dropdown-item btn-tooltip">
-                                <span class="text-disabled">{{ trans($textTimelineSendStatusMail) }}</span>
-                            </button>
-                        </el-tooltip>
+                    @if (!$hideButtonEmail)
+                        @if($document->contact_email)
+                            <a class="dropdown-item" href="{{ route($routeButtonEmail, $document->id) }}">
+                                {{ trans($textTimelineSendStatusMail) }}
+                            </a>
+                        @else
+                            <el-tooltip content="{{ trans('invoices.messages.email_required') }}" placement="right">
+                                <button type="button" class="dropdown-item btn-tooltip">
+                                    <span class="text-disabled">{{ trans($textTimelineSendStatusMail) }}</span>
+                                </button>
+                            </el-tooltip>
+                        @endif
                     @endif
-                @endif
                 @stack('edit_button_end')
             @endif
 
             @stack('button_pdf_start')
-            @if (!$hideButtonPdf)
-                <a class="dropdown-item" href="{{ route($routeButtonPdf, $document->id) }}">
-                    {{ trans('general.download_pdf') }}
-                </a>
-            @endif
+                @if (!$hideButtonPdf)
+                    <a class="dropdown-item" href="{{ route($routeButtonPdf, $document->id) }}">
+                        {{ trans('general.download_pdf') }}
+                    </a>
+                @endif
             @stack('button_pdf_end')
 
             @if (!$hideButtonCancel)
@@ -110,9 +110,9 @@
             @endif
 
             @stack('button_dropdown_divider_2_start')
-            @if (!$hideButtonGroupDivider2)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider2)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_2_end')
 
             @if (!$hideButtonCustomize)
@@ -126,23 +126,23 @@
             @endif
 
             @stack('button_dropdown_divider_3_start')
-            @if (!$hideButtonGroupDivider3)
-                <div class="dropdown-divider"></div>
-            @endif
+                @if (!$hideButtonGroupDivider3)
+                    <div class="dropdown-divider"></div>
+                @endif
             @stack('button_dropdown_divider_3_end')
 
             @stack('delete_button_start')
-            @if (!$hideButtonDelete)
-                @can($permissionDelete)
-                    @if ($checkButtonReconciled)
-                        @if (!$document->reconciled)
+                @if (!$hideButtonDelete)
+                    @can($permissionDelete)
+                        @if ($checkButtonReconciled)
+                            @if (!$document->reconciled)
+                                {!! Form::deleteLink($document, $routeButtonDelete, $textDeleteModal, 'document_number') !!}
+                            @endif
+                        @else
                             {!! Form::deleteLink($document, $routeButtonDelete, $textDeleteModal, 'document_number') !!}
                         @endif
-                    @else
-                        {!! Form::deleteLink($document, $routeButtonDelete, $textDeleteModal, 'document_number') !!}
-                    @endif
-                @endcan
-            @endif
+                    @endcan
+                @endif
             @stack('delete_button_end')
             @stack('button_dropdown_end')
         </div>

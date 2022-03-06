@@ -8,14 +8,14 @@
     &::before {
         border: $custom-control-indicator-border-width solid $custom-control-indicator-border-color;
         @include transition($input-transition);
-        top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
+        top:($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
         left: -($custom-control-gutter + $custom-control-indicator-size - 1rem);
 
     }
 
-    &::after {
-        top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
-        left: -($custom-control-gutter + $custom-control-indicator-size - 1rem);
+    &::after{
+      top:($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
+      left: -($custom-control-gutter + $custom-control-indicator-size - 1rem);
 
     }
 
@@ -50,8 +50,8 @@
             }
         }
 
-        &:active ~ .custom-control-label::before,
-        &:focus ~ .custom-control-label::before {
+        &:active~.custom-control-label::before,
+        &:focus~.custom-control-label::before {
             box-shadow: $input-alternative-box-shadow;
         }
     }

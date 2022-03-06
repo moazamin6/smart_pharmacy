@@ -15,33 +15,33 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                {{ Form::textGroup('number', trans('accounts.number'), 'pencil-alt') }}
+                    {{ Form::textGroup('number', trans('accounts.number'), 'pencil-alt') }}
 
-                {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, setting('default.currency'), ['required' => 'required', 'path' => route('modals.currencies.create'), 'field' => ['key' => 'code', 'value' => 'name'], 'change' => 'onChangeCurrency']) }}
+                    {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, setting('default.currency'), ['required' => 'required', 'path' => route('modals.currencies.create'), 'field' => ['key' => 'code', 'value' => 'name'], 'change' => 'onChangeCurrency']) }}
 
-                {{ Form::moneyGroup('opening_balance', trans('accounts.opening_balance'), 'balance-scale', ['required' => 'required', 'currency' => $currency, 'dynamic-currency' => 'currency'], 0) }}
+                    {{ Form::moneyGroup('opening_balance', trans('accounts.opening_balance'), 'balance-scale', ['required' => 'required', 'currency' => $currency, 'dynamic-currency' => 'currency'], 0) }}
 
-                {{ Form::textGroup('bank_name', trans('accounts.bank_name'), 'university', []) }}
+                    {{ Form::textGroup('bank_name', trans('accounts.bank_name'), 'university', []) }}
 
-                {{ Form::textGroup('bank_phone', trans('accounts.bank_phone'), 'phone', []) }}
+                    {{ Form::textGroup('bank_phone', trans('accounts.bank_phone'), 'phone', []) }}
 
-                {{ Form::textareaGroup('bank_address', trans('accounts.bank_address')) }}
+                    {{ Form::textareaGroup('bank_address', trans('accounts.bank_address')) }}
 
-                {{ Form::radioGroup('default_account', trans('accounts.default_account'), false) }}
+                    {{ Form::radioGroup('default_account', trans('accounts.default_account'), false) }}
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                </div>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <div class="row save-buttons">
-                {{ Form::saveButtons('accounts.index') }}
+            <div class="card-footer">
+                <div class="row save-buttons">
+                    {{ Form::saveButtons('accounts.index') }}
+                </div>
             </div>
-        </div>
         {!! Form::close() !!}
     </div>
 @endsection

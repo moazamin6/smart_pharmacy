@@ -1,6 +1,5 @@
 <template>
-    <div :id="'dropzone-' + _uid" class="dropzone mb-3 dz-clickable"
-         :class="[preview == 'single' ? 'dropzone-single': 'dropzone-multiple']">
+    <div :id="'dropzone-' + _uid" class="dropzone mb-3 dz-clickable" :class="[preview == 'single' ? 'dropzone-single': 'dropzone-multiple']">
         <div class="fallback">
             <div class="custom-file">
                 <input type="file" class="custom-file-input" :id="'projectCoverUploads' + _uid" :multiple="multiple">
@@ -9,8 +8,7 @@
             </div>
         </div>
 
-        <div v-if="preview == 'single'" class="dz-preview dz-preview-single" :class="previewClasses"
-             ref="previewSingle">
+        <div v-if="preview == 'single'" class="dz-preview dz-preview-single" :class="previewClasses" ref="previewSingle">
             <div class="dz-preview-cover">
                 <img class="dz-preview-img" data-dz-thumbnail>
                 <i class="fas fa-file-image display-3 fa-2x mt-2 d-none" data-dz-thumbnail-image></i>
@@ -21,8 +19,7 @@
             </div>
         </div>
 
-        <ul v-else class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush"
-            :class="previewClasses" ref="previewMultiple">
+        <ul v-else class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush" :class="previewClasses" ref="previewMultiple">
             <li class="list-group-item px-0">
                 <div class="row align-items-center">
                     <div class="col-auto">
@@ -163,31 +160,31 @@ export default {
                             }
                         }
                     }),
+ 
+                    dropzone.on('removedfile', function (file) {
+                        let index = self.files.findIndex(f => f.name === file.name)
 
-                        dropzone.on('removedfile', function (file) {
-                            let index = self.files.findIndex(f => f.name === file.name)
+                        if (index !== -1) {
+                            self.files.splice(index, 1);
+                        }
 
-                            if (index !== -1) {
-                                self.files.splice(index, 1);
-                            }
+                        self.$emit('change', self.files);
 
-                            self.$emit('change', self.files);
+                        if (self.multiple) {
+                            this.enable();
+                        }
+                    }),
 
-                            if (self.multiple) {
-                                this.enable();
-                            }
-                        }),
+                    dropzone.on('maxfilesexceeded', function(file) {
+                        this.removeAllFiles('notCancel');
+                        this.addFile(file);
+                    }),
 
-                        dropzone.on('maxfilesexceeded', function (file) {
-                            this.removeAllFiles('notCancel');
-                            this.addFile(file);
-                        }),
-
-                        dropzone.on('maxfilesreached', function (file) {
-                            if (self.multiple) {
-                                this.disable();
-                            }
-                        })
+                    dropzone.on('maxfilesreached', function(file) {
+                        if (self.multiple) {
+                            this.disable();
+                        }
+                    })
 
                     if (self.attachments.length) {
                         setTimeout(() => {
@@ -234,42 +231,42 @@ export default {
     async mounted() {
         this.initDropzone();
     },
-
+    
     watch: {
-        attachments: function (attachments) {
-            attachments.forEach((attachment) => {
-                if (attachment.length != undefined) {
-                    var mockFile = {
-                        id: attachment[0].id,
-                        name: attachment[0].name,
-                        size: attachment[0].size,
-                        type: attachment[0].type,
-                        download: attachment[0].downloadPath,
-                        dropzone: 'edit',
-                    };
-                    this.dropzone.emit("addedfile", mockFile);
-                    this.dropzone.options.thumbnail.call(this.dropzone, mockFile, attachment[0].path);
+    attachments: function (attachments) {
+      attachments.forEach((attachment) => {
+          if(attachment.length != undefined) {
+              var mockFile = {
+                id: attachment[0].id,
+                name: attachment[0].name,
+                size: attachment[0].size,
+                type: attachment[0].type,
+                download: attachment[0].downloadPath,
+                dropzone: 'edit',
+            };
+            this.dropzone.emit("addedfile", mockFile);
+            this.dropzone.options.thumbnail.call(this.dropzone, mockFile, attachment[0].path);
 
-                    // Make sure that there is no progress bar, etc...
-                    this.dropzone.emit("complete", mockFile);
+            // Make sure that there is no progress bar, etc...
+            this.dropzone.emit("complete", mockFile);
 
-                    this.files.forEach(async (attachment) => {
-                        if (attachment.download) {
-                            attachment.previewElement.querySelector("[data-dz-download]").href = attachment.download;
-                            attachment.previewElement.querySelector("[data-dz-download]").classList.remove("d-none");
-                        }
-                    });
-
-                    if (this.preview == 'single' && attachments.length == 1) {
-                        this.$nextTick(() => {
-                            document.querySelector("#dropzone-" + this._uid).classList.add("dz-max-files-reached");
-                        });
-                    }
+            this.files.forEach(async (attachment) => {
+                if (attachment.download) {
+                    attachment.previewElement.querySelector("[data-dz-download]").href = attachment.download;
+                    attachment.previewElement.querySelector("[data-dz-download]").classList.remove("d-none");
                 }
-            }, this);
+        });
 
-        },
+        if (this.preview == 'single' && attachments.length == 1) {
+            this.$nextTick(() => {
+                document.querySelector("#dropzone-" + this._uid).classList.add("dz-max-files-reached");
+            });
+        }
+          }
+        }, this);
+
     },
+  },
 }
 </script>
 

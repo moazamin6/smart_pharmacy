@@ -71,8 +71,7 @@
 // Placeholder
 
 .ql-editor.ql-blank::before {
-    top: $input-padding-y;
-    left: $input-padding-x;
+    top: $input-padding-y; left: $input-padding-x;
     font-style: normal;
     color: $input-placeholder-color;
 }
@@ -99,8 +98,7 @@
 
 .ql-toolbar button {
     padding: 0 .25rem;
-    background: none;
-    border: none;
+    background: none; border: none;
     color: $body-color;
     cursor: pointer;
     transition: $transition-base;
@@ -115,12 +113,11 @@
 }
 
 .ql-toolbar .ql-active {
-    color: $primary;
+color: $primary;
 }
 
 .ql-toolbar button svg {
-    height: $font-size-lg;
-    width: $font-size-lg;
+    height: $font-size-lg; width: $font-size-lg;
 }
 
 .ql-toolbar .ql-stroke {
@@ -164,8 +161,7 @@
     &:before, &:after {
         content: '';
         position: absolute;
-        left: 50%;
-        bottom: 100%;
+        left: 50%; bottom: 100%;
         transform: translateX(-50%);
     }
 
@@ -208,7 +204,7 @@
     color: $input-color;
 
     &:focus {
-        outline: none;
+    outline: none;
     }
 }
 

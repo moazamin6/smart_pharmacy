@@ -2,9 +2,9 @@
 
 return [
 
-    'previous'              => '&laquo; Oldinga',
-    'next'                  => 'Keyingi &raquo;',
-    'showing'               => ': birinchi-: oxirgisi: jami yozuvlar.',
-    'page'                  => 'sahifaga.',
+    'previous' => '&laquo; Oldinga',
+    'next' => 'Keyingi &raquo;',
+    'showing' => ': birinchi-: oxirgisi: jami yozuvlar.',
+    'page' => 'sahifaga.',
 
 ];

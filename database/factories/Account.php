@@ -24,7 +24,7 @@ class Account extends Factory
         return [
             'company_id' => $this->company->id,
             'name' => $this->faker->text(15),
-            'number' => (string) $this->faker->iban(),
+            'number' => (string)$this->faker->iban(),
             'currency_code' => $this->company->currencies()->enabled()->get()->random(1)->pluck('code')->first(),
             'opening_balance' => '0',
             'bank_name' => $this->faker->text(15),

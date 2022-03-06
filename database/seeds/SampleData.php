@@ -24,7 +24,7 @@ class SampleData extends Seeder
 
         config(['mail.default' => 'array']);
 
-        $count = (int) $this->command->option('count');
+        $count = (int)$this->command->option('count');
         $small_count = ($count <= 10) ? $count : 10;
 
         $this->command->info('Creating sample data...');

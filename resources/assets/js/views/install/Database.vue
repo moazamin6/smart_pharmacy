@@ -9,8 +9,7 @@
         </div>
 
         <div class="card-body">
-            <div role="alert" class="alert alert-danger d-none" :class="(form.response.error) ? 'show' : ''"
-                 v-if="form.response.error" v-html="form.response.message"></div>
+            <div role="alert" class="alert alert-danger d-none" :class="(form.response.error) ? 'show' : ''" v-if="form.response.error" v-html="form.response.message"></div>
 
             <div class="row">
                 <div class="col-md-12 form-group required" :class="[{'has-error': form.errors.get('hostname')}]">
@@ -22,13 +21,10 @@
                                 <i class="fa fa-server"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="hostname" data-value="localhost"
-                               @keydown="form.errors.clear('hostname')" v-model="form.hostname" required="required"
-                               name="hostname" type="text" value="localhost" id="hostname">
+                        <input class="form-control" data-name="hostname" data-value="localhost" @keydown="form.errors.clear('hostname')" v-model="form.hostname" required="required" name="hostname" type="text" value="localhost" id="hostname">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('hostname')"
-                         v-html="form.errors.get('hostname')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('hostname')" v-html="form.errors.get('hostname')"></div>
                 </div>
 
                 <div class="col-md-12 form-group required" :class="[{'has-error': form.errors.get('username')}]">
@@ -40,12 +36,10 @@
                                 <i class="fa fa-user"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="username" @keydown="form.errors.clear('username')"
-                               v-model="form.username" required="required" name="username" type="text" id="username">
+                        <input class="form-control" data-name="username" @keydown="form.errors.clear('username')" v-model="form.username" required="required" name="username" type="text" id="username">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('username')"
-                         v-html="form.errors.get('username')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('username')" v-html="form.errors.get('username')"></div>
                 </div>
 
                 <div class="col-md-12 form-group" :class="[{'has-error': form.errors.get('password')}]">
@@ -57,12 +51,10 @@
                                 <i class="fa fa-key"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="password" v-model="form.password" name="password"
-                               type="password" value="" id="password">
+                        <input class="form-control" data-name="password" v-model="form.password" name="password" type="password" value="" id="password">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('password')"
-                         v-html="form.errors.get('password')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('password')" v-html="form.errors.get('password')"></div>
                 </div>
 
                 <div class="col-md-12 form-group mb--2 required" :class="[{'has-error': form.errors.get('database')}]">
@@ -74,12 +66,10 @@
                                 <i class="fa fa-database"></i>
                             </span>
                         </div>
-                        <input class="form-control" data-name="database" @keydown="form.errors.clear('database')"
-                               v-model="form.database" required="required" name="database" type="text" id="database">
+                        <input class="form-control" data-name="database" @keydown="form.errors.clear('database')" v-model="form.database" required="required" name="database" type="text" id="database">
                     </div>
 
-                    <div class="invalid-feedback d-block" v-if="form.errors.has('database')"
-                         v-html="form.errors.get('database')"></div>
+                    <div class="invalid-feedback d-block" v-if="form.errors.has('database')" v-html="form.errors.get('database')"></div>
                 </div>
             </div>
         </div>
@@ -87,12 +77,11 @@
         <div class="card-footer">
             <div class="row save-buttons">
                 <div class="col-md-12">
-                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button"
-                            class="btn btn-icon btn-success button-submit header-button-top">
+                    <button type="submit" @click="onSubmit" :disabled="form.loading" id="next-button" class="btn btn-icon btn-success button-submit header-button-top">
                         <div v-if="form.loading" class="aka-loader-frame">
                             <div class="aka-loader"></div>
                         </div>
-                        <span v-if="!form.loading" class="btn-inner--text">
+                         <span v-if="!form.loading" class="btn-inner--text">
                             Next &nbsp;
                         </span>
                     </button>
@@ -103,34 +92,34 @@
 </template>
 
 <script>
-import axios from "axios";
-import Form from './../../plugins/form';
-import {Step, Steps} from 'element-ui';
+    import axios from "axios";
+    import Form from './../../plugins/form';
+    import {Step, Steps} from 'element-ui';
 
-export default {
-    name: 'database',
+    export default {
+        name: 'database',
 
-    components: {
-        [Step.name]: Step,
-        [Steps.name]: Steps
-    },
-
-    data() {
-        return {
-            form: new Form('form-install'),
-            active: 1
-        }
-    },
-
-    methods: {
-        // Form Submit
-        onSubmit() {
-            this.form.submit();
+        components: {
+            [Step.name]: Step,
+            [Steps.name]: Steps
         },
 
-        next() {
-            if (this.active++ > 2) ;
+        data() {
+            return {
+                form: new Form('form-install'),
+                active: 1
+            }
+        },
+
+        methods: {
+            // Form Submit
+            onSubmit() {
+                this.form.submit();
+            },
+
+            next() {
+                if (this.active++ > 2);
+            }
         }
     }
-}
 </script>

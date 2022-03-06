@@ -109,7 +109,7 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function registerConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../../vendor/livewire/livewire/config/livewire.php', 'livewire');
+        $this->mergeConfigFrom(__DIR__ . '/../../vendor/livewire/livewire/config/livewire.php', 'livewire');
     }
 
     protected function registerViews()
@@ -117,7 +117,7 @@ class LivewireServiceProvider extends ServiceProvider
         // This is mainly for overriding Laravel's pagination views
         // when a user applies the WithPagination trait to a component.
         $this->loadViewsFrom(
-            __DIR__.'/../../vendor/livewire/livewire/src'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'pagination',
+            __DIR__ . '/../../vendor/livewire/livewire/src' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'pagination',
             'livewire'
         );
     }
@@ -142,7 +142,7 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        if (! $this->app->runningInConsole()) return;
+        if (!$this->app->runningInConsole()) return;
 
         $this->commands([
             MakeLivewireCommand::class, // make:livewire
@@ -170,7 +170,7 @@ class LivewireServiceProvider extends ServiceProvider
             \PHPUnit\Framework\Assert::assertStringContainsString(
                 $escapedComponentName,
                 $this->getContent(),
-                'Cannot find Livewire component ['.$component.'] rendered on page.'
+                'Cannot find Livewire component [' . $component . '] rendered on page.'
             );
 
             return $this;
@@ -183,7 +183,7 @@ class LivewireServiceProvider extends ServiceProvider
             \PHPUnit\Framework\Assert::assertStringNotContainsString(
                 $escapedComponentName,
                 $this->getContent(),
-                'Found Livewire component ['.$component.'] rendered on page.'
+                'Found Livewire component [' . $component . '] rendered on page.'
             );
 
             return $this;
@@ -195,7 +195,7 @@ class LivewireServiceProvider extends ServiceProvider
         // Early versions of Laravel 7.x don't have this method.
         if (method_exists(ComponentAttributeBag::class, 'macro')) {
             ComponentAttributeBag::macro('wire', function ($name) {
-                $entries = head($this->whereStartsWith('wire:'.$name));
+                $entries = head($this->whereStartsWith('wire:' . $name));
 
                 $directive = head(array_keys($entries));
                 $value = head(array_values($entries));
@@ -219,15 +219,15 @@ class LivewireServiceProvider extends ServiceProvider
     protected function registerPublishables()
     {
         $this->publishesToGroups([
-            __DIR__.'/../../vendor/livewire/livewire/dist' => public_path('vendor/livewire'),
+            __DIR__ . '/../../vendor/livewire/livewire/dist' => public_path('vendor/livewire'),
         ], ['livewire', 'livewire:assets']);
 
         $this->publishesToGroups([
-            __DIR__.'/../../vendor/livewire/livewire/config/livewire.php' => base_path('config/livewire.php'),
+            __DIR__ . '/../../vendor/livewire/livewire/config/livewire.php' => base_path('config/livewire.php'),
         ], ['livewire', 'livewire:config']);
 
         $this->publishesToGroups([
-            __DIR__.'/../../vendor/livewire/livewire/src/views/pagination' => $this->app->resourcePath('views/vendor/livewire'),
+            __DIR__ . '/../../vendor/livewire/livewire/src/views/pagination' => $this->app->resourcePath('views/vendor/livewire'),
         ], ['livewire', 'livewire:pagination']);
     }
 
@@ -319,14 +319,14 @@ class LivewireServiceProvider extends ServiceProvider
 
         LifecycleManager::registerInitialHydrationMiddleware([
 
-                [CallHydrationHooks::class, 'initialHydrate'],
+            [CallHydrationHooks::class, 'initialHydrate'],
 
         ]);
     }
 
     protected function bypassTheseMiddlewaresDuringLivewireRequests(array $middlewareToExclude)
     {
-        if (! Livewire::isProbablyLivewireRequest()) return;
+        if (!Livewire::isProbablyLivewireRequest()) return;
 
         $kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 
@@ -345,7 +345,7 @@ class LivewireServiceProvider extends ServiceProvider
             return;
         }
 
-        foreach ((array) $groups as $group) {
+        foreach ((array)$groups as $group) {
             $this->publishes($paths, $group);
         }
     }

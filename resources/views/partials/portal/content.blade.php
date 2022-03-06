@@ -1,15 +1,15 @@
 @stack('content_start')
-<div id="app">
-    @stack('content_content_start')
+    <div id="app">
+        @stack('content_content_start')
 
-    @yield('content')
+            @yield('content')
 
-    @stack('content_content_end')
+        @stack('content_content_end')
 
-    <notifications></notifications>
+        <notifications></notifications>
 
-    <form id="form-dynamic-component" method="POST" action="#"></form>
+        <form id="form-dynamic-component" method="POST" action="#"></form>
 
-    <component v-bind:is="component"></component>
-</div>
+        <component v-bind:is="component"></component>
+    </div>
 @stack('content_end')

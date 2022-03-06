@@ -6,16 +6,16 @@
             'role' => 'form',
             'class' => 'mb-0'
         ]) !!}
-        @if (!$hideSearchString)
-            <div class="align-items-center" v-if="!bulk_action.show">
-                <x-search-string model="{{ $searchStringModel }}"/>
-            </div>
-        @endif
+            @if (!$hideSearchString)
+                <div class="align-items-center" v-if="!bulk_action.show">
+                    <x-search-string model="{{ $searchStringModel }}" />
+                </div>
+            @endif
 
-        {{ Form::bulkActionRowGroup($textBulkAction, $bulkActions, $bulkActionRouteParameters) }}
+            {{ Form::bulkActionRowGroup($textBulkAction, $bulkActions, $bulkActionRouteParameters) }}
         {!! Form::close() !!}
     </div>
-@else
+@else 
     @if (!$hideSearchString)
         <div class="card-header border-bottom-0">
             {!! Form::open([
@@ -24,9 +24,9 @@
                 'role' => 'form',
                 'class' => 'mb-0'
             ]) !!}
-            <div class="align-items-center">
-                <x-search-string model="{{ $searchStringModel }}"/>
-            </div>
+                <div class="align-items-center">
+                    <x-search-string model="{{ $searchStringModel }}" />
+                </div>
             {!! Form::close() !!}
         </div>
     @endif

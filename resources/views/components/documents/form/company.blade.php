@@ -1,7 +1,6 @@
 <div class="accordion">
     <div class="card border-1 box-shadow-none">
-        <div class="card-header background-none collapsed" id="accordion-company-header" data-toggle="collapse"
-             data-target="#accordion-company-body" aria-expanded="false" aria-controls="accordion-company-body">
+        <div class="card-header background-none collapsed" id="accordion-company-header" data-toggle="collapse" data-target="#accordion-company-body" aria-expanded="false" aria-controls="accordion-company-body">
             <h4 class="mb-0">{{ trans_choice('general.companies', 1) }}</h4>
         </div>
 
@@ -25,10 +24,10 @@
 
                         @if (!$hideCompanyEdit)
                             <akaunting-company-edit company-id="{{ company_id() }}"
-                                                    button-text="{{ trans('settings.company.edit_your_business_address') }}"
-                                                    tax-number-text="{{ trans('general.tax_number') }}"
-                                                    :company="{{ json_encode($company) }}"
-                                                    :company-form="{{ json_encode([
+                            button-text="{{ trans('settings.company.edit_your_business_address') }}"
+                            tax-number-text="{{ trans('general.tax_number') }}"
+                            :company="{{ json_encode($company) }}"
+                            :company-form="{{ json_encode([
                                 'show' => true,
                                 'text' => trans('settings.company.edit_your_business_address'),
                                 'buttons' => [

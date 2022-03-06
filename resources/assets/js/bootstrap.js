@@ -1,3 +1,4 @@
+
 window._ = require('lodash');
 
 /**
@@ -12,8 +13,7 @@ try {
     }
 
     //require('bootstrap-sass');
-} catch (e) {
-}
+} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -43,62 +43,62 @@ window.axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 // });
 
 //(function ($) {
-jQuery.fn.serializeFormJSON = function () {
-    var o = {};
-    var a = this.serializeArray();
+    jQuery.fn.serializeFormJSON = function () {
+        var o = {};
+        var a = this.serializeArray();
 
-    $.each(a, function () {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
             }
+        });
 
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
+        return o;
+    };
 
-    return o;
-};
+    jQuery.fn.serializeFormJSONShow = function () {
+        var o = {};
+        var a = this.serializeArray();
 
-jQuery.fn.serializeFormJSONShow = function () {
-    var o = {};
-    var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
 
-    $.each(a, function () {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+                o[this.name].push(true);
+            } else {
+                o[this.name] = true;
             }
+        });
 
-            o[this.name].push(true);
-        } else {
-            o[this.name] = true;
-        }
-    });
+        return o;
+    };
 
-    return o;
-};
+    jQuery.fn.serializeAll = function () {
+        var o = {};
+        var a = this;
 
-jQuery.fn.serializeAll = function () {
-    var o = {};
-    var a = this;
+        $.each(this, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
 
-    $.each(this, function () {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
             }
+        });
 
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-
-    return o;
-};
+        return o;
+    };
 //})(jQuery);
 
 jQuery(document).ready(function () {

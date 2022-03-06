@@ -10,8 +10,7 @@
             masked: true
         }" :value="price" disabled size="5" masked class="disabled-money text-right mr-2 js-conversion-input"></money>
         <span class="mr-2">{{ texts[1] }}</span>
-        <input name="currency_rate" v-model="rate" @input="onChange"
-               class="form-control text-right mwpx-100 h-auto js-conversion-input"/>
+        <input name="currency_rate" v-model="rate" @input="onChange" class="form-control text-right mwpx-100 h-auto js-conversion-input" />
     </div>
 </template>
 
@@ -41,7 +40,7 @@ export default {
             default: 1.000,
         },
         currencySymbol: {
-            default: {}
+           default: {}
         }
     },
 
@@ -84,7 +83,7 @@ export default {
             this.rate = currencyRate;
             this.conversion = this.currencyConversionText.replace(':price', this.price).replace(':currency_code', this.currecyCode).replace();
         },
-        currencySymbol: function (currencySymbol) {
+         currencySymbol: function (currencySymbol) {
             this.conversion = this.currencyConversionText.replace(':price', this.price).replace(':currency_code', this.currecyCode).replace();
         },
     },

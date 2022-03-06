@@ -1,9 +1,9 @@
 <template>
     <div class="row pr-0" :class="formClasses">
         <base-input :label="title"
-                    name="recurring_frequency"
-                    :class="frequencyClasses"
-                    :error="frequencyError">
+            name="recurring_frequency"
+            :class="frequencyClasses"
+            :error="frequencyError">
             <template slot="label">
                 <label v-if="title" :class="labelClasses">
                     {{ title }}
@@ -14,7 +14,7 @@
                 </label>
             </template>
             <el-select v-model="recurring_frequency" @input="change" filterable
-                       :placeholder="placeholder">
+                :placeholder="placeholder">
                 <template slot="prefix">
                     <span class="el-input__suffix-inner el-select-icon">
                         <i :class="'el-input__icon el-icon-refresh'"></i>
@@ -22,52 +22,52 @@
                 </template>
 
                 <el-option v-for="(label, value) in frequencyOptions"
-                           :key="label"
-                           :label="label"
-                           :value="value">
+                :key="label"
+                :label="label"
+                :value="value">
                 </el-option>
             </el-select>
         </base-input>
 
         <base-input :label="titleInterval"
-                    name="recurring_interval"
-                    type="number"
-                    :value="0"
-                    @input="change"
-                    :class="invertalClasses"
-                    :error="intervalError"
-                    v-model="recurring_interval"
-        >
+            name="recurring_interval"
+            type="number"
+            :value="0"
+            @input="change"
+            :class="invertalClasses"
+            :error="intervalError"
+            v-model="recurring_interval"
+            >
         </base-input>
 
         <base-input :label="titleFrequency"
-                    name="recurring_custom_frequency"
-                    :class="customFrequencyClasses"
-                    :error="customFrequencyError">
+            name="recurring_custom_frequency"
+            :class="customFrequencyClasses"
+            :error="customFrequencyError">
             <el-select v-model="recurring_custom_frequency" @input="change" filterable
-                       :placeholder="placeholder">
+                :placeholder="placeholder">
                 <el-option v-for="(label, value) in customFrequencyOptions"
-                           :key="label"
-                           :label="label"
-                           :value="value">
+                :key="label"
+                :label="label"
+                :value="value">
                 </el-option>
             </el-select>
         </base-input>
 
         <base-input :label="titleCount"
-                    name="recurring_count"
-                    type="number"
-                    :value="0"
-                    @input="change"
-                    :class="countClasses"
-                    :error="countError"
-                    v-model="recurring_count">
+            name="recurring_count"
+            type="number"
+            :value="0"
+            @input="change"
+            :class="countClasses"
+            :error="countError"
+            v-model="recurring_count">
         </base-input>
     </div>
 </template>
 
 <script>
-import {Select, Option, Tooltip} from 'element-ui'
+import { Select, Option, Tooltip } from 'element-ui'
 
 export default {
     name: 'akaunting-recurring',
@@ -119,9 +119,9 @@ export default {
         frequencyError: null,
 
         intervalValue: {
-            type: [Number, String],
-            default: 0,
-            description: "Default interval value"
+            type: [Number, String],	
+            default: 0,	
+            description: "Default interval value"	
         },
         intervalError: null,
 
@@ -130,9 +130,9 @@ export default {
         customFrequencyError: null,
 
         countValue: {
-            type: [Number, String],
-            default: 0,
-            description: "Default count value"
+            type: [Number, String],	
+            default: 0,	
+            description: "Default count value"	
         },
         countError: null,
 
@@ -160,11 +160,11 @@ export default {
         }
     },
 
-    created() {
-        this.recurring_frequency = this.frequencyValue;
-        this.recurring_interval = this.intervalValue;
-        this.recurring_custom_frequency = this.customFrequencyValue;
-        this.recurring_count = this.countValue;
+    created() {	
+        this.recurring_frequency = this.frequencyValue;	
+        this.recurring_interval = this.intervalValue;	
+        this.recurring_custom_frequency = this.customFrequencyValue;	
+        this.recurring_count = this.countValue;	
     },
 
     mounted() {

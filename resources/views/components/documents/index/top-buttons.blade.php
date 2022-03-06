@@ -5,8 +5,7 @@
         @endif
 
         @if (!$hideImport)
-            <a href="{{ route($importRoute, $importRouteParameters) }}"
-               class="btn btn-white btn-sm">{{ trans('import.import') }}</a>
+            <a href="{{ route($importRoute, $importRouteParameters) }}" class="btn btn-white btn-sm">{{ trans('import.import') }}</a>
         @endif
     @endcan
 @else
@@ -15,12 +14,10 @@
     @endif
 
     @if (!$hideImport)
-        <a href="{{ route($importRoute, $importRouteParameters) }}"
-           class="btn btn-white btn-sm">{{ trans('import.import') }}</a>
+        <a href="{{ route($importRoute, $importRouteParameters) }}" class="btn btn-white btn-sm">{{ trans('import.import') }}</a>
     @endif
 @endif
 
 @if (!$hideExport)
-    <a href="{{ route($exportRoute, request()->input()) }}"
-       class="btn btn-white btn-sm">{{ trans('general.export') }}</a>
+    <a href="{{ route($exportRoute, request()->input()) }}" class="btn btn-white btn-sm">{{ trans('general.export') }}</a>
 @endif

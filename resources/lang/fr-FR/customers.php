@@ -2,11 +2,11 @@
 
 return [
 
-    'can_login'             => 'Connexion possible ?',
-    'user_created'          => 'Utilisateur créé',
+    'can_login' => 'Connexion possible ?',
+    'user_created' => 'Utilisateur créé',
 
     'error' => [
-        'email'             => 'Cet email est déjà pris.',
+        'email' => 'Cet email est déjà pris.',
     ],
 
 ];

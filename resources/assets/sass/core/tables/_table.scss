@@ -47,9 +47,9 @@
     }
 
 
-    // Styles for dark table
+   // Styles for dark table
 
-    .thead-dark {
+   .thead-dark {
         th {
             background-color: $table-dark-head-bg;
             color: $table-dark-head-color;
@@ -86,16 +86,15 @@
 
 .el-table.table-dark,
 .table-dark {
+  color: $body-bg;
+  tbody .cell {
     color: $body-bg;
+  }
 
-    tbody .cell {
-        color: $body-bg;
-    }
-
-    thead th,
-    th, td {
-        border-color: #1f3a68;
-    }
+  thead th,
+  th,td {
+    border-color: #1f3a68;
+  }
 }
 
 
@@ -132,7 +131,7 @@
 
 .card {
     .table,
-    .el-table {
+    .el-table{
         margin-bottom: 0;
 
         td,

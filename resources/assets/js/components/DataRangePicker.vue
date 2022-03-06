@@ -6,14 +6,14 @@
         :locale-data="locale"
         :opens="opens"
     >
-        <!--Optional scope for the input displaying the dates -->
-        <div slot="input" slot-scope="picker">...</div>
-    </date-range-picker>
+    <!--Optional scope for the input displaying the dates -->
+    <div slot="input" slot-scope="picker">...</div>
+</date-range-picker>
 </template>
 
 <script>
 export default {
-    components: {DateRangePicker},
+    components: { DateRangePicker },
     data() {
         return {
             startDate: '2017-09-05',

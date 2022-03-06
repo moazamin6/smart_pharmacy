@@ -72,14 +72,14 @@ const app = new Vue({
                 this.form.from_currency_code = response.data.currency_code;
                 this.form.from_account_rate = response.data.currency_rate;
             })
-                .catch(error => {
-                })
-                .finally(() => {
-                    this.show_rate = false;
-                    if (this.form.to_currency_code && this.form.from_currency_code != this.form.to_currency_code) {
-                        this.show_rate = true;
-                    }
-                });
+            .catch(error => {
+            })
+            .finally(() => { 
+                this.show_rate = false;
+                if (this.form.to_currency_code && this.form.from_currency_code != this.form.to_currency_code) {
+                    this.show_rate = true;
+                }
+            });
         },
 
         async onChangeToAccount(to_account_id) {
@@ -102,14 +102,14 @@ const app = new Vue({
                 this.form.to_currency_code = response.data.currency_code;
                 this.form.to_account_rate = response.data.currency_rate;
             })
-                .catch(error => {
-                })
-                .finally(() => {
-                    this.show_rate = false;
-                    if (this.form.from_currency_code && this.form.from_currency_code != this.form.to_currency_code) {
-                        this.show_rate = true;
-                    }
-                });
+            .catch(error => {
+            })
+            .finally(() => { 
+                this.show_rate = false;
+                if (this.form.from_currency_code && this.form.from_currency_code != this.form.to_currency_code) {
+                    this.show_rate = true;
+                }
+            });
         },
 
         onTemplate() {

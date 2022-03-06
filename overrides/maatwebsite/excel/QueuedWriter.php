@@ -39,28 +39,28 @@ class QueuedWriter
     protected $temporaryFileFactory;
 
     /**
-     * @param Writer               $writer
+     * @param Writer $writer
      * @param TemporaryFileFactory $temporaryFileFactory
      */
     public function __construct(Writer $writer, TemporaryFileFactory $temporaryFileFactory)
     {
-        $this->writer               = $writer;
-        $this->chunkSize            = config('excel.exports.chunk_size', 1000);
+        $this->writer = $writer;
+        $this->chunkSize = config('excel.exports.chunk_size', 1000);
         $this->temporaryFileFactory = $temporaryFileFactory;
     }
 
     /**
-     * @param object       $export
-     * @param string       $filePath
-     * @param string       $disk
-     * @param string|null  $writerType
+     * @param object $export
+     * @param string $filePath
+     * @param string $disk
+     * @param string|null $writerType
      * @param array|string $diskOptions
      *
      * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
     public function store($export, string $filePath, string $disk = null, string $writerType = null, $diskOptions = [])
     {
-        $extension     = pathinfo($filePath, PATHINFO_EXTENSION);
+        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
         $temporaryFile = $this->temporaryFileFactory->make($extension);
 
         $jobs = $this->buildExportJobs($export, $temporaryFile, $writerType);
@@ -78,9 +78,9 @@ class QueuedWriter
     }
 
     /**
-     * @param object        $export
+     * @param object $export
      * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
+     * @param string $writerType
      *
      * @return Collection
      */
@@ -109,18 +109,19 @@ class QueuedWriter
 
     /**
      * @param FromCollection $export
-     * @param TemporaryFile  $temporaryFile
-     * @param string         $writerType
-     * @param int            $sheetIndex
+     * @param TemporaryFile $temporaryFile
+     * @param string $writerType
+     * @param int $sheetIndex
      *
      * @return LazyCollection // @todo original: Collection
      */
     private function exportCollection(
         FromCollection $export,
-        TemporaryFile $temporaryFile,
-        string $writerType,
-        int $sheetIndex
-    ): LazyCollection { // @todo original: Collection
+        TemporaryFile  $temporaryFile,
+        string         $writerType,
+        int            $sheetIndex
+    ): LazyCollection
+    { // @todo original: Collection
         return $export
             ->collection()
             ->chunk($this->getChunkSize($export))
@@ -140,19 +141,20 @@ class QueuedWriter
     }
 
     /**
-     * @param FromQuery     $export
+     * @param FromQuery $export
      * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
-     * @param int           $sheetIndex
+     * @param string $writerType
+     * @param int $sheetIndex
      *
      * @return Collection
      */
     private function exportQuery(
-        FromQuery $export,
+        FromQuery     $export,
         TemporaryFile $temporaryFile,
-        string $writerType,
-        int $sheetIndex
-    ): Collection {
+        string        $writerType,
+        int           $sheetIndex
+    ): Collection
+    {
         $query = $export->query();
 
         $count = $export instanceof WithCustomQuerySize ? $export->querySize() : $query->count();
@@ -175,19 +177,20 @@ class QueuedWriter
     }
 
     /**
-     * @param FromView      $export
+     * @param FromView $export
      * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
-     * @param int           $sheetIndex
+     * @param string $writerType
+     * @param int $sheetIndex
      *
      * @return Collection
      */
     private function exportView(
-        FromView $export,
+        FromView      $export,
         TemporaryFile $temporaryFile,
-        string $writerType,
-        int $sheetIndex
-    ): Collection {
+        string        $writerType,
+        int           $sheetIndex
+    ): Collection
+    {
         $jobs = new Collection();
         $jobs->push(new AppendViewToSheet(
             $export,

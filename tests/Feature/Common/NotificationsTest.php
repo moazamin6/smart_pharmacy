@@ -50,11 +50,11 @@ class NotificationsTest extends FeatureTestCase
 
     protected function getNewApps()
     {
-        $new_apps[] = (object) [
+        $new_apps[] = (object)[
             "name" => "Double-Entry",
             "alias" => "double-entry",
             "message" => "<a href=\"https:\/\/akaunting.com\/apps\/double-entry?utm_source=Notifications&utm_medium=App&utm_campaign=Double-Entry\" target=\"_blank\">Double-Entry<\/a> app is published. You can check it out!",
-            "path" =>"new-apps",
+            "path" => "new-apps",
             "started_at" => "2021-06-26 00:00:00",
             "ended_at" => "2021-07-11 00:00:00",
             "status" => 2,

@@ -7,8 +7,7 @@
                     <i class="fa" :class="'fa-' + icon"></i>
                 </span>
             </div>
-            <input type="text" :name="input_name" :value="input_value" :id="input_name" class="form-control"
-                   v-bind="attributes">
+            <input type="text" :name="input_name" :value="input_value" :id="input_name" class="form-control" v-bind="attributes">
         </div>
     </div>
 </template>
@@ -27,8 +26,9 @@ export default {
         selected: '',
         col: ''
     },
-    data() {
-        return {}
+    data () {
+        return {
+        }
     },
     created() {
     }

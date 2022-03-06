@@ -7,12 +7,11 @@
                     {{ trans_choice('notifications.new_apps', 2) }}
 
                     @if ($notifications)
-                        <button type="button"
-                                class="btn btn-outline-success rounded-circle btn-icon-only btn-sm ml-2 d-none"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                title="{{ trans('notifications.mark_read_all') }}"
-                                wire:click="markReadAll()"
+                        <button type="button" class="btn btn-outline-success rounded-circle btn-icon-only btn-sm ml-2 d-none"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="{{ trans('notifications.mark_read_all') }}"
+                            wire:click="markReadAll()"
                         >
                             <span class="btn-inner--icon"><i class="fas fa-check-double"></i></span>
                         </button>
@@ -21,31 +20,29 @@
             </div>
         </div>
 
-        <div id="collapse-new-apps" class="collapse{{ ($notifications) ? ' show' : '' }}"
-             aria-labelledby="heading-new-apps" data-parent="#notification-new-apps">
+        <div id="collapse-new-apps" class="collapse{{ ($notifications) ? ' show' : '' }}" aria-labelledby="heading-new-apps" data-parent="#notification-new-apps">
             @if ($notifications)
                 <div class="table-responsive">
                     <table class="table table-flush table-hover" id="tbl-export">
                         <tbody>
-                        @foreach ($notifications as $notification)
-                            <tr class="row align-items-center border-top-1">
-                                <td class="col-xs-8 col-sm-10 col-md-10 col-lg-11 col-xl-11 text-left text-wrap">
-                                    {!! $notification->message !!}
-                                </td>
+                            @foreach ($notifications as $notification)
+                                <tr class="row align-items-center border-top-1">
+                                    <td class="col-xs-8 col-sm-10 col-md-10 col-lg-11 col-xl-11 text-left text-wrap">
+                                        {!! $notification->message !!}
+                                    </td>
 
-                                <td class="col-xs-4 col-sm-2 col-md-2 col-lg-1 col-xl-1 text-center">
-                                    <button type="button"
-                                            class="btn btn-outline-success rounded-circle btn-icon-only btn-sm"
+                                    <td class="col-xs-4 col-sm-2 col-md-2 col-lg-1 col-xl-1 text-center">
+                                        <button type="button" class="btn btn-outline-success rounded-circle btn-icon-only btn-sm"
                                             data-toggle="tooltip"
                                             data-placement="right"
                                             title="{{ trans('notifications.mark_read') }}"
                                             wire:click="markRead('{{ $notification->alias }}')"
-                                    >
-                                        <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        >
+                                            <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

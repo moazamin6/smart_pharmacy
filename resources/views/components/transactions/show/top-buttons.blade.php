@@ -76,11 +76,11 @@
             @stack('edit_button_end')
 
             @stack('button_pdf_start')
-            @if (!$hideButtonPdf)
-                <a class="dropdown-item" href="{{ route($routeButtonPdf, $transaction->id) }}">
-                    {{ trans('general.download_pdf') }}
-                </a>
-            @endif
+                @if (!$hideButtonPdf)
+                    <a class="dropdown-item" href="{{ route($routeButtonPdf, $transaction->id) }}">
+                        {{ trans('general.download_pdf') }}
+                    </a>
+                @endif
             @stack('button_pdf_end')
 
             @stack('button_dropdown_divider_3_start')

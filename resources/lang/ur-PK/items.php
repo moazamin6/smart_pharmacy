@@ -2,7 +2,7 @@
 
 return [
 
-    'sales_price'           => 'فروخت کی قیمت',
-    'purchase_price'        => 'قیمت خرید',
+    'sales_price' => 'فروخت کی قیمت',
+    'purchase_price' => 'قیمت خرید',
 
 ];

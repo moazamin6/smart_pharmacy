@@ -22,8 +22,7 @@
         <div class="card-footer">
             <div class="row save-buttons">
                 <div class="col-md-12">
-                    <button type="button" @click="onRefresh"
-                            class="btn btn-icon btn-success button-submit header-button-top">
+                    <button type="button" @click="onRefresh" class="btn btn-icon btn-success button-submit header-button-top">
                         <span class="btn-inner--text">
                             Refresh &nbsp;
                         </span>
@@ -35,28 +34,28 @@
 </template>
 
 <script>
-import axios from "axios";
-import {Step, Steps, Alert} from 'element-ui';
+    import axios from "axios";
+    import {Step, Steps, Alert} from 'element-ui';
 
-export default {
-    name: 'requirements',
+    export default {
+        name: 'requirements',
 
-    components: {
-        [Step.name]: Step,
-        [Steps.name]: Steps,
-        [Alert.name]: Alert,
-    },
+        components: {
+            [Step.name]: Step,
+            [Steps.name]: Steps,
+            [Alert.name]: Alert,
+        },
 
-    data() {
-        return {
-            requirements: flash_requirements,
-        }
-    },
+        data() {
+            return {
+                requirements: flash_requirements,
+            }
+        },
 
-    methods: {
-        onRefresh() {
-            window.location.reload();
+        methods: {
+            onRefresh() {
+                window.location.reload();
+            }
         }
     }
-}
 </script>

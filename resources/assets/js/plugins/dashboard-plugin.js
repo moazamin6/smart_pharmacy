@@ -28,10 +28,10 @@ export default {
         Vue.use(Notifications);
         Vue.use(VeeValidate, {
             fieldsBagName: 'veeFields',
-            classes: true,
-            validity: true,
-            classNames: {
-                valid: 'is-valid',
+            classes      : true,
+            validity     : true,
+            classNames   : {
+                valid  : 'is-valid',
                 invalid: 'is-invalid'
             }
         });

@@ -1,12 +1,12 @@
 <template>
     <SlideYUpTransition :duration="animationDuration">
         <div class="modal fade"
-             @click.self="closeModal"
-             :class="[{'show d-block': show}, {'d-none': !show}]"
-             v-show="show"
-             tabindex="-1"
-             role="dialog"
-             :aria-hidden="!show">
+            @click.self="closeModal"
+            :class="[{'show d-block': show}, {'d-none': !show}]"
+            v-show="show"
+            tabindex="-1"
+            role="dialog"
+            :aria-hidden="!show">
             <div class="modal-dialog" :class="modalDialogClass">
                 <slot name="modal-content">
                     <div class="modal-content">
@@ -14,8 +14,7 @@
                             <slot name="card-header">
                                 <h4 class="float-left"> {{ title }} </h4>
 
-                                <button type="button" class="close" @click="onCancel" aria-hidden="true">&times;
-                                </button>
+                                <button type="button" class="close" @click="onCancel" aria-hidden="true">&times;</button>
                             </slot>
                         </div>
 
@@ -28,13 +27,11 @@
                             <slot name="card-footer">
                                 <div class="float-right">
                                     <button type="button" class="btn btn-outline-secondary" @click="onCancel">
-                                        {{ button_cancel }}
+                                    {{ button_cancel }}
                                     </button>
 
-                                    <button :disabled="form.loading" type="button" class="btn btn-danger button-submit"
-                                            @click="onConfirm">
-                                        <div class="aka-loader"></div>
-                                        <span>{{ button_delete }}</span>
+                                    <button :disabled="form.loading" type="button" class="btn btn-danger button-submit" @click="onConfirm">
+                                        <div class="aka-loader"></div><span>{{ button_delete }}</span>
                                     </button>
                                 </div>
                             </slot>
@@ -47,7 +44,7 @@
 </template>
 
 <script>
-import {SlideYUpTransition} from "vue2-transitions";
+import { SlideYUpTransition } from "vue2-transitions";
 import AkauntingRadioGroup from './forms/AkauntingRadioGroup';
 import AkauntingSelect from './AkauntingSelect';
 import AkauntingDate from './AkauntingDate';
@@ -155,11 +152,11 @@ export default {
 </script>
 
 <style>
-.modal.show {
-    background-color: rgba(0, 0, 0, 0.3);
-}
+    .modal.show {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
 
-.modal-md {
-    max-width: 650px;
-}
+    .modal-md {
+        max-width: 650px;
+    }
 </style>

@@ -3,7 +3,7 @@
 @section('title', trans_choice('general.invoices', 2))
 
 @section('content')
-    <x-documents.index.content
+    <x-documents.index.content 
         type="invoice"
         :documents="$invoices"
         hide-bulk-action

@@ -9,13 +9,13 @@
         max-width: 140px;
         border-radius: $border-radius;
         border: 3px solid $card-bg;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%,-50%) scale(1);
         position: absolute;
         left: 50%;
         transition: $transition-base;
 
         &:hover {
-            transform: translate(-50%, -50%) scale(1.03);
+            transform: translate(-50%,-50%) scale(1.03);
         }
     }
 }
@@ -37,7 +37,6 @@
             font-weight: bold;
             display: block;
         }
-
         .description {
             font-size: .875rem;
             color: $gray-500;

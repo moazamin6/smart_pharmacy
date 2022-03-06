@@ -9,19 +9,19 @@
     'class' => 'form-loading-button',
     'novalidate' => true
 ]) !!}
-<div class="row">
-    {{ Form::textGroup('name', trans('settings.company.name'), 'building', ['required' => 'required'], setting('company.name')) }}
+    <div class="row">
+        {{ Form::textGroup('name', trans('settings.company.name'), 'building', ['required' => 'required'], setting('company.name')) }}
 
-    {{ Form::textGroup('email', trans('settings.company.email'), 'envelope', ['required' => 'required'], setting('company.email')) }}
+        {{ Form::textGroup('email', trans('settings.company.email'), 'envelope', ['required' => 'required'], setting('company.email')) }}
 
-    {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', [], setting('company.tax_number')) }}
+        {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', [], setting('company.tax_number')) }}
 
-    {{ Form::textGroup('phone', trans('settings.company.phone'), 'phone', [], setting('company.phone')) }}
+        {{ Form::textGroup('phone', trans('settings.company.phone'), 'phone', [], setting('company.phone')) }}
 
-    {{ Form::textareaGroup('address', trans('settings.company.address'), null, setting('company.address')) }}
+        {{ Form::textareaGroup('address', trans('settings.company.address'), null, setting('company.address')) }}
 
-    {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), setting('company.country'), []) }}
+        {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), setting('company.country'), []) }}
 
-    {!! Form::hidden('_prefix', 'company') !!}
-</div>
+        {!! Form::hidden('_prefix', 'company') !!}
+    </div>
 {!! Form::close() !!}

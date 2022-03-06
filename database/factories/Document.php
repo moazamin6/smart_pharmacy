@@ -331,7 +331,7 @@ class Document extends AbstractFactory
                     ];
 
                     if ($init_status === 'partial') {
-                        $payment_request['amount'] = (int) round($amount / 3, $document->currency->precision);
+                        $payment_request['amount'] = (int)round($amount / 3, $document->currency->precision);
                     }
 
                     event(new PaymentReceived($updated_document, $payment_request));

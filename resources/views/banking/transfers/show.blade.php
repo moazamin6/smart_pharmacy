@@ -3,11 +3,11 @@
 @section('title', trans_choice('general.transfers', 1))
 
 @section('new_button')
-    <x-transfers.show.top-buttons :transfer="$transfer"/>
+    <x-transfers.show.top-buttons :transfer="$transfer" />
 @endsection
 
 @section('content')
-    <x-transfers.show.content :transfer="$transfer"/>
+    <x-transfers.show.content :transfer="$transfer" />
 @endsection
 
 @push('content_content_end')
@@ -28,11 +28,9 @@
                     {{ trans('general.cancel') }}
                 </button>
 
-                <button :disabled="form.loading" type="button" class="btn btn-success button-submit"
-                        @click="addTemplate">
+                <button :disabled="form.loading"  type="button" class="btn btn-success button-submit" @click="addTemplate">
                     <span v-if="form.loading" class="btn-inner--icon"><i class="aka-loader"></i></span>
-                    <span :class="[{'ml-0': form.loading}]"
-                          class="btn-inner--text">{{ trans('general.confirm') }}</span>
+                    <span :class="[{'ml-0': form.loading}]" class="btn-inner--text">{{ trans('general.confirm') }}</span>
                 </button>
             </div>
         </template>
@@ -42,5 +40,5 @@
 @push('scripts_start')
     <link rel="stylesheet" href="{{ asset('public/css/print.css?v=' . version('short')) }}" type="text/css">
 
-    <x-transfers.script/>
+    <x-transfers.script />
 @endpush

@@ -15,23 +15,23 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                {{ Form::textGroup('rate', trans('taxes.rate'), 'percent', ['@input' => 'onChangeTaxRate']) }}
+                    {{ Form::textGroup('rate', trans('taxes.rate'), 'percent', ['@input' => 'onChangeTaxRate']) }}
 
-                {{ Form::selectGroup('type', trans_choice('general.types', 1), 'bars', $types, 'normal', ['disabledOptions' => $disable_options]) }}
+                    {{ Form::selectGroup('type', trans_choice('general.types', 1), 'bars', $types, 'normal', ['disabledOptions' => $disable_options]) }}
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
+                </div>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <div class="row save-buttons">
-                {{ Form::saveButtons('taxes.index') }}
+            <div class="card-footer">
+                <div class="row save-buttons">
+                    {{ Form::saveButtons('taxes.index') }}
+                </div>
             </div>
-        </div>
         {!! Form::close() !!}
     </div>
 @endsection

@@ -47,7 +47,7 @@ const app = new Vue({
         }
     },
 
-    methods: {
+    methods:{
         permissionSelectAll() {
             if (this.permissions.all.length) {
                 this.permissions.all.forEach(function (value) {
@@ -92,7 +92,7 @@ const app = new Vue({
             if ((this.permissions.read_admin_panel == permission) || (this.permissions.read_client_portal == permission)) {
                 if (this.permissions.read_admin_panel == permission && this.form.permissions.includes(this.permissions.read_client_portal)) {
                     return;
-                } else if (this.permissions.read_client_portal == permission && this.form.permissions.includes(this.permissions.read_admin_panel)) {
+                } else if(this.permissions.read_client_portal == permission && this.form.permissions.includes(this.permissions.read_admin_panel)) {
                     return;
                 }
 

@@ -104,7 +104,7 @@ export default class Form {
                         if (!this[form_element.getAttribute('data-field')][name].push) {
                             this[form_element.getAttribute('data-field')][name] = [this[form_element.getAttribute('data-field')][name]];
                         }
-
+    
                         if (form_element.checked) {
                             this[form_element.getAttribute('data-field')][name].push(form_element.value);
                         }
@@ -356,30 +356,30 @@ export default class Form {
     oldSubmit() {
         this.loading = true;
 
-        window.axios({
+       window.axios({
             method: this.method,
             url: this.action,
             data: this.data()
         })
-            .then(this.onSuccess.bind(this))
-            .catch(this.onFail.bind(this));
+        .then(this.onSuccess.bind(this))
+        .catch(this.onFail.bind(this));
     }
 
     submit() {
-        FormData.prototype.appendRecursive = function (data, wrapper = null) {
+        FormData.prototype.appendRecursive = function(data, wrapper = null) {  
             for (var name in data) {
                 if (name == "previewElement" || name == "previewTemplate") {
                     continue;
                 }
 
                 if (wrapper) {
-                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                         this.appendRecursive(data[name], wrapper + '[' + name + ']');
                     } else {
                         this.append(wrapper + '[' + name + ']', data[name]);
                     }
                 } else {
-                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                         this.appendRecursive(data[name], name);
                     } else {
                         this.append(name, data[name]);
@@ -405,25 +405,25 @@ export default class Form {
                 'Content-Type': 'multipart/form-data'
             }
         })
-            .then(this.onSuccess.bind(this))
-            .catch(this.onFail.bind(this));
+        .then(this.onSuccess.bind(this))
+        .catch(this.onFail.bind(this));
     }
 
     async asyncSubmit() {
-        FormData.prototype.appendRecursive = function (data, wrapper = null) {
+        FormData.prototype.appendRecursive = function(data, wrapper = null) {  
             for (var name in data) {
                 if (name == "previewElement" || name == "previewTemplate") {
                     continue;
                 }
 
                 if (wrapper) {
-                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                         this.appendRecursive(data[name], wrapper + '[' + name + ']');
                     } else {
                         this.append(wrapper + '[' + name + ']', data[name]);
                     }
                 } else {
-                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                    if ((typeof data[name] == 'object' || Array.isArray(data[name])) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                         this.appendRecursive(data[name], name);
                     } else {
                         this.append(name, data[name]);
@@ -449,8 +449,8 @@ export default class Form {
                 'Content-Type': 'multipart/form-data'
             }
         })
-            .then(this.onSuccess.bind(this))
-            .catch(this.onFail.bind(this));
+        .then(this.onSuccess.bind(this))
+        .catch(this.onFail.bind(this));
     }
 
     onSuccess(response) {

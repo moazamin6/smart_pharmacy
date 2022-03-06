@@ -2,7 +2,7 @@
 
 return [
 
-    'sales_price'           => 'გასაყიდი ფასი',
-    'purchase_price'        => 'შეძენის ფასი',
+    'sales_price' => 'გასაყიდი ფასი',
+    'purchase_price' => 'შეძენის ფასი',
 
 ];

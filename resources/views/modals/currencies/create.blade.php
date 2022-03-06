@@ -7,15 +7,15 @@
     'route' => 'modals.currencies.store',
     'novalidate' => true
 ]) !!}
-<div class="row">
-    {{ Form::textGroup('name', trans('general.name'), 'chart-bar') }}
+    <div class="row">
+        {{ Form::textGroup('name', trans('general.name'), 'chart-bar') }}
 
-    {{ Form::selectGroup('code', trans('currencies.code'), 'code', $codes) }}
+        {{ Form::selectGroup('code', trans('currencies.code'), 'code', $codes) }}
 
-    {{ Form::textGroup('rate', trans('currencies.rate'), 'sliders-h', ['@input' => 'onChangeRate', 'required' => 'required']) }}
+        {{ Form::textGroup('rate', trans('currencies.rate'), 'sliders-h', ['@input' => 'onChangeRate', 'required' => 'required']) }}
 
-    {!! Form::hidden('enabled', 1) !!}
-    {!! Form::hidden('symbol_first', 1) !!}
-    {!! Form::hidden('default_currency', 0) !!}
-</div>
+        {!! Form::hidden('enabled', 1) !!}
+        {!! Form::hidden('symbol_first', 1) !!}
+        {!! Form::hidden('default_currency', 0) !!}
+    </div>
 {!! Form::close() !!}

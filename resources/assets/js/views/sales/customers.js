@@ -29,7 +29,7 @@ const app = new Vue({
         return {
             form: new Form('customer'),
             bulk_action: new BulkAction('customers'),
-            can_login: false
+            can_login : false
         }
     },
 
@@ -37,56 +37,56 @@ const app = new Vue({
         this.form.create_user = false;
     },
 
-    methods: {
+    methods:{
         onCanLogin(event) {
             if (event.target.checked) {
                 if (this.form.email) {
                     axios.get(url + '/auth/users/autocomplete', {
                         params: {
                             column: 'email',
-                            value: this.form.email
+                            value : this.form.email
                         }
                     })
-                        .then(response => {
-                            if (response.data.errors) {
-                                if (response.data.data) {
-                                    this.form.errors.set('email', {
-                                        0: response.data.data
-                                    });
-
-                                    return false;
-                                }
-
-                                this.can_login = true;
-                                this.form.create_user = true;
-
-                                return true;
-                            }
-
-                            if (response.data.error) {
-                                this.$notify({
-                                    message: response.data.message,
-                                    timeout: 0,
-                                    icon: 'fas fa-bell',
-                                    type: 'warning',
-                                });
-
-                                return false;
-                            }
-
-                            if (response.data.success) {
+                    .then(response => {
+                        if (response.data.errors) {
+                            if (response.data.data) {
                                 this.form.errors.set('email', {
-                                    0: can_login_errors.email
+                                    0: response.data.data
                                 });
-
-                                this.can_login = false;
-                                this.form.create_user = false;
 
                                 return false;
                             }
-                        })
-                        .catch(error => {
-                        });
+
+                            this.can_login = true;
+                            this.form.create_user = true;
+
+                            return true;
+                        }
+
+                        if (response.data.error) {
+                            this.$notify({
+                                message: response.data.message,
+                                timeout: 0,
+                                icon: 'fas fa-bell',
+                                type: 'warning',
+                            });
+
+                            return false;
+                        }
+
+                        if (response.data.success) {
+                            this.form.errors.set('email', {
+                                0: can_login_errors.email
+                            });
+
+                            this.can_login = false;
+                            this.form.create_user = false;
+
+                            return false;
+                        }
+                    })
+                    .catch(error => {
+                    });
                 } else {
                     this.form.errors.set('email', {
                         0: can_login_errors.valid

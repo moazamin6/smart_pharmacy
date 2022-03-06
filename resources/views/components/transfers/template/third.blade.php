@@ -1,105 +1,103 @@
 @if (!$hideFromAccount && !$hideToAccount)
     <table class="border-bottom-1" style="width: 100%;">
         <tbody>
-        <tr>
-            @if (!$hideFromAccount)
-                <td style="width: 50%; padding-bottom: 15px;" valign="top">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td>
-                                @if (!$hideFromAccountTitle)
-                                    <h2 class="mb-1" style="font-size: 16px;">
-                                        {{ trans($textFromAccountTitle) }}
-                                    </h2>
-                                @endif
+            <tr>
+                @if (!$hideFromAccount)
+                    <td style="width: 50%; padding-bottom: 15px;" valign="top">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @if (!$hideFromAccountTitle)
+                                            <h2 class="mb-1" style="font-size: 16px;">
+                                                {{ trans($textFromAccountTitle) }}
+                                            </h2>
+                                        @endif
 
-                                @if (!$hideFromAccountName)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->expense_transaction->account->name }}
-                                    </p>
-                                @endif
+                                        @if (!$hideFromAccountName)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->expense_transaction->account->name }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideFromAccountNumber)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ trans($textFromAccountNumber) }}
-                                        : {{ $transfer->expense_transaction->account->number}}
-                                    </p>
-                                @endif
+                                        @if (!$hideFromAccountNumber)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ trans($textFromAccountNumber) }}: {{ $transfer->expense_transaction->account->number}}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideFromAccountBankName)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->expense_transaction->account->bank_name }}
-                                    </p>
-                                @endif
+                                        @if (!$hideFromAccountBankName)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->expense_transaction->account->bank_name }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideFromAccountBankPhone)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->expense_transaction->account->bank_phone }}
-                                    </p>
-                                @endif
+                                        @if (!$hideFromAccountBankPhone)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->expense_transaction->account->bank_phone }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideFromAccountBankAddress)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->expense_transaction->account->bank_address }}
-                                    </p>
-                                @endif
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            @endif
+                                        @if (!$hideFromAccountBankAddress)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->expense_transaction->account->bank_address }}
+                                            </p>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                @endif
 
-            @if (!$hideToAccount)
-                <td style="width: 50%; padding-bottom: 15px;" valign="top">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td style="text-align: right;">
-                                @if (!$hideToAccountTitle)
-                                    <h2 class="mb-1" style="font-size: 16px;">
-                                        {{ trans($textToAccountTitle) }}
-                                    </h2>
-                                @endif
+                @if (!$hideToAccount)
+                    <td style="width: 50%; padding-bottom: 15px;" valign="top">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: right;">
+                                        @if (!$hideToAccountTitle)
+                                            <h2 class="mb-1" style="font-size: 16px;">
+                                                {{ trans($textToAccountTitle) }}
+                                            </h2>
+                                        @endif
 
-                                @if (!$hideToAccountName)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->income_transaction->account->name }}
-                                    </p>
-                                @endif
+                                        @if (!$hideToAccountName)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->income_transaction->account->name }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideToAccountNumber)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ trans($textToAccountNumber) }}
-                                        : {{ $transfer->income_transaction->account->number }}
-                                    </p>
-                                @endif
+                                        @if (!$hideToAccountNumber)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ trans($textToAccountNumber) }}: {{ $transfer->income_transaction->account->number }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideToAccountBankName)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->income_transaction->account->bank_name }}
-                                    </p>
-                                @endif
+                                        @if (!$hideToAccountBankName)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->income_transaction->account->bank_name }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideToAccountBankPhone)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->income_transaction->account->bank_phone }}
-                                    </p>
-                                @endif
+                                        @if (!$hideToAccountBankPhone)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->income_transaction->account->bank_phone }}
+                                            </p>
+                                        @endif
 
-                                @if (!$hideToAccountBankAddress)
-                                    <p style="margin: 0px; padding: 0px; font-size: 14px;">
-                                        {{ $transfer->income_transaction->account->bank_address }}
-                                    </p>
-                                @endif
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            @endif
-        </tr>
+                                        @if (!$hideToAccountBankAddress)
+                                            <p style="margin: 0px; padding: 0px; font-size: 14px;">
+                                                {{ $transfer->income_transaction->account->bank_address }}
+                                            </p>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                @endif
+            </tr>
         </tbody>
     </table>
 @endif
@@ -176,15 +174,12 @@
                     <table>
                         <tr>
                             <td style="background-color: #6da252; -webkit-print-color-adjust: exact; font-weight:bold !important; display:block;">
-                                <h5 class="text-muted mb-0 text-white"
-                                    style="font-size: 20px; color:#ffffff; text-align:center; margin-top: 16px;">
+                                <h5 class="text-muted mb-0 text-white" style="font-size: 20px; color:#ffffff; text-align:center; margin-top: 16px;">
                                     {{ trans($textDetailAmount) }}:
                                 </h5>
 
-                                <p class="font-weight-bold mb-0 text-white"
-                                   style="font-size: 26px; color:#ffffff; text-align:center;">
-                                    @money($transfer->expense_transaction->amount,
-                                    $transfer->expense_transaction->currency_code, true)
+                                <p class="font-weight-bold mb-0 text-white" style="font-size: 26px; color:#ffffff; text-align:center;">
+                                    @money($transfer->expense_transaction->amount, $transfer->expense_transaction->currency_code, true)
                                 </p>
                             </td>
                         </tr>

@@ -16,8 +16,9 @@ export default {
         attributes: [],
         col: ''
     },
-    data() {
-        return {}
+    data () {
+        return {
+        }
     },
     created() {
     }

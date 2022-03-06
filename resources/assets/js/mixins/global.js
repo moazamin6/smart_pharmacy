@@ -24,7 +24,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import NProgressAxios from './../plugins/nprogress-axios';
 
-import {Select, Option, Steps, Step, Button, Link, Tooltip, ColorPicker} from 'element-ui';
+import { Select, Option, Steps, Step, Button, Link, Tooltip, ColorPicker } from 'element-ui';
 
 import Form from './../plugins/form';
 
@@ -61,14 +61,14 @@ export default {
         return {
             component: '',
             currency: {
-                "name": "US Dollar",
-                "code": "USD",
-                "rate": 1,
-                "precision": 2,
-                "symbol": "$",
-                "symbol_first": 1,
-                "decimal_mark": ".",
-                "thousands_separator": ",",
+                "name":"US Dollar",
+                "code":"USD",
+                "rate":1,
+                "precision":2,
+                "symbol":"$",
+                "symbol_first":1,
+                "decimal_mark":".",
+                "thousands_separator":",",
             },
             all_currencies: [],
         }
@@ -179,7 +179,7 @@ export default {
 
             this.component = Vue.component('add-new-component', (resolve, reject) => {
                 resolve({
-                    template: '<div id="dynamic-delete-component"><akaunting-modal v-if="confirm.show" :show="confirm.show" :title="confirm.title" :message="confirm.message" :button_cancel="confirm.button_cancel" :button_delete="confirm.button_delete" @confirm="onDelete" @cancel="cancelDelete"></akaunting-modal></div>',
+                    template : '<div id="dynamic-delete-component"><akaunting-modal v-if="confirm.show" :show="confirm.show" :title="confirm.title" :message="confirm.message" :button_cancel="confirm.button_cancel" :button_delete="confirm.button_delete" @confirm="onDelete" @cancel="cancelDelete"></akaunting-modal></div>',
 
                     components: {
                         AkauntingModal,
@@ -193,7 +193,7 @@ export default {
 
                     methods: {
                         // Delete action post
-                        async onDelete() {
+                       async onDelete() {
                             let promise = Promise.resolve(axios({
                                 method: 'DELETE',
                                 url: this.confirm.url,
@@ -206,9 +206,9 @@ export default {
 
                                 this.$emit('deleted', response.data);
                             })
-                                .catch(error => {
-                                    this.success = false;
-                                });
+                            .catch(error => {
+                                this.success = false;
+                            });
                         },
 
                         // Close modal empty default value
@@ -230,15 +230,15 @@ export default {
                 params: {
                     account_id: account_id
                 }
-            })
-                .then(response => {
-                    this.currency = response.data;
+              })
+            .then(response => {
+                this.currency = response.data;
 
-                    this.form.currency_code = response.data.currency_code;
-                    this.form.currency_rate = response.data.currency_rate;
-                })
-                .catch(error => {
-                });
+                this.form.currency_code = response.data.currency_code;
+                this.form.currency_rate = response.data.currency_rate;
+            })
+            .catch(error => {
+            });
         },
 
         // Change currency get money
@@ -251,13 +251,13 @@ export default {
                 let currency_promise = Promise.resolve(window.axios.get((url + '/settings/currencies')));
 
                 currency_promise.then(response => {
-                    if (response.data.success) {
+                    if ( response.data.success) {
                         this.all_currencies = response.data.data;
                     }
                 })
-                    .catch(error => {
-                        this.onChangeCurrency(currency_code);
-                    });
+                .catch(error => {
+                    this.onChangeCurrency(currency_code);
+                });
             }
 
             this.all_currencies.forEach(function (currency, index) {
@@ -311,60 +311,62 @@ export default {
         },
 
         // Dynamic component get path view and show it.
-        onDynamicComponent(path) {
+        onDynamicComponent(path)
+        {
             axios.get(path)
-                .then(response => {
-                    let html = response.data.html;
+            .then(response => {
+                let html = response.data.html;
 
-                    this.component = Vue.component('add-new-component', (resolve, reject) => {
-                        resolve({
-                            template: '<div id="dynamic-component">' + html + '</div>',
+                this.component = Vue.component('add-new-component', (resolve, reject) => {
+                    resolve({
+                        template : '<div id="dynamic-component">' + html + '</div>',
 
-                            components: {
-                                AkauntingSearch,
-                                AkauntingRadioGroup,
-                                AkauntingSelect,
-                                AkauntingSelectRemote,
-                                AkauntingModal,
-                                AkauntingModalAddNew,
-                                AkauntingDate,
-                                AkauntingRecurring,
-                                [Select.name]: Select,
-                                [Option.name]: Option,
-                                [Steps.name]: Steps,
-                                [Step.name]: Step,
-                                [Button.name]: Button,
-                            },
+                        components: {
+                            AkauntingSearch,
+                            AkauntingRadioGroup,
+                            AkauntingSelect,
+                            AkauntingSelectRemote,
+                            AkauntingModal,
+                            AkauntingModalAddNew,
+                            AkauntingDate,
+                            AkauntingRecurring,
+                            [Select.name]: Select,
+                            [Option.name]: Option,
+                            [Steps.name]: Steps,
+                            [Step.name]: Step,
+                            [Button.name]: Button,
+                        },
 
-                            created: function () {
-                                this.form = new Form('form-dynamic-component');
-                            },
+                        created: function() {
+                            this.form = new Form('form-dynamic-component');
+                        },
 
-                            mounted() {
-                                let form_id = document.getElementById('dynamic-component').querySelectorAll('form')[1].id;
+                        mounted() {
+                            let form_id = document.getElementById('dynamic-component').querySelectorAll('form')[1].id;
 
-                                this.form = new Form(form_id);
-                            },
+                            this.form = new Form(form_id);
+                        },
 
-                            data: function () {
-                                return {
-                                    form: {},
-                                    dynamic: {
-                                        data: dynamic_data
-                                    }
+                        data: function () {
+                            return {
+                                form: {},
+                                dynamic: {
+                                    data: dynamic_data
                                 }
-                            },
+                            }
+                        },
 
-                            methods: {}
-                        })
-                    });
-                })
-                .catch(e => {
-                    this.errors.push(e);
-                })
-                .finally(function () {
-                    // always executed
+                        methods: {
+                        }
+                    })
                 });
+            })
+            .catch(e => {
+                this.errors.push(e);
+            })
+            .finally(function () {
+                // always executed
+            });
         },
 
         onDynamicFormParams(path, params) {
@@ -404,16 +406,16 @@ export default {
                 redirect: window.location.href
             };
 
-            if (this.form['page' + file_id]) {
-                file_data.page = this.form['page' + file_id];
+            if (this.form['page' +  file_id]) {
+                file_data.page = this.form['page' +  file_id];
             }
 
-            if (this.form['key' + file_id]) {
-                file_data.key = this.form['key' + file_id];
+            if (this.form['key' +  file_id]) {
+                file_data.key = this.form['key' +  file_id];
             }
 
-            if (this.form['value' + file_id]) {
-                file_data.value = this.form['value' + file_id];
+            if (this.form['value' +  file_id]) {
+                file_data.value = this.form['value' +  file_id];
             }
 
             let confirm = {
@@ -428,7 +430,7 @@ export default {
 
             this.component = Vue.component('add-new-component', (resolve, reject) => {
                 resolve({
-                    template: '<div id="dynamic-delete-file-component"><akaunting-modal v-if="confirm.show" :show="confirm.show" :title="confirm.title" :message="confirm.message" :button_cancel="confirm.button_cancel" :button_delete="confirm.button_delete" @confirm="onDelete" @cancel="cancelDelete"></akaunting-modal></div>',
+                    template : '<div id="dynamic-delete-file-component"><akaunting-modal v-if="confirm.show" :show="confirm.show" :title="confirm.title" :message="confirm.message" :button_cancel="confirm.button_cancel" :button_delete="confirm.button_delete" @confirm="onDelete" @cancel="cancelDelete"></akaunting-modal></div>',
 
                     components: {
                         AkauntingModal,
@@ -442,7 +444,7 @@ export default {
 
                     methods: {
                         // Delete action post
-                        async onDelete() {
+                       async onDelete() {
                             let promise = Promise.resolve(axios({
                                 method: 'DELETE',
                                 url: this.confirm.url,
@@ -454,9 +456,9 @@ export default {
                                     window.location.href = response.data.redirect;
                                 }
                             })
-                                .catch(error => {
-                                    this.success = false;
-                                });
+                            .catch(error => {
+                                this.success = false;
+                            });
                         },
 
                         // Close modal empty default value

@@ -19,39 +19,34 @@
 
     <div class="row">
 
-        @foreach($templates as $template)
-            @php
-                if (!class_exists($template->class)) {
-                    continue;
-                }
-                $aria_expanded_status = in_array($card, [1, 2]) ? 'true' : 'false';
-                $collapse_status = in_array($card, [1, 2]) ? 'show' : '';
-            @endphp
+    @foreach($templates as $template)
+        @php
+            if (!class_exists($template->class)) {
+                continue;
+            }
+            $aria_expanded_status = in_array($card, [1, 2]) ? 'true' : 'false';
+            $collapse_status = in_array($card, [1, 2]) ? 'show' : '';
+        @endphp
 
-            <div class="col-md-6">
-                <div class="accordion" id="accordion-{{ $card }}">
-                    <div class="card">
-                        <div class="card-header" id="heading-{{ $card }}" data-toggle="collapse"
-                             data-target="#collapse-{{ $card }}" aria-expanded="{{ $aria_expanded_status }}"
-                             aria-controls="collapse-{{ $card }}">
-                            <div class="align-items-center">
-                                <h4 class="mb-0">{{ trans($template->name) }}</h4>
-                            </div>
+        <div class="col-md-6">
+            <div class="accordion" id="accordion-{{ $card }}">
+                <div class="card">
+                    <div class="card-header" id="heading-{{ $card }}" data-toggle="collapse" data-target="#collapse-{{ $card }}" aria-expanded="{{ $aria_expanded_status }}" aria-controls="collapse-{{ $card }}">
+                        <div class="align-items-center">
+                            <h4 class="mb-0">{{ trans($template->name) }}</h4>
                         </div>
+                    </div>
 
-                        <div id="collapse-{{ $card }}" class="collapse {{ $collapse_status }}"
-                             aria-labelledby="heading-{{ $card }}" data-parent="#accordion-{{ $card }}">
-                            <div class="card-body">
-                                <div class="row">
-                                    {{ Form::textGroup('template_' . $template->alias . '_subject', trans('settings.email.templates.subject'), 'font', ['required' => 'required'], $template->subject, 'col-md-12') }}
+                    <div id="collapse-{{ $card }}" class="collapse {{ $collapse_status }}" aria-labelledby="heading-{{ $card }}" data-parent="#accordion-{{ $card }}">
+                        <div class="card-body">
+                            <div class="row">
+                                {{ Form::textGroup('template_' . $template->alias . '_subject', trans('settings.email.templates.subject'), 'font', ['required' => 'required'], $template->subject, 'col-md-12') }}
 
-                                    {{ Form::textEditorGroup('template_' . $template->alias . '_body', trans('settings.email.templates.body'), null, $template->body, ['required' => 'required', 'rows' => '5', 'data-toggle' => 'quill'], 'col-md-12 mb-0') }}
+                                {{ Form::textEditorGroup('template_' . $template->alias . '_body', trans('settings.email.templates.body'), null, $template->body, ['required' => 'required', 'rows' => '5', 'data-toggle' => 'quill'], 'col-md-12 mb-0') }}
 
-                                    <div class="col-md-12">
-                                        <div class="bg-secondary border-radius-default border-1 p-2">
-                                            <small
-                                                class="text-default">{!! trans('settings.email.templates.tags', ['tag_list' => implode(', ', app($template->class)->getTags())]) !!}</small>
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="bg-secondary border-radius-default border-1 p-2">
+                                        <small class="text-default">{!! trans('settings.email.templates.tags', ['tag_list' => implode(', ', app($template->class)->getTags())]) !!}</small>
                                     </div>
                                 </div>
                             </div>
@@ -59,22 +54,21 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            @php $card++; @endphp
-        @endforeach
+        @php $card++; @endphp
+    @endforeach
 
         <div class="col-md-12">
             <div class="accordion" id="accordion-{{ $card }}">
                 <div class="card">
-                    <div class="card-header" id="heading-{{ $card }}" data-toggle="collapse"
-                         data-target="#collapse-{{ $card }}" aria-expanded="false" aria-controls="collapse-{{ $card }}">
+                    <div class="card-header" id="heading-{{ $card }}" data-toggle="collapse" data-target="#collapse-{{ $card }}" aria-expanded="false" aria-controls="collapse-{{ $card }}">
                         <div class="align-items-center">
                             <h4 class="mb-0">{{ trans('settings.email.protocol') }}</h4>
                         </div>
                     </div>
 
-                    <div id="collapse-{{ $card }}" class="collapse hide" aria-labelledby="heading-{{ $card }}"
-                         data-parent="#accordion-{{ $card }}">
+                    <div id="collapse-{{ $card }}" class="collapse hide" aria-labelledby="heading-{{ $card }}" data-parent="#accordion-{{ $card }}">
                         <div class="card-body">
                             <div class="row">
                                 {{ Form::selectGroup('protocol', trans('settings.email.protocol'), 'share', $email_protocols, setting('email.protocol'), ['change' => 'onChangeProtocol']) }}
@@ -90,7 +84,7 @@
                                 {{ Form::textGroup('smtp_password', trans('settings.email.smtp.password'), 'paper-plane', ['type' => 'password', ':disabled' => 'email.smtpPassword'], setting('email.smtp_password')) }}
 
                                 {{ Form::selectGroup('smtp_encryption', trans('settings.email.smtp.encryption'), 'paper-plane', ['' => trans('settings.email.smtp.none'), 'ssl' => 'SSL', 'tls' => 'TLS'], setting('email.smtp_encryption', null), ['disabled' => 'email.smtpEncryption']) }}
-                            </div>
+                             </div>
                         </div>
                     </div>
                 </div>

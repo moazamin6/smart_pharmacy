@@ -21,7 +21,7 @@
             z-index: 1;
             transform: translate(-50%, -50%);
             @include box-shadow($box-shadow);
-            transition: all .2s cubic-bezier(.25, .65, .9, .75);
+            transition: all .2s cubic-bezier(.25,.65,.9,.75);
 
             &.icon {
                 width: var(--icon-size);

@@ -1,3 +1,4 @@
+
 export default {
     data: function () {
         return {
@@ -91,7 +92,7 @@ export default {
                 if (status.id == status_item) {
                     status.enabled = event.target.checked;
                 }
-            });
+              });
         },
 
         onSubmitEvent(form_method, form_url, plus_data, form_list, form_id) {
@@ -103,21 +104,21 @@ export default {
                     [key]: val,
                 });
             }
-
-            if (plus_data == 'type') {
+            
+            if(plus_data == 'type') {
                 Object.assign(data, {
                     ['type']: 'normal',
                 });
             }
 
             window.axios({
-                method: form_method,
-                url: form_url,
-                data: data,
-            })
+                    method: form_method,
+                    url: form_url,
+                    data: data,
+                })
                 .then(response => {
-                    if (form_list.length != undefined) {
-                        if (form_method == 'POST') {
+                    if(form_list.length != undefined) {
+                        if(form_method == 'POST') {
                             form_list.push({
                                 "id": response.data.data.id,
                                 "name": response.data.data.name,
@@ -126,8 +127,8 @@ export default {
                                 "enabled": response.data.data.enabled != undefined ? response.data.data.enabled : 'true'
                             });
                         }
-
-                        if (form_method == 'PATCH') {
+    
+                        if(form_method == 'PATCH') {
                             form_list.forEach(item => {
                                 if (item.id == form_id) {
                                     item.name = response.data.data.name;
@@ -147,18 +148,18 @@ export default {
         onEjetItem(event, form_list, event_id) {
             form_list.forEach(function (item, index) {
                 if (item.id == event_id) {
-                    form_list.splice(index, 1);
-                    return;
+                  form_list.splice(index, 1);
+                  return;
                 }
-            }, this);
+              }, this);
 
-            this.component = "";
-            document.body.classList.remove("modal-open");
-            this.onDeleteItemMessage(event);
+              this.component = "";
+              document.body.classList.remove("modal-open");
+              this.onDeleteItemMessage(event);
         },
 
         onFailErrorGet(field_name) {
-            if (this.error_field[field_name]) {
+            if(this.error_field[field_name]) {
                 return this.error_field[field_name][0];
             }
         },

@@ -24,12 +24,12 @@ const router = new VueRouter({
             path: '/wizard',
             name: 'Wizard',
             component: Company
-        },
+        }, 
         {
             path: '/wizard/companies',
             name: 'Company',
             component: Company
-        },
+        }, 
         {
             path: '/wizard/currencies',
             name: 'Currencies',
@@ -44,24 +44,24 @@ const router = new VueRouter({
             path: '/wizard/finish',
             name: 'Finish',
             component: Finish
-        }
+        } 
     ],
     linkActiveClass: 'active',
-    scrollBehavior: (to, from, savedPosition) => {
+    scrollBehavior: (to, from ,savedPosition) => {
         if (savedPosition) {
             return savedPosition;
         }
 
         if (to.hash) {
-            return {selector: to.hash};
+            return { selector: to.hash };
         }
 
-        return {x: 0, y: 0};
+        return { x: 0, y: 0 };
     }
 });
 
 new Vue({
-    el: '#app',
+    el : '#app',
     router,
     render: h => h(Wizard),
 });

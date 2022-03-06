@@ -7,12 +7,12 @@
     'route' => 'taxes.store',
     'novalidate' => true
 ]) !!}
-<div class="row">
-    {{ Form::textGroup('name', trans('general.name'), 'font') }}
+    <div class="row">
+        {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-    {{ Form::textGroup('rate', trans('taxes.rate'), 'percent') }}
+        {{ Form::textGroup('rate', trans('taxes.rate'), 'percent') }}
 
-    {!! Form::hidden('type', 'normal') !!}
-    {!! Form::hidden('enabled', '1') !!}
-</div>
+        {!! Form::hidden('type', 'normal') !!}
+        {!! Form::hidden('enabled', '1') !!}
+    </div>
 {!! Form::close() !!}

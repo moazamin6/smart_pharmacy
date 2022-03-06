@@ -2,9 +2,9 @@
 
 return [
 
-    'previous'              => 'Edellinen',
-    'next'                  => 'Seuraava',
-    'showing'               => ':first-:last :total :sta kirjauksesta.',
-    'page'                  => 'per sivu.',
+    'previous' => 'Edellinen',
+    'next' => 'Seuraava',
+    'showing' => ':first-:last :total :sta kirjauksesta.',
+    'page' => 'per sivu.',
 
 ];

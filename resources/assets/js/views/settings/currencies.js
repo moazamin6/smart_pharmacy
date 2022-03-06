@@ -32,7 +32,7 @@ const app = new Vue({
         }
     },
 
-    methods: {
+    methods:{
         onChangeRate() {
             this.form.rate = this.form.rate.replace(',', '.');
         },
@@ -43,16 +43,16 @@ const app = new Vue({
                     code: code
                 }
             })
-                .then(response => {
-                    this.form.rate = response.data.rate;
-                    this.form.precision = response.data.precision;
-                    this.form.symbol = response.data.symbol;
-                    this.form.symbol_first = response.data.symbol_first;
-                    this.form.decimal_mark = response.data.decimal_mark;
-                    this.form.thousands_separator = response.data.thousands_separator;
-                })
-                .catch(error => {
-                });
+            .then(response => {
+                this.form.rate = response.data.rate;
+                this.form.precision = response.data.precision;
+                this.form.symbol = response.data.symbol;
+                this.form.symbol_first = response.data.symbol_first;
+                this.form.decimal_mark = response.data.decimal_mark;
+                this.form.thousands_separator = response.data.thousands_separator;
+            })
+            .catch(error => {
+            });
         }
     }
 });

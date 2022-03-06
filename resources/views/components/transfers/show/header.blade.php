@@ -1,6 +1,6 @@
 <div class="row" style="font-size: inherit !important">
     @stack('header_account_start')
-    @if (!$hideHeaderFromAccount)
+        @if (!$hideHeaderFromAccount)
         <div class="{{ $classHeaderFromAccount }}">
             {{ trans_choice($textHeaderFromAccount, 1) }}
             <br>
@@ -14,11 +14,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_account_end')
 
     @stack('header_category_start')
-    @if (!$hideHeaderToAccount)
+        @if (!$hideHeaderToAccount)
         <div class="{{ $classHeaderToAccount }}">
             {{ trans_choice($textHeaderToAccount, 1) }}
             <br>
@@ -32,11 +32,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_category_end')
 
     @stack('header_amount_start')
-    @if (!$hideHeaderAmount)
+        @if (!$hideHeaderAmount)
         <div class="{{ $classHeaderAmount }}">
             <span class="float-right">
                 {{ trans($textHeaderAmount) }}
@@ -50,11 +50,11 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_amount_end')
 
     @stack('header_paid_at_start')
-    @if (!$hideHeaderPaidAt)
+        @if (!$hideHeaderPaidAt)
         <div class="{{ $classHeaderPaidAt }}">
             <span class="float-right">
                 {{ trans($textHeaderPaidAt) }}
@@ -68,6 +68,6 @@
             </strong>
             <br><br>
         </div>
-    @endif
+        @endif
     @stack('header_paid_at_end')
 </div>

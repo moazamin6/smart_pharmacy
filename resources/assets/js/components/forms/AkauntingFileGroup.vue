@@ -24,8 +24,9 @@ export default {
         value: '',
         col: ''
     },
-    data() {
-        return {}
+    data () {
+        return {
+        }
     },
     created() {
     }

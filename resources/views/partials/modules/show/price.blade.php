@@ -9,19 +9,16 @@
                         @else
                             @if (!empty($module->is_discount))
                                 <del class="text-danger">{!! $module->yearly_per_monthly_price !!}</del>
-                                {!! $module->yearly_per_monthly_special_price !!} <span
-                                    class="small">{{ trans('modules.per_month') }}</span>
+                                {!! $module->yearly_per_monthly_special_price !!} <span class="small">{{ trans('modules.per_month') }}</span>
                             @else
-                                {!! $module->yearly_per_monthly_price !!} <span
-                                    class="small">{{ trans('modules.per_month') }}</span>
+                                {!! $module->yearly_per_monthly_price !!} <span class="small">{{ trans('modules.per_month') }}</span>
                             @endif
                         @endif
                     </div>
                 </strong>
             </div>
 
-            <div class="text-center text-sm mt-3 mb--2"
-                 onclick="document.getElementById('tab-pricing-monthly').click();">
+            <div class="text-center text-sm mt-3 mb--2" onclick="document.getElementById('tab-pricing-monthly').click();">
                 <span style="cursor: pointer;">
                     {{ trans('modules.billed_yearly') }}
                 </span>
@@ -47,19 +44,16 @@
                         @else
                             @if (!empty($module->is_discount))
                                 <del class="text-danger">{!! $module->monthly_price !!}</del>
-                                {!! $module->monthly_special_price !!} <span
-                                    class="small">{{ trans('modules.per_month') }}</span>
+                                {!! $module->monthly_special_price !!} <span class="small">{{ trans('modules.per_month') }}</span>
                             @else
-                                {!! $module->monthly_price !!} <span
-                                    class="small">{{ trans('modules.per_month') }}</span>
+                                {!! $module->monthly_price !!} <span class="small">{{ trans('modules.per_month') }}</span>
                             @endif
                         @endif
                     </div>
                 </strong>
             </div>
 
-            <div class="text-center text-sm mt-3 mb--2"
-                 onclick="document.getElementById('tab-pricing-yearly').click();">
+            <div class="text-center text-sm mt-3 mb--2" onclick="document.getElementById('tab-pricing-yearly').click();">
                 <span style="cursor: pointer;">
                     {{ trans('modules.billed_monthly') }}
                 </span>

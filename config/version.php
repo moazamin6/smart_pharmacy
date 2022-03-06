@@ -2,24 +2,24 @@
 
 return [
 
-    'name'      =>  'Akaunting',
+    'name' => 'Akaunting',
 
-    'code'      =>  'Document',
+    'code' => 'Document',
 
-    'major'     =>  '2',
+    'major' => '2',
 
-    'minor'     =>  '1',
+    'minor' => '1',
 
-    'patch'     =>  '33',
+    'patch' => '33',
 
-    'build'     =>  '',
+    'build' => '',
 
-    'status'    =>  'Stable',
+    'status' => 'Stable',
 
-    'date'      =>  '02-March-2021',
+    'date' => '02-March-2021',
 
-    'time'      =>  '15:00',
+    'time' => '15:00',
 
-    'zone'      =>  'GMT +3',
+    'zone' => 'GMT +3',
 
 ];

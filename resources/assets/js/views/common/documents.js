@@ -9,7 +9,7 @@ require('./../../bootstrap');
 import Vue from 'vue';
 
 import DashboardPlugin from './../../plugins/dashboard-plugin';
-import {setPromiseTimeout} from './../../plugins/functions';
+import { setPromiseTimeout } from './../../plugins/functions';
 
 import Global from './../../mixins/global';
 
@@ -50,20 +50,20 @@ const app = new Vue({
             discounts: [],
             tax_id: [],
             items: [],
-            selected_items: [],
+            selected_items:[],
             taxes: [],
             page_loaded: false,
             currencies: [],
             min_due_date: false,
             currency_symbol: {
-                "name": "US Dollar",
-                "code": "USD",
-                "rate": 1,
-                "precision": 2,
-                "symbol": "$",
-                "symbol_first": 1,
-                "decimal_mark": ".",
-                "thousands_separator": ","
+               "name":"US Dollar",
+               "code":"USD",
+               "rate":1,
+               "precision":2,
+               "symbol":"$",
+               "symbol_first":1,
+               "decimal_mark":".",
+               "thousands_separator":","
             },
             dropdown_visible: true,
             dynamic_taxes: [],
@@ -78,30 +78,29 @@ const app = new Vue({
         }
 
         if (!this.edit.status) {
-            this.dropdown_visible = false;
+           this.dropdown_visible = false;
         }
 
         this.currency_symbol.rate = this.form.currency_rate;
 
         if (company_currency_code) {
-            let default_currency_symbol = null;
+           let default_currency_symbol = null;
 
-            for (let symbol of this.currencies) {
-                if (symbol.code == company_currency_code) {
-                    default_currency_symbol = symbol.symbol;
-                }
-            }
+           for (let symbol of this.currencies) {
+               if(symbol.code == company_currency_code) {
+                   default_currency_symbol = symbol.symbol;
+               }
+           }
 
-            this.currency_symbol.symbol = default_currency_symbol;
-        }
-        ;
+           this.currency_symbol.symbol = default_currency_symbol;
+        };
     },
 
     methods: {
         onRefFocus(ref) {
-            let index = this.form.items.length - 1;
+            let index = this.form.items.length - 1;  
 
-            this.$refs['items-' + index + '-' + ref][0].focus();
+            this.$refs['items-' + index + '-'  + ref][0].focus();
         },
 
         onCalculateTotal() {
@@ -115,7 +114,7 @@ const app = new Vue({
             let inclusive_tax_total = 0;
 
             // items calculate
-            this.items.forEach(function (item, index) {
+            this.items.forEach(function(item, index) {
                 let item_discount = 0;
 
                 item.total = item.price * item.quantity;
@@ -151,7 +150,7 @@ const app = new Vue({
                     let inclusives = [];
                     let compounds = [];
 
-                    item.tax_ids.forEach(function (item_tax, item_tax_index) {
+                    item.tax_ids.forEach(function(item_tax, item_tax_index) {
                         for (var index_taxes = 0; index_taxes < taxes.length; index_taxes++) {
                             let tax = taxes[index_taxes];
 
@@ -204,7 +203,7 @@ const app = new Vue({
                     if (inclusives.length) {
                         let inclusive_total = 0;
 
-                        inclusives.forEach(function (inclusive) {
+                        inclusives.forEach(function(inclusive) {
                             inclusive_total += inclusive.tax_rate;
 
                             // tax price
@@ -224,7 +223,7 @@ const app = new Vue({
                     if (compounds.length) {
                         let price = 0;
 
-                        compounds.forEach(function (compound) {
+                        compounds.forEach(function(compound) {
                             price = (item.grand_total / 100) * compound.tax_rate;
 
                             item.tax_ids[compound.tax_index].price = price;
@@ -272,7 +271,7 @@ const app = new Vue({
             this.totals.taxes = totals_taxes;
             this.totals.total = grand_total;
 
-            this.form.items.forEach(function (form_item, form_index) {
+            this.form.items.forEach(function(form_item, form_index) {
                 let item = this.items[form_index];
 
                 for (const [key, value] of Object.entries(item)) {
@@ -292,7 +291,7 @@ const app = new Vue({
         calculateTotalsTax(totals_taxes, id, name, price) {
             let total_tax_index = totals_taxes.findIndex(total_tax => {
                 if (total_tax.id === id) {
-                    return true;
+                  return true;
                 }
             }, this);
 
@@ -309,17 +308,17 @@ const app = new Vue({
             return totals_taxes;
         },
 
-        onSelectedItem(item) {
+        onSelectedItem(item){
             this.onAddItem(item);
         },
 
         // addItem to list
         onAddItem(payload) {
-            let {item, itemType} = payload;
+            let { item, itemType } = payload;
             let inputRef = `${itemType === 'newItem' ? 'name' : 'description'}`; // indication for which input to focus first
             let total = 1 * item.price;
             let item_taxes = [];
-
+            
             if (item.tax_ids) {
                 item.tax_ids.forEach(function (tax_id, index) {
                     if (this.taxes.includes(tax_id)) {
@@ -364,11 +363,11 @@ const app = new Vue({
                 // invoice_item_checkbox_sample: [],
             });
 
-            setTimeout(function () {
+            setTimeout(function() {
                 this.onRefFocus(inputRef);
             }.bind(this), 100);
 
-            setTimeout(function () {
+            setTimeout(function() {
                 this.onCalculateTotal();
             }.bind(this), 800);
         },
@@ -380,7 +379,7 @@ const app = new Vue({
 
             let selected_tax;
 
-            this.dynamic_taxes.forEach(function (tax) {
+            this.dynamic_taxes.forEach(function(tax) {
                 if (tax.id == this.tax_id) {
                     selected_tax = tax;
                 }
@@ -487,7 +486,7 @@ const app = new Vue({
                 url: url + '/modals/documents/' + document_id + '/transactions/create',
                 title: '',
                 html: '',
-                buttons: {}
+                buttons:{}
             };
 
             let payment_promise = Promise.resolve(window.axios.get(payment.url));
@@ -508,7 +507,7 @@ const app = new Vue({
 
                         data: function () {
                             return {
-                                form: {},
+                                form:{},
                                 payment: payment,
                             }
                         },
@@ -523,16 +522,16 @@ const app = new Vue({
 
                                 let data = this.form.data();
 
-                                FormData.prototype.appendRecursive = function (data, wrapper = null) {
-                                    for (var name in data) {
+                                FormData.prototype.appendRecursive = function(data, wrapper = null) {
+                                    for(var name in data) {
                                         if (wrapper) {
-                                            if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                                            if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                                                 this.appendRecursive(data[name], wrapper + '[' + name + ']');
                                             } else {
                                                 this.append(wrapper + '[' + name + ']', data[name]);
                                             }
                                         } else {
-                                            if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                                            if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                                                 this.appendRecursive(data[name], name);
                                             } else {
                                                 this.append(name, data[name]);
@@ -554,28 +553,28 @@ const app = new Vue({
                                         'Content-Type': 'multipart/form-data'
                                     }
                                 })
-                                    .then(response => {
-                                        if (response.data.success) {
-                                            if (response.data.redirect) {
-                                                this.form.loading = true;
+                                .then(response => {
+                                    if (response.data.success) {
+                                        if (response.data.redirect) {
+                                            this.form.loading = true;
 
-                                                window.location.href = response.data.redirect;
-                                            }
+                                            window.location.href = response.data.redirect;
                                         }
+                                    }
 
-                                        if (response.data.error) {
-                                            this.form.loading = false;
-
-                                            this.form.response = response.data;
-                                        }
-                                    })
-                                    .catch(error => {
+                                    if (response.data.error) {
                                         this.form.loading = false;
 
-                                        this.form.onFail(error);
+                                        this.form.response = response.data;
+                                    }
+                                })
+                                .catch(error => {
+                                    this.form.loading = false;
 
-                                        this.method_show_html = error.message;
-                                    });
+                                    this.form.onFail(error);
+
+                                    this.method_show_html = error.message;
+                                });
                             },
 
                             onCancel() {
@@ -590,11 +589,11 @@ const app = new Vue({
                     })
                 });
             })
-                .catch(error => {
-                })
-                .finally(function () {
-                    // always executed
-                });
+            .catch(error => {
+            })
+            .finally(function () {
+                // always executed
+            });
         },
 
         // Change currency get money
@@ -608,13 +607,13 @@ const app = new Vue({
                 let currency_promise = Promise.resolve(window.axios.get((url + '/settings/currencies')));
 
                 currency_promise.then(response => {
-                    if (response.data.success) {
+                    if ( response.data.success) {
                         this.currencies = response.data.data;
                     }
                 })
-                    .catch(error => {
-                        this.onChangeCurrency(currency_code);
-                    });
+                .catch(error => {
+                    this.onChangeCurrency(currency_code);
+                });
             }
 
             this.currencies.forEach(function (currency, index) {
@@ -628,7 +627,7 @@ const app = new Vue({
                 }
 
                 if (company_currency_code == currency.code) {
-                    this.currency_symbol = currency;
+                   this.currency_symbol = currency;
                 }
             }, this);
         },
@@ -642,7 +641,7 @@ const app = new Vue({
                 if (document.querySelectorAll('.js-conversion-input')) {
                     let currency_input = document.querySelectorAll('.js-conversion-input');
 
-                    for (let input of currency_input) {
+                    for(let input of currency_input) {
                         input.setAttribute('size', input.value.length);
                     }
                 }
@@ -657,7 +656,7 @@ const app = new Vue({
             this.edit.status = true;
             this.edit.currency = 1;
 
-            document_items.forEach(function (item) {
+            document_items.forEach(function(item) {
                 // form set item
                 this.form.items.push({
                     item_id: item.item_id,
@@ -687,7 +686,7 @@ const app = new Vue({
 
                 let item_taxes = [];
 
-                item.taxes.forEach(function (item_tax) {
+                item.taxes.forEach(function(item_tax) {
                     item_taxes.push({
                         id: item_tax.tax_id,
                         name: item_tax.name,
@@ -712,11 +711,11 @@ const app = new Vue({
                 });
             }, this);
 
-            this.items.forEach(function (item) {
-                item.tax_ids.forEach(function (tax) {
+            this.items.forEach(function(item) {
+                item.tax_ids.forEach(function(tax) {
                     let total_tax_index = this.totals.taxes.findIndex(total_tax => {
                         if (total_tax.id === tax.id) {
-                            return true;
+                          return true;
                         }
                     }, this);
 

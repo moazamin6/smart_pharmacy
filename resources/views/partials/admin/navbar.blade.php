@@ -5,13 +5,12 @@
             @stack('navbar_search')
 
             @can('read-common-search')
-                <livewire:common.search/>
+                <livewire:common.search />
             @endcan
 
             <ul class="navbar-nav align-items-center ml-md-auto">
                 <li class="nav-item d-xl-none">
-                    <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
-                         data-target="#sidenav-main">
+                    <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
                         <div class="sidenav-toggler-inner">
                             <i class="sidenav-toggler-line"></i>
                             <i class="sidenav-toggler-line"></i>
@@ -30,8 +29,7 @@
 
                 @canany(['create-sales-invoices', 'create-sales-revenues', 'create-sales-invoices', 'create-purchases-bills', 'create-purchases-payments', 'create-purchases-vendors'])
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-plus"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark dropdown-menu-right">
@@ -112,14 +110,12 @@
 
                 @can('read-common-notifications')
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span>
                                 <i class="far fa-bell"></i>
                             </span>
                             @if ($notifications)
-                                <span
-                                    class="badge badge-md badge-circle badge-reminder badge-warning">{{ $notifications }}</span>
+                                <span class="badge badge-md badge-circle badge-reminder badge-warning">{{ $notifications }}</span>
                             @endif
                         </a>
 
@@ -134,8 +130,7 @@
                                 @stack('notification_new_apps_start')
 
                                 @if (!empty($new_apps) && count($new_apps))
-                                    <a href="{{ route('notifications.index') . '#new-apps' }}"
-                                       class="list-group-item list-group-item-action">
+                                    <a href="{{ route('notifications.index') . '#new-apps' }}" class="list-group-item list-group-item-action">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <i class="fa fa-rocket"></i>
@@ -154,8 +149,7 @@
                                 @stack('notification_exports_completed_start')
 
                                 @if (!empty($exports['completed']) && count($exports['completed']))
-                                    <a href="{{ route('notifications.index') . '#exports' }}"
-                                       class="list-group-item list-group-item-action">
+                                    <a href="{{ route('notifications.index') . '#exports' }}" class="list-group-item list-group-item-action">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <i class="fas fa-file-export"></i>
@@ -174,8 +168,7 @@
                                 @stack('notification_exports_failed_start')
 
                                 @if (!empty($exports['failed']) && count($exports['failed']))
-                                    <a href="{{ route('notifications.index') . '#exports' }}"
-                                       class="list-group-item list-group-item-action">
+                                    <a href="{{ route('notifications.index') . '#exports' }}" class="list-group-item list-group-item-action">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <i class="fas fa-file-export"></i>
@@ -194,8 +187,7 @@
                                 @stack('notification_imports_completed_start')
 
                                 @if (!empty($imports['completed']) && count($imports['completed']))
-                                    <a href="{{ route('notifications.index') . '#imports' }}"
-                                       class="list-group-item list-group-item-action">
+                                    <a href="{{ route('notifications.index') . '#imports' }}" class="list-group-item list-group-item-action">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <i class="fas fa-file-import"></i>
@@ -214,8 +206,7 @@
                                 @stack('notification_imports_failed_start')
 
                                 @if (!empty($imports['failed']) && count($imports['failed']))
-                                    <a href="{{ route('notifications.index') . '#imports' }}"
-                                       class="list-group-item list-group-item-action">
+                                    <a href="{{ route('notifications.index') . '#imports' }}" class="list-group-item list-group-item-action">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <i class="fas fa-file-import"></i>
@@ -235,8 +226,7 @@
 
                                 @can('read-purchases-bills')
                                     @if (count($bills))
-                                        <a href="{{ route('notifications.index') . '#reminder-bill' }}"
-                                           class="list-group-item list-group-item-action">
+                                        <a href="{{ route('notifications.index') . '#reminder-bill' }}" class="list-group-item list-group-item-action">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
                                                     <i class="fa fa-shopping-cart"></i>
@@ -257,8 +247,7 @@
 
                                 @can('read-sales-invoices')
                                     @if (count($invoices))
-                                        <a href="{{ route('notifications.index') . '#reminder-invoice' }}"
-                                           class="list-group-item list-group-item-action">
+                                        <a href="{{ route('notifications.index') . '#reminder-invoice' }}" class="list-group-item list-group-item-action">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
                                                     <i class="fa fa-money-bill"></i>
@@ -277,8 +266,7 @@
                             </div>
 
                             @if ($notifications)
-                                <a href="{{ route('notifications.index') }}"
-                                   class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans('header.notifications.view_all') }}</a>
+                                <a href="{{ route('notifications.index') }}" class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans('header.notifications.view_all') }}</a>
                             @else
                                 <a class="dropdown-item text-center text-primary font-weight-bold py-3">{{ trans_choice('header.notifications.counter', $notifications, ['count' => $notifications]) }}</a>
                             @endif
@@ -290,14 +278,12 @@
 
                 @can('read-install-updates')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('updates.index') }}" title="{{ $updates }} Updates Available"
-                           role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="{{ route('updates.index') }}" title="{{ $updates }} Updates Available" role="button" aria-haspopup="true" aria-expanded="false">
                             <span>
                                 <i class="fa fa-sync-alt"></i>
                             </span>
                             @if ($updates)
-                                <span
-                                    class="badge badge-md badge-circle badge-update badge-warning">{{ $updates }}</span>
+                                <span class="badge badge-md badge-circle badge-update badge-warning">{{ $updates }}</span>
                             @endif
                         </a>
                     </li>
@@ -306,8 +292,7 @@
                 @stack('navbar_help_start')
 
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="{{ url(trans('header.support_link')) }}" target="_blank"
-                       title="{{ trans('general.help') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="{{ url(trans('header.support_link')) }}" target="_blank" title="{{ trans('general.help') }}" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-life-ring"></i>
                     </a>
                 </li>
@@ -319,16 +304,12 @@
 
             <ul class="navbar-nav align-items-center ml-auto ml-md-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="true">
+                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <div class="media align-items-center">
                             @if (setting('default.use_gravatar', '0') == '1')
-                                <img src="{{ $user->picture }}" alt="{{ $user->name }}"
-                                     class="rounded-circle image-style user-img" title="{{ $user->name }}">
+                                <img src="{{ $user->picture }}" alt="{{ $user->name }}" class="rounded-circle image-style user-img" title="{{ $user->name }}">
                             @elseif (is_object($user->picture))
-                                <img src="{{ Storage::url($user->picture->id) }}"
-                                     class="rounded-circle image-style user-img" alt="{{ $user->name }}"
-                                     title="{{ $user->name }}">
+                                <img src="{{ Storage::url($user->picture->id) }}" class="rounded-circle image-style user-img" alt="{{ $user->name }}" title="{{ $user->name }}">
                             @else
                                 <img src="{{ asset('public/img/user.svg') }}" class="user-img" alt="{{ $user->name }}"/>
                             @endif
@@ -355,7 +336,7 @@
                                 <span>{{ trans('auth.profile') }}</span>
                             </a>
                         @endcanany
-
+                        
                         @stack('navbar_profile_edit_end')
 
                         @canany(['read-auth-users', 'read-auth-roles', 'read-auth-permissions'])

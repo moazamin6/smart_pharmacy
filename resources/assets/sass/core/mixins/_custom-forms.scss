@@ -6,7 +6,6 @@
                     border-color: $color;
                     @include gradient-bg($color);
                 }
-
                 &::after {
                     background-image: $color;
                 }
@@ -19,7 +18,7 @@
 @mixin custom-toggle-variant($color) {
     input {
         &:checked {
-            + .custom-toggle-slider {
+             + .custom-toggle-slider {
                 border-color: $color;
 
                 &:before {
@@ -27,9 +26,9 @@
                 }
 
 
-                &:after {
-                    color: $color;
-                }
+				&:after {
+					color: $color;
+				}
             }
         }
 

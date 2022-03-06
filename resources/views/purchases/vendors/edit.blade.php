@@ -16,47 +16,47 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'user') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'user') }}
 
-                {{ Form::textGroup('email', trans('general.email'), 'envelope', []) }}
+                    {{ Form::textGroup('email', trans('general.email'), 'envelope', []) }}
 
-                {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', []) }}
+                    {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', []) }}
 
-                {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, $vendor->currency_code, ['required' => 'required', 'path' => route('modals.currencies.create'), 'field' => ['key' => 'code', 'value' => 'name']]) }}
+                    {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, $vendor->currency_code, ['required' => 'required', 'path' => route('modals.currencies.create'), 'field' => ['key' => 'code', 'value' => 'name']]) }}
 
-                {{ Form::textGroup('phone', trans('general.phone'), 'phone', []) }}
+                    {{ Form::textGroup('phone', trans('general.phone'), 'phone', []) }}
 
-                {{ Form::textGroup('website', trans('general.website'), 'globe',[]) }}
+                    {{ Form::textGroup('website', trans('general.website'), 'globe',[]) }}
 
-                {{ Form::textareaGroup('address', trans('general.address'), '', $vendor->address, ['rows' => '2', 'v-model' => 'form.address']) }}
+                    {{ Form::textareaGroup('address', trans('general.address'), '', $vendor->address, ['rows' => '2', 'v-model' => 'form.address']) }}
 
-                {{ Form::textGroup('city', trans_choice('general.cities', 1), 'city', []) }}
+                    {{ Form::textGroup('city', trans_choice('general.cities', 1), 'city', []) }}
 
-                {{ Form::textGroup('zip_code', trans('general.zip_code'), 'mail-bulk', []) }}
+                    {{ Form::textGroup('zip_code', trans('general.zip_code'), 'mail-bulk', []) }}
 
-                {{ Form::textGroup('state', trans('general.state'), 'city', []) }}
+                    {{ Form::textGroup('state', trans('general.state'), 'city', []) }}
 
-                {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), $vendor->country, ['model' => 'form.country']) }}
+                    {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), $vendor->country, ['model' => 'form.country']) }}
 
-                {{ Form::fileGroup('logo', trans_choice('general.logos', 1), '', ['dropzone-class' => 'form-file']) }}
+                    {{ Form::fileGroup('logo', trans_choice('general.logos', 1), '', ['dropzone-class' => 'form-file']) }}
 
-                {{ Form::textGroup('reference', trans('general.reference'), 'file', []) }}
+                    {{ Form::textGroup('reference', trans('general.reference'), 'file', []) }}
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), $vendor->enabled) }}
-            </div>
-        </div>
-
-        @can('update-purchases-vendors')
-            <div class="card-footer">
-                <div class="row save-buttons">
-                    {{ Form::saveButtons('vendors.index') }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), $vendor->enabled) }}
                 </div>
             </div>
-        @endcan
 
-        {{ Form::hidden('type', 'vendor') }}
+            @can('update-purchases-vendors')
+                <div class="card-footer">
+                    <div class="row save-buttons">
+                        {{ Form::saveButtons('vendors.index') }}
+                    </div>
+                </div>
+            @endcan
+
+            {{ Form::hidden('type', 'vendor') }}
         {!! Form::close() !!}
     </div>
 @endsection

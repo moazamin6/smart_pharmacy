@@ -5,7 +5,7 @@
                 <i class="fas fa-plus-circle"></i> &nbsp; {{ addItemText }}
             </button>
         </div>
-
+ 
         <div class="aka-select aka-select--fluid" :class="[{'is-open': show.item_list}]" tabindex="-1">
             <div class="aka-select-menu" v-if="show.item_list">
                 <div class="aka-select-search-container">
@@ -17,12 +17,12 @@
                                 </span>
                             </div>
 
-                            <input
+                            <input 
                                 type="text"
                                 data-input="true"
                                 class="form-control"
-                                autocapitalize="default"
-                                autocorrect="ON"
+                                autocapitalize="default" 
+                                autocorrect="ON" 
                                 :placeholder="placeholder"
                                 v-model="search"
                                 @input="onInput"
@@ -34,10 +34,10 @@
                 </div>
 
                 <ul class="aka-select-menu-options">
-                    <div
-                        class="aka-select-menu-option"
-                        v-for="(item, index) in sortedItems"
-                        :key="index"
+                    <div 
+                        class="aka-select-menu-option" 
+                        v-for="(item, index) in sortedItems" 
+                        :key="index" 
                         :class="isItemMatched ? 'highlightItem' : ''"
                         @click="onItemSelected(item)"
                     >
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="item-select-column item-select-price w-25">
-                                <money
+                                <money 
                                     :name="'item-id-' + item.id"
                                     :value="item.price"
                                     v-bind="money"
@@ -85,7 +85,7 @@
 <script>
 import Vue from 'vue';
 
-import {Select, Option, OptionGroup, ColorPicker} from 'element-ui';
+import { Select, Option, OptionGroup, ColorPicker } from 'element-ui';
 
 import {Money} from 'v-money';
 import AkauntingModalAddNew from './AkauntingModalAddNew';
@@ -270,7 +270,7 @@ export default {
                         name: value,
                         description: '',
                         price: 0,
-                        tax_ids: [],
+                        tax_ids: [], 
                     });
 
                     index++;
@@ -295,7 +295,7 @@ export default {
         showItems() {
             this.show.item_list = true;
 
-            setTimeout(function () {
+            setTimeout(function() {
                 this.$refs['input-item-field-' + this._uid].focus();
             }.bind(this), 100);
         },
@@ -308,7 +308,7 @@ export default {
                 return;
             }
 
-            //condition that checks if input is below the given character limit
+            //condition that checks if input is below the given character limit 
             if (this.search.length < this.searchCharLimit) {
                 this.setItemList(this.items); //once the user deletes the search input, we show the overall item list
                 this.sortItems(); // we order it as wanted
@@ -317,15 +317,15 @@ export default {
                 return;
             }
 
-            this.fetchMatchedItems().then(() => this.item_list.length > 0 ? this.isItemMatched = true : this.isItemMatched = false);
+            this.fetchMatchedItems().then(() => this.item_list.length > 0 ? this.isItemMatched = true : this.isItemMatched = false );
 
             this.$emit('input', this.search);
 
-            this.isItemMatched === true && this.search.length > 0 ? this.isItemMatched = true : this.isItemMatched = true;
+            this.isItemMatched === true && this.search.length > 0  ? this.isItemMatched = true : this.isItemMatched = true;
         },
 
         inputEnterEvent() {
-            this.isItemMatched
+            this.isItemMatched 
                 ? this.onItemSelected()
                 : this.onItemCreate()
         },
@@ -350,16 +350,15 @@ export default {
                         });
                     }, this);
                 })
-                .catch(error => {
-                });
+                .catch(error => {});
         },
 
         onItemSelected(clickSelectedItem) {
-            let item;
+            let item; 
             const firstMatchedItem = this.item_list[0];
             const isClickSelectedItem = clickSelectedItem ? true : false;
-            isClickSelectedItem ? item = clickSelectedItem : item = firstMatchedItem;
-            const indexeditem = {...item, index: this.currentIndex};
+            isClickSelectedItem ? item = clickSelectedItem  : item = firstMatchedItem;
+            const indexeditem = { ...item, index: this.currentIndex };
 
             this.addItem(indexeditem, 'oldItem');
         },
@@ -367,7 +366,7 @@ export default {
         addItem(item, itemType) {
             this.selected_items.push(item);
 
-            this.$emit('item', {item, itemType});
+            this.$emit('item',  { item, itemType } );
             this.$emit('items', this.selected_items);
 
             this.show.item_selected = false;
@@ -404,16 +403,16 @@ export default {
 
             let data = this.form.data();
 
-            FormData.prototype.appendRecursive = function (data, wrapper = null) {
-                for (var name in data) {
+            FormData.prototype.appendRecursive = function(data, wrapper = null) {
+                for(var name in data) {
                     if (wrapper) {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], wrapper + '[' + name + ']');
                         } else {
                             this.append(wrapper + '[' + name + ']', data[name]);
                         }
                     } else {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], name);
                         } else {
                             this.append(name, data[name]);
@@ -435,43 +434,43 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(response => {
-                    this.form.loading = false;
+            .then(response => {
+                this.form.loading = false;
 
-                    if (response.data.success) {
-                        let item = response.data.data;
+                if (response.data.success) {
+                    let item = response.data.data;
 
-                        this.item_list.push({
-                            index: index,
-                            key: item.id,
-                            value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name,
-                            type: this.type,
-                            id: item.id,
-                            name: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name,
-                            description: (item.description) ? item.description : '',
-                            price: (item.price) ? item.price : (this.price == 'purchase_price') ? item.purchase_price : item.sale_price,
-                            tax_ids: (item.tax_ids) ? item.tax_ids : [],
-                        });
+                    this.item_list.push({
+                        index: index,
+                        key: item.id,
+                        value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name,
+                        type: this.type,
+                        id: item.id,
+                        name: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name,
+                        description: (item.description) ? item.description : '',
+                        price: (item.price) ? item.price : (this.price == 'purchase_price') ? item.purchase_price : item.sale_price,
+                        tax_ids: (item.tax_ids) ? item.tax_ids : [],
+                    });
 
-                        this.add_new.show = false;
+                    this.add_new.show = false;
 
-                        this.add_new.html = '';
-                        this.add_new_html = null;
+                    this.add_new.html = '';
+                    this.add_new_html = null;
 
-                        this.$emit('new', item);
+                    this.$emit('new', item);
 
-                        let documentClasses = document.body.classList;
+                    let documentClasses = document.body.classList;
 
-                        documentClasses.remove("modal-open");
-                    }
-                })
-                .catch(error => {
-                    this.form.loading = false;
+                    documentClasses.remove("modal-open");
+                }
+            })
+            .catch(error => {
+                this.form.loading = false;
 
-                    this.form.onFail(error);
+                this.form.onFail(error);
 
-                    this.method_show_html = error.message;
-                });
+                this.method_show_html = error.message;
+            });
         },
 
         onCancel() {
@@ -513,7 +512,7 @@ export default {
                 return 0;
             });
 
-            const sortedItemList = this.item_list.filter(item =>
+            const sortedItemList = this.item_list.filter(item => 
                 item.value.toLowerCase().includes(this.search.toLowerCase())
             );
 
@@ -548,7 +547,7 @@ export default {
         },
 
         show: {
-            handler: function (newValue) {
+            handler: function(newValue) {
                 if (newValue) {
                     document.addEventListener('click', this.closeIfClickedOutside);
                 }
@@ -560,7 +559,7 @@ export default {
 </script>
 
 <style scoped>
-.highlightItem:first-child {
-    background-color: #F5F7FA;
-}
+    .highlightItem:first-child {
+        background-color: #F5F7FA;
+    }
 </style>

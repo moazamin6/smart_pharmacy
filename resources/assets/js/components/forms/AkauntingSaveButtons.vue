@@ -19,36 +19,36 @@
 </template>
 
 <script>
-import Vue from 'vue';
-// Import component
-import Loading from 'vue-loading-overlay';
-// Import stylesheet
-import 'vue-loading-overlay/dist/vue-loading.css';
+    import Vue from 'vue';
+    // Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
-export default {
-    name: 'akaunting-save-buttons',
-    components: {
-        Loading
-    },
-    props: {
-        formSubmit: Function,
-        loading: false
-    },
-    data() {
-        return {
-            isLoading: loading,
-            fullPage: true
-        }
-    },
-    methods: {
-        doLoading() {
-            this.isLoading = true;
-
-            this.formSubmit();
+    export default {
+        name: 'akaunting-save-buttons',
+        components: {
+            Loading
         },
-        onCancel() {
-            console.log('User cancelled the loader.')
+        props: {
+            formSubmit: Function,
+            loading: false
+        },
+        data () {
+            return {
+                isLoading: loading,
+                fullPage: true
+            }
+        },
+        methods: {
+            doLoading() {
+                this.isLoading = true;
+
+                this.formSubmit();
+            },
+            onCancel() {
+                console.log('User cancelled the loader.')
+            }
         }
     }
-}
 </script>

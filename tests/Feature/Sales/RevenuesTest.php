@@ -39,7 +39,7 @@ class RevenuesTest extends FeatureTestCase
             ->assertSeeText(trans('general.title.new', ['type' => trans_choice('general.revenues', 1)]));
     }
 
-   public function testItShouldCreateRevenue()
+    public function testItShouldCreateRevenue()
     {
         $request = $this->getRequest();
 
@@ -52,17 +52,17 @@ class RevenuesTest extends FeatureTestCase
         $this->assertDatabaseHas('transactions', $request);
     }
 
-	public function testItShouldSeeRevenueUpdatePage()
-	{
+    public function testItShouldSeeRevenueUpdatePage()
+    {
         $request = $this->getRequest();
 
         $revenue = $this->dispatch(new CreateTransaction($request));
 
-		$this->loginAs()
-			->get(route('revenues.edit', $revenue->id))
-			->assertStatus(200)
-			->assertSee($revenue->amount);
-	}
+        $this->loginAs()
+            ->get(route('revenues.edit', $revenue->id))
+            ->assertStatus(200)
+            ->assertSee($revenue->amount);
+    }
 
     public function testItShouldUpdateRevenue()
     {
@@ -75,7 +75,7 @@ class RevenuesTest extends FeatureTestCase
         $this->loginAs()
             ->patch(route('revenues.update', $revenue->id), $request)
             ->assertStatus(200)
-			->assertSee($request['amount']);
+            ->assertSee($request['amount']);
 
         $this->assertFlashLevel('success');
 

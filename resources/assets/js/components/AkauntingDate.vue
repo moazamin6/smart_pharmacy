@@ -1,29 +1,29 @@
 <template>
     <base-input :label="title"
-                :name="name"
-                :class="[
+        :name="name"
+        :class="[
             {'readonly': readonly},
             {'disabled': disabled},
             {'hidden-year': hiddenYear},
             {'data-value-min': dataValueMin},
             formClasses
         ]"
-                :footer-error="formError"
-                :prependIcon="icon"
-                :readonly="readonly"
-                :disabled="disabled"
-                @focus="focus"
-    >
+        :footer-error="formError"
+        :prependIcon="icon"
+        :readonly="readonly"
+        :disabled="disabled"
+        @focus="focus"
+        >
         <flat-picker slot-scope="{focus, blur}"
-                     :name="dataName"
-                     @on-open="focus"
-                     @on-close="blur"
-                     :config="dateConfig"
-                     class="form-control datepicker"
-                     v-model="real_model"
-                     @input="change"
-                     :readonly="readonly"
-                     :disabled="disabled">
+            :name="dataName"
+            @on-open="focus"
+            @on-close="blur"
+            :config="dateConfig"
+            class="form-control datepicker"
+            v-model="real_model"
+            @input="change"
+            :readonly="readonly"
+            :disabled="disabled">
         </flat-picker>
     </base-input>
 </template>
@@ -136,7 +136,8 @@ export default {
             try {
                 const lang = require(`flatpickr/dist/l10n/${this.locale}.js`).default[this.locale];
                 this.dateConfig.locale = lang;
-            } catch (e) {
+            }
+            catch (e) {
             }
         }
     },
@@ -187,14 +188,14 @@ export default {
     },
 
     watch: {
-        value: function (val) {
+        value: function(val) {
             this.real_model = val;
         },
 
-        dateConfig: function () {
-            if (!this.dateConfig.minDate) {
-                return;
-            }
+        dateConfig: function() {
+           if (!this.dateConfig.minDate) {
+               return;
+           }
 
             if (this.real_model < this.dateConfig.minDate) {
                 this.real_model = this.addDays(this.dateConfig.minDate);
@@ -205,7 +206,7 @@ export default {
 </script>
 
 <style>
-.hidden-year-flatpickr {
-    display: none !important;
-}
+    .hidden-year-flatpickr {
+        display: none !important;
+    }
 </style>

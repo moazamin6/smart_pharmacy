@@ -1,356 +1,347 @@
 <template>
-    <div>
-        <div class="row align-items-center" v-if="Object.keys(cards).length">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="item_name" class="form-control-label">{{ textCard }}</label>
-                    <div class="input-group-invoice-text" v-for="(name, key, id) in cards">
-                        <div class="custom-radio mb-2">
-                            <button type="button"
-                                    :id="'card-'+ key + '-' + id"
-                                    class="btn btn-outline-default w-100"
-                                    @click="onSelectedCard(key)"
-                                    :disabled="loading">
-                                <div class="description text-center">
-                                    <i v-if="loading" class="fa fa-spinner fa-spin fa-1x checkout-spin"></i>
+<div>
+    <div class="row align-items-center" v-if="Object.keys(cards).length">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="item_name" class="form-control-label">{{ textCard }}</label>
+                <div class="input-group-invoice-text" v-for="(name, key, id) in cards">
+                    <div class="custom-radio mb-2">
+                        <button type="button"
+                            :id="'card-'+ key + '-' + id"
+                            class="btn btn-outline-default w-100"
+                            @click="onSelectedCard(key)"
+                            :disabled="loading">
+                            <div class="description text-center">
+                                <i v-if="loading" class="fa fa-spinner fa-spin fa-1x checkout-spin"></i>
 
-                                    {{ name }}
-                                </div>
-                            </button>
-                        </div>
+                                {{ name }}
+                            </div>
+                        </button>
                     </div>
+                </div>
 
-                    <div class="input-group-invoice-text">
-                        <div class="custom-radio mb-2">
-                            <button type="button"
-                                    id="card-new-card"
-                                    class="btn btn-outline-default w-100"
-                                    data-toggle="collapse"
-                                    data-target="#collapseNewCard"
-                                    aria-expanded="false"
-                                    aria-controls="collapseNewCard"
-                                    :disabled="loading">
-                                <div class="description text-center">
-                                    <i v-if="loading" class="fa fa-spinner fa-spin fa-1x checkout-spin"></i>
+                <div class="input-group-invoice-text">
+                    <div class="custom-radio mb-2">
+                        <button type="button"
+                            id="card-new-card"
+                            class="btn btn-outline-default w-100"
+                            data-toggle="collapse"
+                            data-target="#collapseNewCard"
+                            aria-expanded="false"
+                            aria-controls="collapseNewCard"
+                            :disabled="loading">
+                            <div class="description text-center">
+                                <i v-if="loading" class="fa fa-spinner fa-spin fa-1x checkout-spin"></i>
 
-                                    {{ textNewCard }}
-                                </div>
-                            </button>
-                        </div>
+                                {{ textNewCard }}
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="collapse w-100" id="collapseNewCard">
-                <div class="row">
-                    <div class="col-md-6 p-5">
-                        <div class="form-group">
-                            <label for="cardName" class="form-control-label">{{ textCardName }}</label>
-                            <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
+        <div class="collapse w-100" id="collapseNewCard">
+            <div class="row">
+                <div class="col-md-6 p-5">
+                    <div class="form-group">
+                        <label for="cardName" class="form-control-label">{{ textCardName }}</label>
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-font"></i>
                                 </span>
-                                </div>
-                                <input
-                                    type="text"
-                                    :id="fields.cardName"
-                                    v-letter-only
-                                    @input="changeName"
-                                    class="form-control"
-                                    :placeholder="placeholderCardName"
-                                    :value="formData.cardName"
-                                    data-card-field
-                                    autocomplete="off"
-                                />
                             </div>
+                            <input
+                                type="text"
+                                :id="fields.cardName"
+                                v-letter-only
+                                @input="changeName"
+                                class="form-control"
+                                :placeholder="placeholderCardName"
+                                :value="formData.cardName"
+                                data-card-field
+                                autocomplete="off"
+                            />
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="cardNumber" class="form-control-label">{{ textCardNumber }}</label>
-                            <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
+                    <div class="form-group">
+                        <label for="cardNumber" class="form-control-label">{{ textCardNumber }}</label>
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-credit-card"></i>
                                 </span>
-                                </div>
-                                <input
-                                    type="tel"
-                                    :id="fields.cardNumber"
-                                    @input="changeNumber"
-                                    @focus="focusCardNumber"
-                                    @blur="blurCardNumber"
-                                    class="form-control"
-                                    :placeholder="placeholderCardNumber"
-                                    :value="formData.cardNumber"
-                                    :maxlength="cardNumberMaxLength"
-                                    data-card-field
-                                    autocomplete="off"
-                                />
                             </div>
+                            <input
+                                type="tel"
+                                :id="fields.cardNumber"
+                                @input="changeNumber"
+                                @focus="focusCardNumber"
+                                @blur="blurCardNumber"
+                                class="form-control"
+                                :placeholder="placeholderCardNumber"
+                                :value="formData.cardNumber"
+                                :maxlength="cardNumberMaxLength"
+                                data-card-field
+                                autocomplete="off"
+                            />
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-7">
-                                <label for="cardMonth" class="form-control-label">{{ textExpirationDate }}</label>
-                                <div class="card-form__group">
-                                    <select
-                                        class="card-input__input -select"
-                                        :id="fields.cardMonth"
-                                        v-model="formData.cardMonth"
-                                        @change="changeMonth"
-                                        data-card-field
-                                    >
-                                        <option value disabled selected>{{ textMonth }}</option>
-                                        <option
-                                            v-bind:value="n < 10 ? '0' + n : n"
-                                            v-for="n in 12"
-                                            v-bind:disabled="n < minCardMonth"
-                                            v-bind:key="n"
-                                        >{{ generateMonthValue(n) }}
-                                        </option>
-                                    </select>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label for="cardMonth" class="form-control-label">{{ textExpirationDate }}</label>
+                            <div class="card-form__group">
+                                <select
+                                    class="card-input__input -select"
+                                    :id="fields.cardMonth"
+                                    v-model="formData.cardMonth"
+                                    @change="changeMonth"
+                                    data-card-field
+                                >
+                                    <option value disabled selected>{{ textMonth }}</option>
+                                    <option
+                                        v-bind:value="n < 10 ? '0' + n : n"
+                                        v-for="n in 12"
+                                        v-bind:disabled="n < minCardMonth"
+                                        v-bind:key="n"
+                                    >{{generateMonthValue(n)}}</option>
+                                </select>
 
-                                    <select
-                                        class="card-input__input -select"
-                                        :id="fields.cardYear"
-                                        v-model="formData.cardYear"
-                                        @change="changeYear"
-                                        data-card-field
+                                <select
+                                    class="card-input__input -select"
+                                    :id="fields.cardYear"
+                                    v-model="formData.cardYear"
+                                    @change="changeYear"
+                                    data-card-field
                                     >
                                         <option value disabled selected>{{ textYear }}</option>
                                         <option
                                             v-bind:value="$index + minCardYear"
                                             v-for="(n, $index) in 12"
                                             v-bind:key="n"
-                                        >{{ $index + minCardYear }}
-                                        </option>
-                                    </select>
-                                </div>
+                                        >{{$index + minCardYear}}</option>
+                                </select>
                             </div>
+                        </div>
 
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="cardCvv" class="form-control-label">{{ textCvv }}</label>
-                                    <div class="input-group input-group-merge">
-                                        <div class="input-group-prepend">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="cardCvv" class="form-control-label">{{ textCvv }}</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="fas fa-key"></i>
                                         </span>
-                                        </div>
-                                        <input
-                                            type="tel"
-                                            class="form-control"
-                                            :placeholder="placeholderCvv"
-                                            v-number-only
-                                            :id="fields.cardCvv"
-                                            maxlength="4"
-                                            :value="formData.cardCvv"
-                                            @input="changeCvv"
-                                            data-card-field
-                                            autocomplete="off"
-                                        />
                                     </div>
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+                                        :placeholder="placeholderCvv"
+                                        v-number-only
+                                        :id="fields.cardCvv"
+                                        maxlength="4"
+                                        :value="formData.cardCvv"
+                                        @input="changeCvv"
+                                        data-card-field
+                                        autocomplete="off"
+                                    />
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group" v-if="storeCard">
-                            <div class="custom-control custom-checkbox">
-                                <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card"
-                                       type="checkbox" value="true" class="custom-control-input">
-                                <label :for="'store_card' + _uid" class="custom-control-label">
-                                    <strong>{{ textStoreCard }}</strong>
-                                </label>
+                    <div class="form-group" v-if="storeCard">
+                        <div class="custom-control custom-checkbox">
+                            <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card" type="checkbox" value="true" class="custom-control-input">
+                            <label :for="'store_card' + _uid" class="custom-control-label">
+                                <strong>{{ textStoreCard }}</strong>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-icon btn-success" v-on:click="invaildCard" :disabled="loading">
+                            <div v-if="loading" class="aka-loader-frame">
+                                <div class="aka-loader"></div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <button class="btn btn-icon btn-success" v-on:click="invaildCard" :disabled="loading">
-                                <div v-if="loading" class="aka-loader-frame">
-                                    <div class="aka-loader"></div>
-                                </div>
-                                <span v-if="!loading" class="btn-inner--text">{{ textButton }}</span>
-                            </button>
-                        </div>
+                            <span v-if="!loading" class="btn-inner--text">{{ textButton }}</span>
+                        </button>
                     </div>
+                </div>
 
-                    <div class="col-md-6 mt-6">
-                        <Card
-                            :fields="fields"
-                            :labels="formData"
-                            :isCardNumberMasked="isCardNumberMasked"
-                            :randomBackgrounds="randomBackgrounds"
-                            :backgroundImage="backgroundImage"
-                        />
-                    </div>
+                <div class="col-md-6 mt-6">
+                    <Card
+                        :fields="fields"
+                        :labels="formData"
+                        :isCardNumberMasked="isCardNumberMasked"
+                        :randomBackgrounds="randomBackgrounds"
+                        :backgroundImage="backgroundImage"
+                    />
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row align-items-center" v-if="!Object.keys(cards).length">
-            <div class="col-md-6 p-5">
-                <div class="form-group">
-                    <label for="cardNumber" class="form-control-label">{{ textCardNumber }}</label>
-                    <div class="input-group input-group-merge">
-                        <div class="input-group-prepend">
+    <div class="row align-items-center" v-if="!Object.keys(cards).length">
+        <div class="col-md-6 p-5">
+            <div class="form-group">
+                <label for="cardNumber" class="form-control-label">{{ textCardNumber }}</label>
+                <div class="input-group input-group-merge">
+                    <div class="input-group-prepend">
                         <span class="input-group-text">
                             <i class="fas fa-credit-card"></i>
                         </span>
-                        </div>
-                        <input
-                            type="tel"
-                            :id="fields.cardNumber"
-                            @input="changeNumber"
-                            @focus="focusCardNumber"
-                            @blur="blurCardNumber"
-                            class="form-control"
-                            :placeholder="placeholderCardNumber"
-                            :value="formData.cardNumber"
-                            :maxlength="cardNumberMaxLength"
-                            data-card-field
-                            autocomplete="off"
-                        />
                     </div>
-                    <div class="invalid-feedback d-block" v-if="validations.card_number"
-                         v-html="validations.card_number[0]"></div>
+                    <input
+                        type="tel"
+                        :id="fields.cardNumber"
+                        @input="changeNumber"
+                        @focus="focusCardNumber"
+                        @blur="blurCardNumber"
+                        class="form-control"
+                        :placeholder="placeholderCardNumber"
+                        :value="formData.cardNumber"
+                        :maxlength="cardNumberMaxLength"
+                        data-card-field
+                        autocomplete="off"
+                    />
                 </div>
+                <div class="invalid-feedback d-block" v-if="validations.card_number" v-html="validations.card_number[0]"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="cardName" class="form-control-label">{{ textCardName }}</label>
-                    <div class="input-group input-group-merge">
-                        <div class="input-group-prepend">
+            <div class="form-group">
+                <label for="cardName" class="form-control-label">{{ textCardName }}</label>
+                <div class="input-group input-group-merge">
+                    <div class="input-group-prepend">
                         <span class="input-group-text">
                             <i class="fas fa-font"></i>
                         </span>
-                        </div>
-                        <input
-                            type="text"
-                            :id="fields.cardName"
-                            v-letter-only
-                            @input="changeName"
-                            class="form-control"
-                            :placeholder="placeholderCardName"
-                            :value="formData.cardName"
-                            data-card-field
-                            autocomplete="off"
-                        />
                     </div>
-                    <div class="invalid-feedback d-block" v-if="validations.card_name"
-                         v-html="validations.card_name[0]"></div>
+                    <input
+                        type="text"
+                        :id="fields.cardName"
+                        v-letter-only
+                        @input="changeName"
+                        class="form-control"
+                        :placeholder="placeholderCardName"
+                        :value="formData.cardName"
+                        data-card-field
+                        autocomplete="off"
+                    />
                 </div>
+                <div class="invalid-feedback d-block" v-if="validations.card_name" v-html="validations.card_name[0]"></div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-7">
-                        <label for="cardMonth" class="form-control-label">{{ textExpirationDate }}</label>
-                        <div class="form-group d-flex">
-                            <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
+            <div class="row">
+                <div class="col-md-7">
+                    <label for="cardMonth" class="form-control-label">{{ textExpirationDate }}</label>
+                    <div class="form-group d-flex">
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-calendar-alt"></i>
                                 </span>
-                                </div>
-                                <select
-                                    class="form-control w-50"
-                                    :id="fields.cardMonth"
-                                    v-model="formData.cardMonth"
-                                    @change="changeMonth"
-                                    data-card-field
-                                >
-                                    <option value="" disabled>{{ textMonth }}</option>
-                                    <option
-                                        v-bind:value="n < 10 ? '0' + n : n"
-                                        v-for="n in 12"
-                                        v-bind:disabled="n < minCardMonth"
-                                        v-bind:key="n"
-                                    >{{ generateMonthValue(n) }}
-                                    </option>
-                                </select>
                             </div>
-                            <div class="input-group input-group-merge ml-4">
-                                <div class="input-group-prepend">
+                            <select
+                                class="form-control w-50"
+                                :id="fields.cardMonth"
+                                v-model="formData.cardMonth"
+                                @change="changeMonth"
+                                data-card-field
+                            >
+                                <option value="" disabled>{{ textMonth }}</option>
+                                <option
+                                    v-bind:value="n < 10 ? '0' + n : n"
+                                    v-for="n in 12"
+                                    v-bind:disabled="n < minCardMonth"
+                                    v-bind:key="n"
+                                >{{generateMonthValue(n)}}</option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-merge ml-4">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-calendar-alt"></i>
                                 </span>
-                                </div>
-                                <select
-                                    class="form-control w-50"
-                                    :id="fields.cardYear"
-                                    v-model="formData.cardYear"
-                                    @change="changeYear"
-                                    data-card-field
+                            </div>
+                            <select
+                                class="form-control w-50"
+                                :id="fields.cardYear"
+                                v-model="formData.cardYear"
+                                @change="changeYear"
+                                data-card-field
                                 >
                                     <option value="" disabled>{{ textYear }}</option>
                                     <option
                                         v-bind:value="$index + minCardYear"
                                         v-for="(n, $index) in 12"
                                         v-bind:key="n"
-                                    >{{ $index + minCardYear }}
-                                    </option>
-                                </select>
-                            </div>
+                                    >{{$index + minCardYear}}</option>
+                            </select>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label for="cardCvv" class="form-control-label">{{ textCvv }}</label>
-                            <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="cardCvv" class="form-control-label">{{ textCvv }}</label>
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-key"></i>
                                 </span>
-                                </div>
-                                <input
-                                    type="tel"
-                                    class="form-control"
-                                    :placeholder="placeholderCvv"
-                                    v-number-only
-                                    :id="fields.cardCvv"
-                                    maxlength="4"
-                                    :value="formData.cardCvv"
-                                    @input="changeCvv"
-                                    data-card-field
-                                    autocomplete="off"
-                                />
                             </div>
-                            <div class="invalid-feedback d-block" v-if="validations.card_cvv"
-                                 v-html="validations.card_cvv[0]"></div>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                :placeholder="placeholderCvv"
+                                v-number-only
+                                :id="fields.cardCvv"
+                                maxlength="4"
+                                :value="formData.cardCvv"
+                                @input="changeCvv"
+                                data-card-field
+                                autocomplete="off"
+                            />
                         </div>
+                        <div class="invalid-feedback d-block" v-if="validations.card_cvv" v-html="validations.card_cvv[0]"></div>
                     </div>
-                </div>
-
-                <div class="form-group" v-if="storeCard">
-                    <div class="custom-control custom-checkbox">
-                        <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card" type="checkbox"
-                               value="true" class="custom-control-input">
-                        <label :for="'store_card' + _uid" class="custom-control-label">
-                            <strong>{{ textStoreCard }}</strong>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button class="btn btn-icon btn-success" v-on:click="invaildCard" :disabled="loading">
-                        <div v-if="loading" class="aka-loader-frame">
-                            <div class="aka-loader"></div>
-                        </div>
-                        <span v-if="!loading" class="btn-inner--text">{{ textButton }}</span>
-                    </button>
                 </div>
             </div>
 
-            <div class="col-md-6 mt--6">
-                <Card
-                    :fields="fields"
-                    :labels="formData"
-                    :isCardNumberMasked="isCardNumberMasked"
-                    :randomBackgrounds="randomBackgrounds"
-                    :backgroundImage="backgroundImage"
-                />
+            <div class="form-group" v-if="storeCard">
+                <div class="custom-control custom-checkbox">
+                    <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card" type="checkbox" value="true" class="custom-control-input">
+                    <label :for="'store_card' + _uid" class="custom-control-label">
+                        <strong>{{ textStoreCard }}</strong>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-icon btn-success" v-on:click="invaildCard" :disabled="loading">
+                    <div v-if="loading" class="aka-loader-frame">
+                        <div class="aka-loader"></div>
+                    </div>
+                    <span v-if="!loading" class="btn-inner--text">{{ textButton }}</span>
+                </button>
             </div>
         </div>
+
+        <div class="col-md-6 mt--6">
+            <Card
+                :fields="fields"
+                :labels="formData"
+                :isCardNumberMasked="isCardNumberMasked"
+                :randomBackgrounds="randomBackgrounds"
+                :backgroundImage="backgroundImage"
+            />
+        </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -364,8 +355,8 @@ export default {
 
     directives: {
         'number-only': {
-            bind(el) {
-                function checkValue(event) {
+            bind (el) {
+                function checkValue (event) {
                     event.target.value = event.target.value.replace(/[^0-9]/g, '');
 
                     if (event.charCode >= 48 && event.charCode <= 57) {
@@ -379,8 +370,8 @@ export default {
             }
         },
         'letter-only': {
-            bind(el) {
-                function checkValue(event) {
+            bind (el) {
+                function checkValue (event) {
                     if (event.charCode >= 48 && event.charCode <= 57) {
                         event.preventDefault();
                     }
@@ -519,7 +510,7 @@ export default {
     data() {
         return {
             loading: false,
-            validations: {},
+            validations:{},
             fields: {
                 cardNumber: 'v-card-number',
                 cardName: 'v-card-name',
@@ -652,20 +643,20 @@ export default {
                 this.loading = false;
             } else {
                 axios.post(this.path, this.formData)
-                    .then(response => {
-                        this.loading = false;
+                .then(response => {
+                    this.loading = false;
 
-                        if (response.data.redirect) {
-                            this.loading = true;
+                    if (response.data.redirect) {
+                        this.loading = true;
 
-                            window.location.href = response.data.redirect;
-                        }
-                    })
-                    .catch(error => {
-                        this.loading = false;
+                        window.location.href = response.data.redirect;
+                    }
+                })
+                .catch(error => {
+                    this.loading = false;
 
-                        this.validations = error.response.data.errors;
-                    });
+                    this.validations = error.response.data.errors;
+                });
             }
         },
 

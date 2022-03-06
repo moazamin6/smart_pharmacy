@@ -3,36 +3,36 @@
         <div class="table-responsive">
             <table class="table table-borderless p-0">
                 <tbody>
-                <tr>
-                    <th class="text-right p-0">
-                        <strong class="text-strong">{{ company.name }}</strong>
-                    </th>
-                </tr>
-                <tr v-if="company.address">
-                    <th class="text-right p-0">
-                        {{ company.address }}
-                    </th>
-                </tr>
-                <tr v-if="company.location">
-                    <th class="text-right p-0">
-                        {{ company.location }}
-                    </th>
-                </tr>
-                <tr v-if="company.tax_number">
-                    <th class="text-right p-0">
-                        {{ taxNumberText }}: {{ company.tax_number }}
-                    </th>
-                </tr>
-                <tr v-if="company.phone">
-                    <th class="text-right p-0">
-                        {{ company.phone }}
-                    </th>
-                </tr>
-                <tr>
-                    <th class="text-right p-0">
-                        {{ company.email }}
-                    </th>
-                </tr>
+                    <tr>
+                        <th class="text-right p-0">
+                            <strong class="text-strong">{{ company.name }}</strong>
+                        </th>
+                    </tr>
+                    <tr v-if="company.address">
+                        <th class="text-right p-0">
+                            {{ company.address }}
+                        </th>
+                    </tr>
+                    <tr v-if="company.location">
+                        <th class="text-right p-0">
+                            {{ company.location }}
+                        </th>
+                    </tr>
+                    <tr v-if="company.tax_number">
+                        <th class="text-right p-0">
+                            {{ taxNumberText }}: {{ company.tax_number }}
+                        </th>
+                    </tr>
+                    <tr v-if="company.phone">
+                        <th class="text-right p-0">
+                            {{ company.phone }}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-right p-0">
+                            {{ company.email }}
+                        </th>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -46,7 +46,7 @@
 <script>
 import Vue from 'vue';
 
-import {Select, Option, OptionGroup, ColorPicker} from 'element-ui';
+import { Select, Option, OptionGroup, ColorPicker } from 'element-ui';
 
 import AkauntingModalAddNew from './AkauntingModalAddNew';
 import AkauntingModal from './AkauntingModal';
@@ -126,42 +126,42 @@ export default {
             let company_form = this.company_form;
 
             window.axios.get(company_form.path)
-                .then(response => {
-                    company_form.show = true;
-                    company_form.html = response.data.html;
+            .then(response => {
+                company_form.show = true;
+                company_form.html = response.data.html;
 
-                    this.company_html = Vue.component('add-new-component', function (resolve, reject) {
-                        resolve({
-                            template: '<div><akaunting-modal-add-new :show="company_form.show" @submit="onSubmit" @cancel="onCancel" :buttons="company_form.buttons" :title="company_form.text" :is_component=true :message="company_form.html"></akaunting-modal-add-new></div>',
+                this.company_html = Vue.component('add-new-component', function (resolve, reject) {
+                    resolve({
+                        template: '<div><akaunting-modal-add-new :show="company_form.show" @submit="onSubmit" @cancel="onCancel" :buttons="company_form.buttons" :title="company_form.text" :is_component=true :message="company_form.html"></akaunting-modal-add-new></div>',
 
-                            components: {
-                                AkauntingModalAddNew,
-                            },
+                        components: {
+                            AkauntingModalAddNew,
+                        },
 
-                            data: function () {
-                                return {
-                                    company_form: company_form,
-                                }
-                            },
-
-                            methods: {
-                                onSubmit(event) {
-                                    this.$emit('submit', event);
-                                },
-
-                                onCancel(event) {
-                                    this.$emit('cancel', event);
-                                }
+                        data: function () {
+                            return {
+                                company_form: company_form,
                             }
-                        })
-                    }, this);
-                })
-                .catch(e => {
-                    console.log(e);
-                })
-                .finally(function () {
-                    // always executed
-                });
+                        },
+
+                        methods: {
+                        onSubmit(event) {
+                            this.$emit('submit', event);
+                        },
+
+                        onCancel(event) {
+                            this.$emit('cancel', event);
+                        }
+                        }
+                    })
+                }, this);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+            .finally(function () {
+                // always executed
+            });
         },
 
         onSubmit(event) {
@@ -171,16 +171,16 @@ export default {
 
             let data = this.form.data();
 
-            FormData.prototype.appendRecursive = function (data, wrapper = null) {
-                for (var name in data) {
+            FormData.prototype.appendRecursive = function(data, wrapper = null) {
+                for(var name in data) {
                     if (wrapper) {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], wrapper + '[' + name + ']');
                         } else {
                             this.append(wrapper + '[' + name + ']', data[name]);
                         }
                     } else {
-                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true) && (data[name] instanceof Blob != true))) {
+                        if ((typeof data[name] == 'object' || data[name].constructor === Array) && ((data[name] instanceof File != true ) && (data[name] instanceof Blob != true))) {
                             this.appendRecursive(data[name], name);
                         } else {
                             this.append(name, data[name]);
@@ -202,35 +202,35 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(response => {
-                    this.form.loading = false;
+            .then(response => {
+                this.form.loading = false;
 
-                    if (response.data.success) {
-                        let data = this.form.data();
+                if (response.data.success) {
+                    let data = this.form.data();
 
-                        this.company.name = data.name;
-                        this.company.email = data.email;
-                        this.company.tax_number = data.tax_number;
-                        this.company.phone = data.phone;
-                        this.company.address = data.address;
+                    this.company.name = data.name;
+                    this.company.email = data.email;
+                    this.company.tax_number = data.tax_number;
+                    this.company.phone = data.phone;
+                    this.company.address = data.address;
 
-                        this.company_form.show = false;
+                    this.company_form.show = false;
 
-                        this.company_form.html = '';
-                        this.company_html = null;
+                    this.company_form.html = '';
+                    this.company_html = null;
 
-                        this.$emit('changed', data);
+                    this.$emit('changed', data);
 
-                        let documentClasses = document.body.classList;
+                    let documentClasses = document.body.classList;
 
-                        documentClasses.remove("modal-open");
-                    }
-                })
-                .catch(error => {
-                    this.form.loading = false;
-                    console.log(error);
-                    this.company_html = error.message;
-                });
+                    documentClasses.remove("modal-open");
+                }
+            })
+            .catch(error => {
+                this.form.loading = false;
+                console.log(error);
+                this.company_html = error.message;
+            });
         },
 
         onCancel() {

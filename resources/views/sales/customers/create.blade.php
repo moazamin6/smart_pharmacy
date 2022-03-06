@@ -45,20 +45,20 @@
                 {{ Form::radioGroup('enabled', trans('general.enabled'), true) }}
 
                 @stack('create_user_input_start')
-                <div id="customer-create-user" class="form-group col-md-12 margin-top">
-                    <div class="custom-control custom-checkbox">
-                        {{ Form::checkbox('create_user', '1', null, [
-                            'v-model' => 'form.create_user',
-                            'id' => 'create_user',
-                            'class' => 'custom-control-input',
-                            '@input' => 'onCanLogin($event)'
-                        ]) }}
+                    <div id="customer-create-user" class="form-group col-md-12 margin-top">
+                        <div class="custom-control custom-checkbox">
+                            {{ Form::checkbox('create_user', '1', null, [
+                                'v-model' => 'form.create_user',
+                                'id' => 'create_user',
+                                'class' => 'custom-control-input',
+                                '@input' => 'onCanLogin($event)'
+                            ]) }}
 
-                        <label class="custom-control-label" for="create_user">
-                            <strong>{{ trans('customers.can_login') }}</strong>
-                        </label>
+                            <label class="custom-control-label" for="create_user">
+                                <strong>{{ trans('customers.can_login') }}</strong>
+                            </label>
+                        </div>
                     </div>
-                </div>
                 @stack('create_user_input_end')
 
                 <div v-if="can_login" class="row col-md-12">

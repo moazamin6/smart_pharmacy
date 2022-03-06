@@ -3,7 +3,7 @@
 @section('title', $account->name)
 
 @section('new_button')
-    <div class="dropup header-drop-top">
+    <div class="dropup header-drop-top">    
         <button type="button" class="btn btn-white btn-sm" data-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-chevron-down"></i>&nbsp; {{ trans('general.more_actions') }}
         </button>
@@ -66,11 +66,11 @@
             @stack('button_dropdown_end')
         </div>
         @stack('edit_button_start')
-        @can('update-sales-customers')
-            <a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-white btn-sm">
-                {{ trans('general.edit') }}
-            </a>
-        @endcan
+            @can('update-sales-customers')
+                <a href="{{ route('accounts.edit', $account->id) }}" class="btn btn-white btn-sm">
+                    {{ trans('general.edit') }}
+                </a>
+            @endcan
         @stack('edit_button_end')
     </div>
 @endsection
@@ -182,9 +182,7 @@
                         <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                             @stack('account_transactions_tab_start')
                             <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0 active" id="transactions-tab" data-toggle="tab"
-                                   href="#transactions-content" role="tab" aria-controls="transactions-content"
-                                   aria-selected="true">
+                                <a class="nav-link mb-sm-3 mb-md-0 active" id="transactions-tab" data-toggle="tab" href="#transactions-content" role="tab" aria-controls="transactions-content" aria-selected="true">
                                     {{ trans_choice('general.transactions', 2) }}
                                 </a>
                             </li>
@@ -192,9 +190,7 @@
 
                             @stack('account_transfers_tab_start')
                             <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0" id="transfers-tab" data-toggle="tab"
-                                   href="#transfers-content" role="tab" aria-controls="transfers-content"
-                                   aria-selected="false">
+                                <a class="nav-link mb-sm-3 mb-md-0" id="transfers-tab" data-toggle="tab" href="#transfers-content" role="tab" aria-controls="transfers-content" aria-selected="false">
                                     {{ trans_choice('general.transfers', 2) }}
                                 </a>
                             </li>
@@ -205,31 +201,27 @@
                     <div class="card">
                         <div class="tab-content" id="account-tab-content">
                             @stack('account_transactions_content_start')
-                            <div class="tab-pane fade show active" id="transactions-content" role="tabpanel"
-                                 aria-labelledby="transactions-tab">
+                            <div class="tab-pane fade show active" id="transactions-content" role="tabpanel" aria-labelledby="transactions-tab">
                                 <div class="table-responsive">
                                     <table class="table table-flush table-hover" id="tbl-transactions">
                                         <thead class="thead-light">
-                                        <tr class="row table-head-line">
-                                            <th class="col-sm-3">{{ trans_choice('general.date', 1) }}</th>
-                                            <th class="col-sm-3">{{ trans('general.amount') }}</th>
-                                            <th class="col-sm-3">{{ trans_choice('general.types', 1) }}</th>
-                                            <th class="col-sm-3">{{ trans_choice('general.categories', 1) }}</th>
-                                        </tr>
+                                            <tr class="row table-head-line">
+                                                <th class="col-sm-3">{{ trans_choice('general.date', 1) }}</th>
+                                                <th class="col-sm-3">{{ trans('general.amount') }}</th>
+                                                <th class="col-sm-3">{{ trans_choice('general.types', 1) }}</th>
+                                                <th class="col-sm-3">{{ trans_choice('general.categories', 1) }}</th>
+                                            </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach($transactions as $item)
-                                            <tr class="row align-items-center border-top-1 tr-py">
-                                                <td class="col-sm-3"><a
-                                                        href="{{ route($item->route_name, $item->route_id) }}">@date($item->paid_at)</a>
-                                                </td>
-                                                <td class="col-sm-3">@money($item->amount, $item->currency_code, true)
-                                                </td>
-                                                <td class="col-sm-3">{{ $item->type_title }}</td>
-                                                <td class="col-sm-3">{{ $item->category->name }}</td>
-                                            </tr>
-                                        @endforeach
+                                            @foreach($transactions as $item)
+                                                <tr class="row align-items-center border-top-1 tr-py">
+                                                    <td class="col-sm-3"><a href="{{ route($item->route_name, $item->route_id) }}">@date($item->paid_at)</a></td>
+                                                    <td class="col-sm-3">@money($item->amount, $item->currency_code, true)</td>
+                                                    <td class="col-sm-3">{{ $item->type_title }}</td>
+                                                    <td class="col-sm-3">{{ $item->category->name }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -243,31 +235,27 @@
                             @stack('account_transactions_content_end')
 
                             @stack('account_transfers_content_start')
-                            <div class="tab-pane fade" id="transfers-content" role="tabpanel"
-                                 aria-labelledby="transfers-tab">
+                            <div class="tab-pane fade" id="transfers-content" role="tabpanel" aria-labelledby="transfers-tab">
                                 <div class="table-responsive">
                                     <table class="table table-flush table-hover" id="tbl-transfers">
                                         <thead class="thead-light">
-                                        <tr class="row table-head-line">
-                                            <th class="col-sm-3">{{ trans('general.date') }}</th>
-                                            <th class="col-sm-3">{{ trans('general.amount') }}</th>
-                                            <th class="col-sm-3">{{ trans_choice('transfers.from_account', 1) }}</th>
-                                            <th class="col-sm-3">{{ trans_choice('transfers.to_account', 1) }}</th>
-                                        </tr>
+                                            <tr class="row table-head-line">
+                                                <th class="col-sm-3">{{ trans('general.date') }}</th>
+                                                <th class="col-sm-3">{{ trans('general.amount') }}</th>
+                                                <th class="col-sm-3">{{ trans_choice('transfers.from_account', 1) }}</th>
+                                                <th class="col-sm-3">{{ trans_choice('transfers.to_account', 1) }}</th>
+                                            </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach($transfers as $item)
-                                            <tr class="row align-items-center border-top-1 tr-py">
-                                                <td class="col-sm-3"><a href="{{ route('transfers.show', $item->id) }}">@date($item->expense_transaction->paid_at)</a>
-                                                </td>
-                                                <td class="col-sm-3">@money($item->expense_transaction->amount,
-                                                    $item->expense_transaction->currency_code, true)
-                                                </td>
-                                                <td class="col-sm-3">{{ $item->expense_transaction->account->name }}</td>
-                                                <td class="col-sm-3">{{ $item->income_transaction->account->name }}</td>
-                                            </tr>
-                                        @endforeach
+                                            @foreach($transfers as $item)
+                                                <tr class="row align-items-center border-top-1 tr-py">
+                                                    <td class="col-sm-3"><a href="{{ route('transfers.show', $item->id) }}">@date($item->expense_transaction->paid_at)</a></td>
+                                                    <td class="col-sm-3">@money($item->expense_transaction->amount, $item->expense_transaction->currency_code, true)</td>
+                                                    <td class="col-sm-3">{{ $item->expense_transaction->account->name }}</td>
+                                                    <td class="col-sm-3">{{ $item->income_transaction->account->name }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

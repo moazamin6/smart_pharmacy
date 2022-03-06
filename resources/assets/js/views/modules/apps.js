@@ -36,7 +36,7 @@ const app = new Vue({
                 return;
             }
 
-            let path = document.getElementById('category_page').value;
+            let path =  document.getElementById('category_page').value;
 
             if (category != '*') {
                 path += '/' + encodeURIComponent(category);

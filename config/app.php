@@ -14,11 +14,11 @@ return [
 
     'name' => env('APP_NAME', 'Akaunting'),
 
-    'installed' => (bool) env('APP_INSTALLED', false),
+    'installed' => (bool)env('APP_INSTALLED', false),
 
     'schedule_time' => env('APP_SCHEDULE_TIME', '09:00'),
 
-    'eager_load' => (bool) env('APP_EAGER_LOAD', true),
+    'eager_load' => (bool)env('APP_EAGER_LOAD', true),
 
     'throttles' => [
         'api' => env('APP_THROTTLES_API', '60'),
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------

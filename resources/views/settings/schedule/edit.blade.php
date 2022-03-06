@@ -27,10 +27,8 @@
                 {{ Form::textGroup('bill_days', trans('settings.scheduling.bill_days'), 'calendar', [], setting('schedule.bill_days')) }}
 
                 <div class="col-sm-6">
-                    <label for="cron_command"
-                           class="form-control-label">{{ trans('settings.scheduling.cron_command') }}</label>
-                    <input type="text" class="form-control form-control-muted"
-                           value="php {{ base_path('artisan') }} schedule:run >> /dev/null 2>&1">
+                    <label for="cron_command" class="form-control-label">{{ trans('settings.scheduling.cron_command') }}</label>
+                    <input type="text" class="form-control form-control-muted" value="php {{ base_path('artisan') }} schedule:run >> /dev/null 2>&1">
                 </div>
 
                 {{ Form::textGroup('time', trans('settings.scheduling.schedule_time'), 'clock', [], setting('schedule.time')) }}

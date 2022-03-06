@@ -13,7 +13,7 @@
                                 <div class="row mx-0">
                                     <div class="col-auto">
                                         <div class="badge badge-secondary settings-icons">
-                                            <i class="fa fa-building"></i>
+                                            <i class="fa fa-building" ></i>
                                         </div>
                                     </div>
                                     <div class="col ml--2">

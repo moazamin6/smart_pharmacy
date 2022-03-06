@@ -14,14 +14,11 @@
     <link rel="icon" href="{{ asset('public/img/favicon.ico') }}" type="image/png">
 
     <!-- Font -->
-    <link rel="stylesheet" href="{{ asset('public/vendor/opensans/css/opensans.css?v=' . version('short')) }}"
-          type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/vendor/opensans/css/opensans.css?v=' . version('short')) }}" type="text/css">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('public/vendor/nucleo/css/nucleo.css?v=' . version('short')) }}"
-          type="text/css">
-    <link rel="stylesheet" href="{{ asset('public/vendor/fontawesome/css/all.min.css?v=' . version('short')) }}"
-          type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/vendor/nucleo/css/nucleo.css?v=' . version('short')) }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/vendor/fontawesome/css/all.min.css?v=' . version('short')) }}" type="text/css">
 
     <!-- Css -->
     <link rel="stylesheet" href="{{ asset('public/css/argon.css?v=' . version('short')) }}" type="text/css">
@@ -39,7 +36,7 @@
         var url = '{{ url("/" . company_id()) }}';
         var app_url = '{{ config("app.url") }}';
         var aka_currency = {!! !empty($currency) ? $currency : 'false' !!};
-        //--></script>
+    //--></script>
 
     @stack('js')
 
@@ -49,7 +46,7 @@
         ]); ?>;
 
         var flash_notification = {!! (session()->has('flash_notification')) ? json_encode(session()->get('flash_notification')) : 'false' !!};
-        //--></script>
+    //--></script>
 
     {{ session()->forget('flash_notification') }}
 

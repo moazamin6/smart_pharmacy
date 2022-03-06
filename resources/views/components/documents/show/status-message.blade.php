@@ -4,7 +4,7 @@
         <div class="col-sm-12">
             <div class="alert alert-danger fade show" role="alert">
                 @stack('status_message_body_start')
-                <span class="alert-text">
+                    <span class="alert-text">
                         <strong>{!!  trans($textStatusMessage) !!}</strong>
                     </span>
                 @stack('status_message_body_end')

@@ -14,25 +14,25 @@
             'novalidate' => true,
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                {{ Form::selectGroup('class', trans_choice('general.types', 1), 'bars', $classes, null, ['required' => 'required', 'change' => 'onChangeClass']) }}
+                    {{ Form::selectGroup('class', trans_choice('general.types', 1), 'bars', $classes, null, ['required' => 'required', 'change' => 'onChangeClass']) }}
 
-                {{ Form::textareaGroup('description', trans('general.description'), null, null, ['rows' => '3', 'required' => 'required']) }}
+                    {{ Form::textareaGroup('description', trans('general.description'), null, null, ['rows' => '3', 'required' => 'required']) }}
 
-                {{ Form::hidden('report', 'invalid', ['data-field' => 'settings']) }}
+                    {{ Form::hidden('report', 'invalid', ['data-field' => 'settings']) }}
 
-                <component v-bind:is="report_fields" @change="onChangeReportFields"></component>
+                    <component v-bind:is="report_fields" @change="onChangeReportFields"></component>
+                </div>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <div class="row save-buttons">
-                {{ Form::saveButtons('reports.index') }}
+            <div class="card-footer">
+                <div class="row save-buttons">
+                    {{ Form::saveButtons('reports.index') }}
+                </div>
             </div>
-        </div>
         {!! Form::close() !!}
     </div>
 @endsection

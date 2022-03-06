@@ -16,23 +16,23 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('display_name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('display_name', trans('general.name'), 'font') }}
 
-                {{ Form::textGroup('name', trans('general.code'), 'code') }}
+                    {{ Form::textGroup('name', trans('general.code'), 'code') }}
 
-                {{ Form::textareaGroup('description', trans('general.description')) }}
-            </div>
-        </div>
-
-        @can('update-auth-permissions')
-            <div class="card-footer">
-                <div class="row save-buttons">
-                    {{ Form::saveButtons('permissions.index') }}
+                    {{ Form::textareaGroup('description', trans('general.description')) }}
                 </div>
             </div>
-        @endcan
+
+            @can('update-auth-permissions')
+                <div class="card-footer">
+                    <div class="row save-buttons">
+                        {{ Form::saveButtons('permissions.index') }}
+                    </div>
+                </div>
+            @endcan
         {!! Form::close() !!}
     </div>
 @endsection

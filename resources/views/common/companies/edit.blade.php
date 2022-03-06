@@ -16,43 +16,43 @@
             'novalidate' => true
         ]) !!}
 
-        <div class="card-body">
-            <div class="row">
-                {{ Form::textGroup('name', trans('general.name'), 'font') }}
+            <div class="card-body">
+                <div class="row">
+                    {{ Form::textGroup('name', trans('general.name'), 'font') }}
 
-                {{ Form::emailGroup('email', trans('general.email'), 'envelope') }}
+                    {{ Form::emailGroup('email', trans('general.email'), 'envelope') }}
 
-                {{ Form::selectGroup('currency', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, $company->currency ?? 'USD') }}
+                    {{ Form::selectGroup('currency', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, $company->currency ?? 'USD') }}
 
-                {{ Form::selectGroup('locale', trans_choice('general.languages', 1), 'flag', language()->allowed(), $company->locale ?? config('app.locale', 'en-GB'), []) }}
+                    {{ Form::selectGroup('locale', trans_choice('general.languages', 1), 'flag', language()->allowed(), $company->locale ?? config('app.locale', 'en-GB'), []) }}
 
-                {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', [], $company->tax_number) }}
+                    {{ Form::textGroup('tax_number', trans('general.tax_number'), 'percent', [], $company->tax_number) }}
 
-                {{ Form::textGroup('phone', trans('settings.company.phone'), 'phone', [], $company->phone) }}
+                    {{ Form::textGroup('phone', trans('settings.company.phone'), 'phone', [], $company->phone) }}
 
-                {{ Form::textareaGroup('address', trans('general.address'), '', $company->address, ['rows' => '2', 'v-model' => 'form.address']) }}
+                    {{ Form::textareaGroup('address', trans('general.address'), '', $company->address, ['rows' => '2', 'v-model' => 'form.address']) }}
 
-                {{ Form::textGroup('city', trans_choice('general.cities', 1), 'city', []) }}
+                    {{ Form::textGroup('city', trans_choice('general.cities', 1), 'city', []) }}
 
-                {{ Form::textGroup('zip_code', trans('general.zip_code'), 'mail-bulk', []) }}
+                    {{ Form::textGroup('zip_code', trans('general.zip_code'), 'mail-bulk', []) }}
 
-                {{ Form::textGroup('state', trans('general.state'), 'city', []) }}
+                    {{ Form::textGroup('state', trans('general.state'), 'city', []) }}
 
-                {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), $company->country, ['model' => 'form.country']) }}
+                    {{ Form::selectGroup('country', trans_choice('general.countries', 1), 'globe-americas', trans('countries'), $company->country, ['model' => 'form.country']) }}
 
-                {{ Form::fileGroup('logo', trans('companies.logo'), '', ['dropzone-class' => 'form-file'], $company->company_logo) }}
+                    {{ Form::fileGroup('logo', trans('companies.logo'), '', ['dropzone-class' => 'form-file'], $company->company_logo) }}
 
-                {{ Form::radioGroup('enabled', trans('general.enabled'), $company->enabled) }}
-            </div>
-        </div>
-
-        @can('update-common-companies')
-            <div class="card-footer">
-                <div class="row save-buttons">
-                    {{ Form::saveButtons('companies.index') }}
+                    {{ Form::radioGroup('enabled', trans('general.enabled'), $company->enabled) }}
                 </div>
             </div>
-        @endcan
+
+            @can('update-common-companies')
+                <div class="card-footer">
+                    <div class="row save-buttons">
+                        {{ Form::saveButtons('companies.index') }}
+                    </div>
+                </div>
+            @endcan
         {!! Form::close() !!}
     </div>
 @endsection

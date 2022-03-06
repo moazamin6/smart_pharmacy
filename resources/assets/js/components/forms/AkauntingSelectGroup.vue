@@ -9,10 +9,7 @@
             </div>
             <select :name="name" :id="name" class="form-control" v-bind="attributes">
                 <option value="" disabled>{{ attributes.placeholder }}</option>
-                <option v-for="(key, value, index) in values" :value="value" :selected="selected == value">{{
-                        key
-                    }}
-                </option>
+                <option v-for="(key, value, index) in values" :value="value" :selected="selected == value">{{ key }}</option>
             </select>
         </div>
     </div>
@@ -30,8 +27,9 @@ export default {
         attributes: [],
         col: ''
     },
-    data() {
-        return {}
+    data () {
+        return {
+        }
     },
     created() {
     }

@@ -36,12 +36,12 @@ const app = new Vue({
             form: new Form('setting'),
             bulk_action: new BulkAction('settings'),
             email: {
-                sendmailPath: true,
-                smtpHost: true,
-                smtpPort: true,
-                smtpUsername: true,
-                smtpPassword: true,
-                smtpEncryption: true,
+                sendmailPath:true,
+                smtpHost:true,
+                smtpPort:true,
+                smtpUsername:true,
+                smtpPassword:true,
+                smtpEncryption:true,
             },
 
             invoice_form: new Form('template'),
@@ -66,9 +66,9 @@ const app = new Vue({
         }
     },
 
-    methods: {
+    methods:{
         onChangeProtocol(protocol) {
-            switch (protocol) {
+            switch(protocol) {
                 case "smtp":
                     this.email.sendmailPath = true;
                     this.email.smtpHost = false;

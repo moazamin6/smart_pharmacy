@@ -211,10 +211,10 @@ class CustomersTest extends FeatureTestCase
         $password = $this->faker->password;
 
         return $this->getRequest() + [
-            'create_user' => 'true',
-            'locale' => 'en-GB',
-            'password' => $password,
-            'password_confirmation' => $password,
-        ];
+                'create_user' => 'true',
+                'locale' => 'en-GB',
+                'password' => $password,
+                'password_confirmation' => $password,
+            ];
     }
 }

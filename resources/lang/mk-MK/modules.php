@@ -2,51 +2,51 @@
 
 return [
 
-    'title'                 => 'АПИ Токен',
-    'api_token'             => 'Токен',
-    'my_apps'               => 'Мои апликации',
-    'top_paid'              => 'Топ платени',
-    'new'                   => 'Ново',
-    'top_free'              => 'Топ бесплатни',
-    'free'                  => 'Бесплатно',
-    'search'                => 'Пребарување',
-    'install'               => 'Инсталирај',
-    'buy_now'               => 'Купи сега',
-    'token_link'            => '<a href="https://akaunting.com/tokens" target="_blank">Кликнете овде</a>за превземање на вашиот API токен.',
-    'no_apps'               => 'Нема апликации во оваа категориај сеуште.',
-    'developer'             => 'Дали сте програмер?<a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">Овде</a> можете да научите како да програмирање и да заработите уште денес!
- 
+    'title' => 'АПИ Токен',
+    'api_token' => 'Токен',
+    'my_apps' => 'Мои апликации',
+    'top_paid' => 'Топ платени',
+    'new' => 'Ново',
+    'top_free' => 'Топ бесплатни',
+    'free' => 'Бесплатно',
+    'search' => 'Пребарување',
+    'install' => 'Инсталирај',
+    'buy_now' => 'Купи сега',
+    'token_link' => '<a href="https://akaunting.com/tokens" target="_blank">Кликнете овде</a>за превземање на вашиот API токен.',
+    'no_apps' => 'Нема апликации во оваа категориај сеуште.',
+    'developer' => 'Дали сте програмер?<a href="https://akaunting.com/blog/akaunting-app-store" target="_blank">Овде</a> можете да научите како да програмирање и да заработите уште денес!
+
 ',
 
-    'recommended_apps'      => 'Recommended Apps',
+    'recommended_apps' => 'Recommended Apps',
 
-    'about'                 => 'За апликацијата',
+    'about' => 'За апликацијата',
 
-    'added'                 => 'Додадено',
-    'updated'               => 'Ажурирано',
-    'compatibility'         => 'Компатибилност',
+    'added' => 'Додадено',
+    'updated' => 'Ажурирано',
+    'compatibility' => 'Компатибилност',
 
-    'installed'             => ':module инсталирано',
-    'uninstalled'           => ':module деинсталирано',
+    'installed' => ':module инсталирано',
+    'uninstalled' => ':module деинсталирано',
     //'updated'               => ':module updated',
-    'enabled'               => ':module овозможено',
-    'disabled'              => ':module оневозможено',
+    'enabled' => ':module овозможено',
+    'disabled' => ':module оневозможено',
 
     'tab' => [
-        'installation'      => 'Инсталација',
-        'faq'               => 'ЧПП',
-        'changelog'         => 'Лог на промени',
-        'reviews'            => 'Reviews',
+        'installation' => 'Инсталација',
+        'faq' => 'ЧПП',
+        'changelog' => 'Лог на промени',
+        'reviews' => 'Reviews',
     ],
 
     'installation' => [
-        'header'            => 'Инсталација',
-        'download'          => 'Превземање :module file.',
-        'unzip'             => 'Отпакување :module files.',
-        'file_copy'         => 'Copying :module files.',
-        'migrate'           => 'Applying :module updates.',
-        'finish'            => 'The update was successfully installed. You will be redirect Update Center.',
-        'install'           => 'Инсталирање :module files.',
+        'header' => 'Инсталација',
+        'download' => 'Превземање :module file.',
+        'unzip' => 'Отпакување :module files.',
+        'file_copy' => 'Copying :module files.',
+        'migrate' => 'Applying :module updates.',
+        'finish' => 'The update was successfully installed. You will be redirect Update Center.',
+        'install' => 'Инсталирање :module files.',
     ],
 
     'errors' => [
@@ -63,9 +63,9 @@ return [
     ],
 
     'button' => [
-        'uninstall'         => 'Деинсталирај',
-        'disable'           => 'Исклучи',
-        'enable'            => 'Овозможи',
+        'uninstall' => 'Деинсталирај',
+        'disable' => 'Исклучи',
+        'enable' => 'Овозможи',
     ],
 
     'my' => [

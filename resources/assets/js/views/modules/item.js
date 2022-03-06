@@ -71,7 +71,7 @@ const app = new Vue({
 
     methods: {
         addToCart(alias, subscription_type) {
-            let add_to_cart_promise = Promise.resolve(axios.get(url + '/apps/' + alias + '/' + subscription_type + '/add'));
+            let add_to_cart_promise = Promise.resolve(axios.get(url + '/apps/' + alias + '/' + subscription_type +'/add'));
 
             add_to_cart_promise.then(response => {
                 if (response.data.success) {
@@ -96,8 +96,8 @@ const app = new Vue({
                     this.next();
                 }
             })
-                .catch(error => {
-                });
+            .catch(error => {
+            });
         },
 
         onChangeCategory(category) {
@@ -105,7 +105,7 @@ const app = new Vue({
                 return;
             }
 
-            let path = document.getElementById('category_page').value;
+            let path =  document.getElementById('category_page').value;
 
             if (category != '*') {
                 path += '/' + encodeURIComponent(category);
@@ -117,39 +117,39 @@ const app = new Vue({
         },
 
         async onReleases(page) {
-            let releases_promise = Promise.resolve(window.axios.post(url + '/apps/' + app_slug + '/releases', {
+            let releases_promise = Promise.resolve(window.axios.post(url + '/apps/' + app_slug  + '/releases', {
                 page: page
             }));
 
             releases_promise.then(response => {
                 if (response.data.success) {
-                    this.releases.status = true;
+                    this.releases.status= true;
                     this.releases.html = response.data.html;
 
                     this.releases.pagination.current_page = page;
                     this.releases.pagination.last_page = response.data.data.last_page;
                 }
             })
-                .catch(error => {
-                });
+            .catch(error => {
+            });
         },
 
         async onReviews(page) {
-            let reviews_promise = Promise.resolve(window.axios.post(url + '/apps/' + app_slug + '/reviews', {
+            let reviews_promise = Promise.resolve(window.axios.post(url + '/apps/' + app_slug  + '/reviews', {
                 page: page
             }));
 
             reviews_promise.then(response => {
                 if (response.data.success) {
-                    this.reviews.status = true;
+                    this.reviews.status= true;
                     this.reviews.html = response.data.html;
 
                     this.reviews.pagination.current_page = page;
                     this.reviews.pagination.last_page = response.data.data.last_page;
                 }
             })
-                .catch(error => {
-                });
+            .catch(error => {
+            });
         },
 
         onShowFaq() {
@@ -183,8 +183,8 @@ const app = new Vue({
                     this.next();
                 }
             })
-                .catch(error => {
-                });
+            .catch(error => {
+            });
         },
 
         async next() {
@@ -216,7 +216,7 @@ const app = new Vue({
                     }
 
                     if (!response.data.error && !response.data.redirect) {
-                        setTimeout(function () {
+                        setTimeout(function() {
                             this.next();
                         }.bind(this), 800);
                     }
@@ -225,8 +225,8 @@ const app = new Vue({
                         window.location = response.data.redirect;
                     }
                 })
-                    .catch(error => {
-                    });
+                .catch(error => {
+                });
             }
         }
     }

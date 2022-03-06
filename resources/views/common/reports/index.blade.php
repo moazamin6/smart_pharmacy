@@ -19,21 +19,18 @@
                 <div class="col-md-4">
                     <div class="card card-stats">
                         @canany(['create-common-reports', 'update-common-reports', 'delete-common-reports'])
-                            <a class="btn btn-sm items-align-center py-2 mr-0 card-action-button shadow-none--hover"
-                               href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-sm items-align-center py-2 mr-0 card-action-button shadow-none--hover" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-ellipsis-v text-primary"></i>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 @can('update-common-reports')
-                                    <a class="dropdown-item"
-                                       href="{{ route('reports.edit', $report->id) }}">{{ trans('general.edit') }}</a>
+                                    <a class="dropdown-item" href="{{ route('reports.edit', $report->id) }}">{{ trans('general.edit') }}</a>
                                 @endcan
 
                                 @can('create-common-reports')
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item"
-                                       href="{{ route('reports.duplicate', $report->id) }}">{{ trans('general.duplicate') }}</a>
+                                    <a class="dropdown-item" href="{{ route('reports.duplicate', $report->id) }}">{{ trans('general.duplicate') }}</a>
                                 @endcan
 
                                 @can('delete-common-reports')
@@ -52,13 +49,11 @@
 
                                     <div class="d-flex align-items-center">
                                         <a href="{{ route('reports.show', $report->id) }}">
-                                            <h2 class="font-weight-bold mb-0" v-if="reports_total[{{ $report->id }}]"
-                                                v-html="reports_total[{{ $report->id }}]"></h2>
+                                            <h2 class="font-weight-bold mb-0" v-if="reports_total[{{ $report->id }}]" v-html="reports_total[{{ $report->id }}]"></h2>
                                             <h2 class="font-weight-bold mb-0" v-else>{{ $totals[$report->id] }}</h2>
                                         </a>
-
-                                        <button type="button" @click="onRefreshTotal('{{ $report->id }}')"
-                                                class="btn btn-otline-primary btn-sm ml-2">
+    
+                                        <button type="button" @click="onRefreshTotal('{{ $report->id }}')" class="btn btn-otline-primary btn-sm ml-2">
                                             <i class="fas fa-redo"></i>
                                         </button>
                                     </div>
