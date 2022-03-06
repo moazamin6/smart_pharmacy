@@ -1,21 +1,25 @@
 <?php
 
 /**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
+ * @package     Akaunting
+ * @copyright   2017-2021 Akaunting. All rights reserved.
+ * @license     GNU GPL version 3; see LICENSE.txt
+ * @link        https://akaunting.com
  */
 
-$uri = urldecode(
-    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+// Register the auto-loader
+require(__DIR__ . '/bootstrap/autoload.php');
+
+// Load the app
+$app = require_once(__DIR__ . '/bootstrap/app.php');
+
+// Run the app
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
 );
 
-// This file allows us to emulate Apache's "mod_rewrite" functionality from the
-// built-in PHP web server. This provides a convenient way to test a Laravel
-// application without having installed a "real" web server software here.
-if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
-    return false;
-}
+$response->send();
 
-require_once __DIR__.'/public/index.php';
+$kernel->terminate($request, $response);

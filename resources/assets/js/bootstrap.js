@@ -1,5 +1,4 @@
 window._ = require('lodash');
-window.Popper = require('popper.js').default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -8,9 +7,11 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+    if (!window.$) {
+        window.$ = window.jQuery = require('jquery');
+    }
 
-    require('bootstrap');
+    //require('bootstrap-sass');
 } catch (e) {
 }
 
@@ -22,21 +23,9 @@ try {
 
 window.axios = require('axios');
 
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-let token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
+window.axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -50,7 +39,74 @@ if (token) {
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//     key: 'your-pusher-key'
 // });
+
+//(function ($) {
+jQuery.fn.serializeFormJSON = function () {
+    var o = {};
+    var a = this.serializeArray();
+
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+
+    return o;
+};
+
+jQuery.fn.serializeFormJSONShow = function () {
+    var o = {};
+    var a = this.serializeArray();
+
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+
+            o[this.name].push(true);
+        } else {
+            o[this.name] = true;
+        }
+    });
+
+    return o;
+};
+
+jQuery.fn.serializeAll = function () {
+    var o = {};
+    var a = this;
+
+    $.each(this, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+
+    return o;
+};
+//})(jQuery);
+
+jQuery(document).ready(function () {
+    jQuery('input[type="radio"]').each(function () {
+        if (jQuery(this).parent().parent().hasClass('radio-yes-no')) {
+            if (jQuery(this).val() == 1) {
+                jQuery(this).parent().trigger('click');
+            }
+        }
+    });
+});
