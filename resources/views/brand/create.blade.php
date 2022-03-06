@@ -52,16 +52,20 @@
                         <td>{{ $brand->title }}</td>
                         <td>
 
-                            <?php
-                            $actions_data = [
-                                'edit_route' => route('brand.edit', $brand->id),
-                                'delete_route' => [
-                                    'brand.destroy', $brand->id
-                                ]
-                            ];
 
-                            ?>
-                            @include('layout.actions', $actions_data)
+                            <a href="javascript:void(0)" class="open-EditbrandDialog" data-id="{{$brand->id}}"
+                               data-toggle="modal" data-target="#editModal" title="Edit">
+                                <i class="dripicons-document-edit"></i>
+                            </a>
+
+                            {{ Form::open(['route' => ['brand.destroy', $brand->id], 'method' => 'DELETE' ,'style' => 'display: inline','title' => 'Delete'])}}
+
+                            <button type="submit" class="btn btn-link"
+                                    onclick="return confirm('Are you sure want to delete?')">
+                                <i class="dripicons-trash"></i>
+                            </button>
+
+                            {{ Form::close() }}
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-sm dropdown-toggle"
                                         data-toggle="dropdown" aria-haspopup="true"

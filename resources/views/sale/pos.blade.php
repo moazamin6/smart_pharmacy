@@ -2745,7 +2745,7 @@
                 var data = $(this).data('product');
                 data = data.split(" ");
                 pos = product_code.indexOf(data[0]);
-                if (pos < 0)
+                if (false)
                     alert('Product is not avaialable in the selected warehouse');
                 else {
                     productSearch(data[0]);
@@ -3605,6 +3605,20 @@
             },
             dom: 'tp'
         });
+
+        let shift_count = 0;
+        $(document).on('keyup', 'body', function (e) {
+
+            if (e.which === 16) {
+                shift_count++;
+            }
+
+            if (shift_count === 2) {
+                alert('double shift pressed')
+                shift_count = 0;
+            }
+        });
+
     </script>
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 @endpush

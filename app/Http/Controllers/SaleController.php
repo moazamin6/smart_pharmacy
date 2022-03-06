@@ -952,7 +952,7 @@ class SaleController extends Controller
             $product_qty[] = $product_warehouse->qty;
             $lims_product_data = Product::find($product_warehouse->product_id);
             $lims_product_variant_data = ProductVariant::select('item_code')->FindExactProduct($product_warehouse->product_id, $product_warehouse->variant_id)->first();
-            $product_code[] = $lims_product_variant_data->item_code;
+//            $product_code[] = $lims_product_variant_data->item_code;
             $product_name[] = htmlspecialchars($lims_product_data->name);
             $product_type[] = $lims_product_data->type;
             $product_id[] = $lims_product_data->id;

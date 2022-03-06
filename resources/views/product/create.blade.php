@@ -15,7 +15,7 @@
                                     .</small></p>
                             <form id="product-form">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" style="display: none">
                                         <div class="form-group">
                                             <label>{{trans('file.Product Type')}} *</strong> </label>
                                             <div class="input-group">
@@ -52,7 +52,7 @@
                                             <span class="validation-msg" id="code-error"></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" style="display: none">
                                         <div class="form-group">
                                             <label>{{trans('file.Barcode Symbology')}} *</strong> </label>
                                             <div class="input-group">
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>{{trans('file.Brand')}}</strong> </label>
+                                            <label>{{'Company'}}</strong> </label>
                                             <div class="input-group">
                                                 <select name="brand_id" class="selectpicker form-control"
                                                         data-live-search="true" data-live-search-style="begins"
@@ -153,16 +153,6 @@
                                                 <div class="input-group">
                                                     <select class="form-control selectpicker" name="sale_unit_id">
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>{{trans('file.Purchase Unit')}}</strong> </label>
-                                                    <div class="input-group">
-                                                        <select class="form-control selectpicker"
-                                                                name="purchase_unit_id">
-                                                        </select>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
